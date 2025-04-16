@@ -1,5 +1,5 @@
 {
-"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'PowerShell' LIMIT 200": [
+"snippets": [
 	{
 		"id" : 2567155,
 		"snippet" : "# Jenkins CI scripts for Windows to Windows CI (Powershell Version)\n# By John Howard (@jhowardmsft) January 2016 - bash version; July 2016 Ported to PowerShell\n\n$ErrorActionPreference = 'Stop'\n$StartTime=Get-Date\n",

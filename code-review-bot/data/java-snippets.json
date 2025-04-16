@@ -1,5 +1,5 @@
 {
-"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'Java' LIMIT 200": [
+"snippets": [
 	{
 		"id" : 88626,
 		"snippet" : "        assertNext(i, ADDR2);\n        assertNext(i, ADDR3);\n    }\n\n    @Test\n",

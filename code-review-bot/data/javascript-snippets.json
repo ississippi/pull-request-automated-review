@@ -1,5 +1,5 @@
 {
-"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'JavaScript' LIMIT 200": [
+"snippets": [
 	{
 		"id" : 627,
 		"snippet" : "const nconf = require('nconf');\n\nconst db = require('.\/mocks\/databasemock');\nconst helpers = require('.\/helpers');\nconst Groups = require('..\/src\/groups');\n",

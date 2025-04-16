@@ -1,5 +1,5 @@
 {
-"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'C++' LIMIT 200": [
+"snippets": [
 	{
 		"id" : 190196,
 		"snippet" : "\n    http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\n",

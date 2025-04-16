@@ -1,5 +1,5 @@
 {
-"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'Rust' LIMIT 200": [
+"snippets": [
 	{
 		"id" : 3282577,
 		"snippet" : "            \/\/ add span for final state\n            let start = self.offset - self.spans_start + prev_cursor;\n            let end = start + (line.len() - prev_cursor);\n            let scope_id = self.identifier_for_stack(&scope_state, &repo);\n            let span = ScopeSpan { start, end, scope_id };\n",
