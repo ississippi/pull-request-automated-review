@@ -1,0 +1,1203 @@
+{
+"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'Java' LIMIT 200": [
+	{
+		"id" : 88626,
+		"snippet" : "        assertNext(i, ADDR2);\n        assertNext(i, ADDR3);\n    }\n\n    @Test\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsServerAddressesTest.java"
+	},
+	{
+		"id" : 88648,
+		"snippet" : "\n        stream = p.nameServerAddressStream(\"\");\n        assertHostNameEquals(\"127.0.0.2\", stream.next());\n        assertHostNameEquals(\"127.0.0.3\", stream.next());\n        assertHostNameEquals(\"127.0.0.4\", stream.next());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProviderTest.java"
+	},
+	{
+		"id" : 88655,
+		"snippet" : "                           \"nameserver 127.0.0.2\\n\" +\n                           \"nameserver 127.0.0.3\\n\");\n        File f2 = buildFile(\"domain squarecorp.local\\n\" +\n                            \"nameserver 127.0.0.4\\n\" +\n                            \"nameserver 127.0.0.5\\n\");\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProviderTest.java"
+	},
+	{
+		"id" : 88658,
+		"snippet" : "        File f = buildFile(\"domain linecorp.local\\n\" +\n                           \"nameserver 127.0.0.2\\n\" +\n                           \"nameserver 127.0.0.3\\n\");\n        File f2 = buildFile(\"domain dc1.linecorp.local\\n\" +\n                            \"nameserver 127.0.0.4\\n\" +\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProviderTest.java"
+	},
+	{
+		"id" : 88675,
+		"snippet" : "\n    @Test\n    public void searchDomainsWithOnlyDomain() throws IOException {\n        File f = buildFile(\"domain linecorp.local\\n\" +\n                           \"nameserver 127.0.0.2\\n\");\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProviderTest.java"
+	},
+	{
+		"id" : 88694,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DefaultDnsCnameCacheTest.java"
+	},
+	{
+		"id" : 88716,
+		"snippet" : "            assertEquals(\"mapping.netty.io\", cache.get(\"y.netty.io\"));\n\n            assertTrue(cache.clear(\"x.netty.io\"));\n            assertNull(cache.get(\"x.netty.io\"));\n            assertEquals(\"mapping.netty.io\", cache.get(\"y.netty.io\"));\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DefaultDnsCnameCacheTest.java"
+	},
+	{
+		"id" : 88717,
+		"snippet" : "            cache.clear();\n            assertNull(cache.get(\"y.netty.io\"));\n        } finally {\n            group.shutdownGracefully();\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DefaultDnsCnameCacheTest.java"
+	},
+	{
+		"id" : 88762,
+		"snippet" : "\n        \/\/ \"host2.sub\" is resolved with the foo.com search domain as ndots = 2\n        resolved = assertResolve(resolver, \"host2.sub\");\n        assertEquals(store.getAddress(\"host2.sub.foo.com\"), resolved);\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/SearchDomainTest.java"
+	},
+	{
+		"id" : 88769,
+		"snippet" : "        assertFalse(fut.isSuccess());\n    }\n\n    private static void assertNotResolveAll(DnsNameResolver resolver, String inetHost) throws InterruptedException {\n        Future<List<InetAddress>> fut = resolver.resolveAll(inetHost);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/SearchDomainTest.java"
+	},
+	{
+		"id" : 88771,
+		"snippet" : "        Future<InetAddress> fut = resolver.resolve(inetHost);\n        assertTrue(fut.await(10, TimeUnit.SECONDS));\n        return fut.getNow().getHostAddress();\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/SearchDomainTest.java"
+	},
+	{
+		"id" : 88774,
+		"snippet" : "\n    @Test\n    public void testExceptionMsgContainsSearchDomain() throws Exception {\n        TestDnsServer.MapRecordStoreA store = new TestDnsServer.MapRecordStoreA(Collections.<String>emptySet());\n        dnsServer = new TestDnsServer(store);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/SearchDomainTest.java"
+	},
+	{
+		"id" : 88776,
+		"snippet" : "        assertTrue(fut.await(10, TimeUnit.SECONDS));\n        assertFalse(fut.isSuccess());\n        final Throwable cause = fut.cause();\n        assertThat(cause, instanceOf(UnknownHostException.class));\n        assertThat(\"search domain is included in UnknownHostException\", cause.getMessage(),\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/SearchDomainTest.java"
+	},
+	{
+		"id" : 88884,
+		"snippet" : "                    @Override\n                    public int compare(InetSocketAddress o1, InetSocketAddress o2) {\n                        if (o1.equals(o2)) {\n                            return 0;\n                        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCacheTest.java"
+	},
+	{
+		"id" : 88894,
+		"snippet" : "import io.netty.channel.socket.nio.NioDatagramChannel;\nimport io.netty.resolver.AddressResolver;\nimport io.netty.util.concurrent.Future;\nimport io.netty.util.concurrent.FutureListener;\nimport io.netty.util.concurrent.Promise;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsAddressResolverGroupTest.java"
+	},
+	{
+		"id" : 88964,
+		"snippet" : "import org.junit.Test;\nimport org.junit.rules.ExpectedException;\n\nimport java.io.IOException;\nimport java.io.InputStream;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 88986,
+		"snippet" : "            \"imdb.com\",\n            \"aliexpress.com\",\n            \"hao123.com\",\n            \"msn.com\",\n            \"tumblr.com\",\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 88996,
+		"snippet" : "            \"google.com.eg\",\n            \"pixnet.net\",\n            \"localhost\")));\n\n    private static final Map<String, String> DOMAINS_PUNYCODE = new HashMap<String, String>();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89035,
+		"snippet" : "                if (EXCLUSIONS_RESOLVE_A.contains(name)) {\n                    continue;\n                }\n                if (PlatformDependent.threadLocalRandom().nextBoolean()) {\n                    overriddenHostnames.add(name);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89047,
+		"snippet" : "                assertThat(actual, is(expected));\n            }\n        } finally {\n            resolver.close();\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89050,
+		"snippet" : "    }\n\n    @Test\n    public void testNonCachedResolve() throws Exception {\n        DnsNameResolver resolver = newNonCachedResolver(ResolvedAddressTypes.IPV4_ONLY).build();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89055,
+		"snippet" : "            InetAddress addr = resolver.resolve(inetHost).syncUninterruptibly().getNow();\n            assertEquals(SocketUtils.addressByName(inetHost), addr);\n        } finally {\n            resolver.close();\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89074,
+		"snippet" : "                final int answerCount = response.count(DnsSection.ANSWER);\n                final List<DnsRecord> mxList = new ArrayList<DnsRecord>(answerCount);\n                for (int i = 0; i < answerCount; i++) {\n                    final DnsRecord r = response.recordAt(DnsSection.ANSWER, i);\n                    if (r.type() == DnsRecordType.MX) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89086,
+		"snippet" : "            negativeLookupThread.join(DEFAULT_TEST_TIMEOUT_MS);\n\n            if (negativeLookupThread.isAlive()) {\n                negativeLookupThread.interrupt();\n                fail(\"Cached negative lookups did not finish quickly.\");\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89094,
+		"snippet" : "    @Test\n    public void testResolveIp() {\n        DnsNameResolver resolver = newResolver().build();\n        try {\n            InetAddress address = resolver.resolve(\"10.0.0.1\").syncUninterruptibly().getNow();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89123,
+		"snippet" : "        final String lastName = \"lastname.nettybar.com\";\n        final String ipv4Addr = \"1.2.3.4\";\n        final String ipv6Addr = \"::1\";\n        final AtomicBoolean hitServer2 = new AtomicBoolean();\n        final TestDnsServer dnsServer2 = new TestDnsServer(new RecordStore() {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89143,
+		"snippet" : "    }\n\n    private static void testResolveAll0(ResolvedAddressTypes addressTypes, InetAddress expectedAddr, String name) {\n        DnsNameResolver resolver = newResolver(addressTypes).build();\n        try {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89161,
+		"snippet" : "        assertThat(content.readInt(), is(0x01020304));\n        record.release();\n    }\n\n    @Test\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89169,
+		"snippet" : "        final TestDnsServer dnsServer1 = new TestDnsServer(Collections.singleton(\"notnetty.com\"));\n        final TestDnsServer dnsServer2 = new TestDnsServer(Collections.singleton(knownHostName));\n        DnsNameResolver resolver = null;\n        try {\n            final InetSocketAddress dnsServer1Address;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89174,
+		"snippet" : "            builder.nameServerProvider(new SequentialDnsServerAddressStreamProvider(dnsServer1Address,\n                    dnsServer2.localAddress()));\n            resolver = builder.build();\n            assertNotNull(resolver.resolve(knownHostName).syncUninterruptibly().getNow());\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89192,
+		"snippet" : "    public void testIpv6PreferredWhenIpv4First() throws Exception {\n        testResolvesPreferredWhenNonPreferredFirst0(ResolvedAddressTypes.IPV6_PREFERRED);\n    }\n\n    private static void testResolvesPreferredWhenNonPreferredFirst0(ResolvedAddressTypes types) throws Exception {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89195,
+		"snippet" : "        } else {\n            records.add(Collections.singleton(TestDnsServer.newAddressRecord(name, RecordType.A, ipv4Address)));\n            records.add(Collections.singleton(TestDnsServer.newAddressRecord(name, RecordType.AAAA, ipv6Address)));\n        }\n        final Iterator<Set<ResourceRecord>> recordsIterator = records.iterator();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89201,
+		"snippet" : "            List<InetAddress> resolvedAll = resolver.resolveAll(\"netty.com\").syncUninterruptibly().getNow();\n            List<InetAddress> expected = types == ResolvedAddressTypes.IPV4_PREFERRED ?\n                    Arrays.asList(ipv4InetAddress, ipv6InetAddress) :  Arrays.asList(ipv6InetAddress, ipv4InetAddress);\n            assertEquals(expected, resolvedAll);\n        } finally {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89230,
+		"snippet" : "        final String domain = \"netty.io\";\n        final String ns1Name = \"ns1.\" + domain;\n        final String ns2Name = \"ns2.\" + domain;\n        final InetAddress expected = InetAddress.getByAddress(\"some.record.\" + domain, new byte[] { 10, 10, 10, 10 });\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89263,
+		"snippet" : "                        message.getAdditionalRecords().add(newARecord(ns3Address));\n                        message.getAdditionalRecords().add(newARecord(ns4Address));\n                        return message;\n                    }\n                }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89267,
+		"snippet" : "            }\n\n            @Override\n            public void cache(String hostname, InetSocketAddress address, long originalTtl, EventLoop loop) {\n                cached.add(address);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89271,
+		"snippet" : "                group.next(), new ReflectiveChannelFactory<DatagramChannel>(NioDatagramChannel.class),\n                NoopDnsCache.INSTANCE, authoritativeDnsServerCache,\n                NoopDnsQueryLifecycleObserverFactory.INSTANCE, 2000, ResolvedAddressTypes.IPV4_ONLY,\n                true, 10, true, 4096,\n                false, HostsFileEntriesResolver.DEFAULT,\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89300,
+		"snippet" : "            @Override\n            protected DnsServerAddressStream newRedirectDnsServerStream(\n                    String hostname, List<InetSocketAddress> nameservers) {\n                DnsServerAddressStream stream = new SequentialDnsServerAddressStream(nameservers, 0);\n                redirectedRef.set(stream);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89309,
+		"snippet" : "    public void testNsLoopFailsResolveWithoutAuthoritativeDnsServerCache() throws Exception {\n        testNsLoopFailsResolve(NoopAuthoritativeDnsServerCache.INSTANCE);\n    }\n\n    private void testNsLoopFailsResolve(AuthoritativeDnsServerCache authoritativeDnsServerCache) throws Exception {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89348,
+		"snippet" : "        final AuthoritativeDnsServerCache cache;\n        final Map<String, DnsServerAddressStream> cacheHits = new HashMap<String, DnsServerAddressStream>();\n\n        TestAuthoritativeDnsServerCache(AuthoritativeDnsServerCache cache) {\n            this.cache = cache;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89379,
+		"snippet" : "    public void testDnsNameResolverBuilderCopy() {\n        ChannelFactory<DatagramChannel> channelFactory =\n                new ReflectiveChannelFactory<DatagramChannel>(NioDatagramChannel.class);\n        DnsNameResolverBuilder builder = new DnsNameResolverBuilder(group.next())\n                .channelFactory(channelFactory);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89380,
+		"snippet" : "        DnsNameResolverBuilder copiedBuilder = builder.copy();\n\n        \/\/ change channel factory does not propagate to previously made copy\n        ChannelFactory<DatagramChannel> newChannelFactory =\n                new ReflectiveChannelFactory<DatagramChannel>(NioDatagramChannel.class);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89386,
+		"snippet" : "                    records.add(new TestDnsServer.TestResourceRecord(\n                            question.getDomainName(), RecordType.A, map1));\n                    return records;\n                }\n            }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89418,
+		"snippet" : "                authoritativeLatch.countDown();\n            }\n\n            @Override\n            public boolean clear(String hostname) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89421,
+		"snippet" : "                    String hostname, DnsRecord[] additionals, InetAddress address, long originalTtl, EventLoop loop) {\n                return null;\n            }\n\n            @Override\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89447,
+		"snippet" : "                            return cache.get(hostname);\n                        }\n\n                        @Override\n                        public void cache(String hostname, String cname, long originalTtl, EventLoop loop) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89450,
+		"snippet" : "                        public boolean clear(String hostname) {\n                            return false;\n                        }\n                    });\n            resolver = builder.build();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89456,
+		"snippet" : "            \/\/ Will only query for one CNAME\n            assertEquals(2, cnameQueries.get());\n            assertEquals(3, aQueries.get());\n\n            resolvedAddresses =\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89460,
+		"snippet" : "    @Test\n    public void testInstanceWithNullPreferredAddressType() {\n        new DnsNameResolver(\n                group.next(), \/\/ eventLoop\n                new ReflectiveChannelFactory<DatagramChannel>(NioDatagramChannel.class), \/\/ channelFactory\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89472,
+		"snippet" : "            assertEquals(DnsResponseCode.NOERROR, response.code());\n            int count = response.count(DnsSection.ANSWER);\n\n            assertEquals(2, count);\n            List<String> txts = new ArrayList<String>();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89474,
+		"snippet" : "            assertTrue(txts.contains(txt2));\n            envelope.release();\n        } finally {\n            resolver.close();\n            server.stop();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89495,
+		"snippet" : "            dnsServer2.stop();\n            if (resolver != null) {\n                resolver.close();\n            }\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89497,
+		"snippet" : "        TestDnsServer dnsServer2 = new TestDnsServer(Collections.singleton(host));\n        dnsServer2.start(true);\n        DnsNameResolver resolver = null;\n        try {\n            DnsNameResolverBuilder builder = newResolver()\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89513,
+		"snippet" : "            List<InetAddress> addresses = resolver.resolveAll(host).syncUninterruptibly().getNow();\n            assertEquals(2, addresses.size());\n            for (InetAddress address: addresses) {\n                assertThat(address, instanceOf(Inet4Address.class));\n                assertEquals(host, address.getHostName());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89520,
+		"snippet" : "        modifier.setAuthorityRecords(message.getAuthorityRecords());\n        modifier.setMessageType(message.getMessageType());\n        modifier.setOpCode(message.getOpCode());\n        modifier.setQuestionRecords(message.getQuestionRecords());\n        modifier.setRecursionAvailable(message.isRecursionAvailable());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89526,
+		"snippet" : "        }) {\n            @Override\n            protected DnsMessage filterMessage(DnsMessage message) {\n                \/\/ Store a original message so we can replay it later on.\n                messageRef.set(message);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89529,
+		"snippet" : "        dnsServer2.start();\n        DnsNameResolver resolver = null;\n        ServerSocket serverSocket = null;\n        try {\n            DnsNameResolverBuilder builder = newResolver()\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89551,
+		"snippet" : "            @Override\n            protected DnsMessage filterMessage(DnsMessage message) {\n                isQuerySentToSecondServer.set(true);\n                return message;\n            }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89581,
+		"snippet" : "                        public DnsServerAddressStream nameServerAddressStream(String hostname) {\n                            return addresses.stream();\n                        }\n                    })\n                    .resolvedAddressTypes(ResolvedAddressTypes.IPV4_ONLY).build();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89585,
+		"snippet" : "            dnsServer3.stop();\n            if (resolver != null) {\n                resolver.close();\n            }\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTest.java"
+	},
+	{
+		"id" : 89669,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/package io.netty.resolver.dns;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/test\/java\/io\/netty\/resolver\/dns\/DnsServerAddressStreamProvidersTest.java"
+	},
+	{
+		"id" : 89686,
+		"snippet" : "\n    \/**\n     * Returns the cached nameservers that should be used to resolve the given hostname. The returned\n     * {@link DnsServerAddressStream} may contain unresolved {@link InetSocketAddress}es that will be resolved\n     * when needed while resolving other domain names.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/AuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89689,
+		"snippet" : "     * @param address the nameserver address (which may be unresolved).\n     * @param originalTtl the TTL as returned by the DNS server\n     * @param loop the {@link EventLoop} used to register the TTL timeout\n     *\/\n    void cache(String hostname, InetSocketAddress address, long originalTtl, EventLoop loop);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/AuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89725,
+		"snippet" : "    private DnsServerAddressStreamProviders() {\n    }\n\n    \/**\n     * A {@link DnsServerAddressStreamProvider} which inherits the DNS servers from your local host's configuration.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsServerAddressStreamProviders.java"
+	},
+	{
+		"id" : 89733,
+		"snippet" : "                    private final AtomicLong lastRefresh = new AtomicLong(System.nanoTime());\n\n                    @Override\n                    public DnsServerAddressStream nameServerAddressStream(String hostname) {\n                        long last = lastRefresh.get();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsServerAddressStreamProviders.java"
+	},
+	{
+		"id" : 89759,
+		"snippet" : "    }\n\n    @Override\n    public void clear() {\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/NoopDnsCache.java"
+	},
+	{
+		"id" : 89772,
+		"snippet" : "package io.netty.resolver.dns;\n\nimport io.netty.channel.EventLoop;\nimport io.netty.util.internal.PlatformDependent;\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89775,
+		"snippet" : " *\/\npublic class DefaultAuthoritativeDnsServerCache implements AuthoritativeDnsServerCache {\n\n    private final int minTtl;\n    private final int maxTtl;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89779,
+		"snippet" : "        @Override\n        protected void sortEntries(String hostname, List<InetSocketAddress> entries) {\n            if (comparator != null) {\n                Collections.sort(entries, comparator);\n            }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89780,
+		"snippet" : "        }\n    };\n\n    \/**\n     * Create a cache that respects the TTL returned by the DNS server.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89790,
+		"snippet" : "        }\n\n        resolveCache.cache(hostname, address, Math.max(minTtl, (int) Math.min(maxTtl, originalTtl)), loop);\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultAuthoritativeDnsServerCache.java"
+	},
+	{
+		"id" : 89827,
+		"snippet" : "     * @param loop the {@link EventLoop} used to register the TTL timeout\n     * @return The {@link DnsCacheEntry} corresponding to this cache entry, or {@code null} if this cache doesn't\n     * support caching failed responses.\n     *\/\n    DnsCacheEntry cache(String hostname, DnsRecord[] additionals, Throwable cause, EventLoop loop);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsCache.java"
+	},
+	{
+		"id" : 89852,
+		"snippet" : "\/*\n * Copyright 2014 The Netty Project\n *\n * The Netty Project licenses this file to you under the Apache License,\n * version 2.0 (the \"License\"); you may not use this file except in compliance\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89871,
+		"snippet" : "    private boolean completeEarly;\n\n    DnsResolveContext(DnsNameResolver parent, Promise<?> originalPromise,\n                      String hostname, int dnsClass, DnsRecordType[] expectedTypes,\n                      DnsRecord[] additionals, DnsServerAddressStream nameServerAddrs, int allowedQueries) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89892,
+		"snippet" : "\n    \/**\n     * Caches a failed resolution.\n     *\/\n    abstract void cache(String hostname, DnsRecord[] additionals,\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89924,
+		"snippet" : "    \/**\n     * Returns the {@link DnsServerAddressStream} that was cached for the given hostname or {@code null} if non\n     *  could be found.\n     *\/\n    private DnsServerAddressStream getNameServersFromCache(String hostname) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89962,
+		"snippet" : "\n        @Override\n        public void cache(String hostname, InetSocketAddress address, long originalTtl, EventLoop loop) {\n            wrapped.cache(hostname, address, originalTtl, loop);\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89964,
+		"snippet" : "\n        @Override\n        public boolean clear(String hostname) {\n            return wrapped.clear(hostname);\n        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 89983,
+		"snippet" : "\n                    \/\/ We may have multiple ADDITIONAL entries for the same nameserver name. For example one AAAA and\n                    \/\/ one A record.\n                    serverNames.handleWithAdditional(parent, r, authoritativeDnsServerCache);\n                }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90010,
+		"snippet" : "                    }\n                } while (resolved != null);\n\n                if (resolved == null) {\n                    continue;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90027,
+		"snippet" : "\n    private static Map<String, String> buildAliasMap(DnsResponse response, DnsCnameCache cache, EventLoop loop) {\n        final int answerCount = response.count(DnsSection.ANSWER);\n        Map<String, String> cnames = null;\n        for (int i = 0; i < answerCount; i ++) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90062,
+		"snippet" : "                             Promise<List<T>> promise) {\n        final DnsQuestion cnameQuestion;\n        final DnsServerAddressStream stream;\n        try {\n            cname = cnameResolveFromCache(cnameCache(), cname);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90066,
+		"snippet" : "            question = new DefaultDnsQuestion(hostname, type, dnsClass);\n        } catch (Throwable cause) {\n            \/\/ Assume a single failure means that queries will succeed. If the hostname is invalid for one type\n            \/\/ there is no case where it is known to be valid for another type.\n            promise.tryFailure(new IllegalArgumentException(\"Unable to create DNS Question for: [\" + hostname + \", \" +\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90075,
+		"snippet" : "        }\n\n        @Override\n        public int size() {\n            return originalStream.size() + resolvedAddresses.size() - 1;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90103,
+		"snippet" : "\n                                assert address != null :\n                                        \"Cache returned a cached failure, should never return anything else\";\n\n                                AuthoritativeNameServer server = new AuthoritativeNameServer(serverName);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsResolveContext.java"
+	},
+	{
+		"id" : 90136,
+		"snippet" : "    protected final AddressResolver<InetSocketAddress> newAddressResolver(EventLoop eventLoop,\n                                                                          NameResolver<InetAddress> resolver)\n            throws Exception {\n        return new RoundRobinInetAddressResolver(eventLoop, resolver).asAddressResolver();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/RoundRobinDnsAddressResolverGroup.java"
+	},
+	{
+		"id" : 90142,
+		"snippet" : "public final class DnsNameResolverTimeoutException extends DnsNameResolverException {\n    private static final long serialVersionUID = -8826717969627131854L;\n\n    public DnsNameResolverTimeoutException(\n            InetSocketAddress remoteAddress, DnsQuestion question, String message) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverTimeoutException.java"
+	},
+	{
+		"id" : 90160,
+		"snippet" : "\n    @Override\n    protected DnsQuery newQuery(int id) {\n        return new DatagramDnsQuery(null, nameServerAddr(), id);\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DatagramDnsQueryContext.java"
+	},
+	{
+		"id" : 90166,
+		"snippet" : "package io.netty.resolver.dns;\n\nimport io.netty.bootstrap.Bootstrap;\nimport io.netty.buffer.ByteBuf;\nimport io.netty.buffer.Unpooled;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolver.java"
+	},
+	{
+		"id" : 90351,
+		"snippet" : "        }\n    }\n\n    private void doResolveUncached(String hostname,\n                                   DnsRecord[] additionals,\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolver.java"
+	},
+	{
+		"id" : 90406,
+		"snippet" : "\n            if (logger.isDebugEnabled()) {\n                logger.debug(\"{} RECEIVED: UDP [{}: {}], {}\", ch, queryId, res.sender(), res);\n            }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolver.java"
+	},
+	{
+		"id" : 90431,
+		"snippet" : "            this.response = response;\n        }\n\n        @Override\n        public DnsResponse content() {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolver.java"
+	},
+	{
+		"id" : 90435,
+		"snippet" : "            response.retain();\n            return this;\n        }\n\n        @Override\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolver.java"
+	},
+	{
+		"id" : 90466,
+		"snippet" : "        } catch (Exception e) {\n            if (logger.isDebugEnabled()) {\n                logger.debug(\"failed to parse {} and\/or {}\", ETC_RESOLV_CONF_FILE, ETC_RESOLVER_DIR, e);\n            }\n            return DefaultDnsServerAddressStreamProvider.INSTANCE;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProvider.java"
+	},
+	{
+		"id" : 90489,
+		"snippet" : "                            int x = indexOfWhiteSpace(line, i);\n                            if (x == -1) {\n                                maybeIP = line.substring(i);\n                            } else {\n                                \/\/ ignore comments\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProvider.java"
+	},
+	{
+		"id" : 90494,
+		"snippet" : "                            int i = indexOfNonWhiteSpace(line, DOMAIN_ROW_LABEL.length());\n                            if (i < 0) {\n                                throw new IllegalArgumentException(\"error parsing label \" + DOMAIN_ROW_LABEL +\n                                        \" in file \" + etcResolverFile + \" value: \" + line);\n                            }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/UnixResolverDnsServerAddressStreamProvider.java"
+	},
+	{
+		"id" : 90534,
+		"snippet" : "package io.netty.resolver.dns;\n\nimport io.netty.util.NetUtil;\nimport io.netty.util.internal.PlatformDependent;\nimport io.netty.util.internal.SocketUtils;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsServerAddressStreamProvider.java"
+	},
+	{
+		"id" : 90545,
+		"snippet" : "                }\n            } catch (Exception ignore) {\n                \/\/ Failed to get the system name server list via reflection.\n                \/\/ Will add the default name servers afterwards.\n            }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsServerAddressStreamProvider.java"
+	},
+	{
+		"id" : 90602,
+		"snippet" : "    @Override\n    DnsRecord convertRecord(DnsRecord record, String hostname, DnsRecord[] additionals, EventLoop eventLoop) {\n        return ReferenceCountUtil.retain(record);\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsRecordResolveContext.java"
+	},
+	{
+		"id" : 90632,
+		"snippet" : "                \/\/ Also add the mapping for the IPv4 address if this IPv6 address is compatible.\n                final Inet6Address a6 = (Inet6Address) a;\n                if (a6.isLoopbackAddress()) {\n                    map.put(new InetSocketAddress(NetUtil.LOCALHOST4, port), newContexts);\n                } else if (a6.isIPv4CompatibleAddress()) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsQueryContextManager.java"
+	},
+	{
+		"id" : 90668,
+		"snippet" : "\/**\n * Provides an infinite sequence of DNS server addresses to {@link DnsNameResolver}.\n *\/\n@SuppressWarnings(\"IteratorNextCanNotThrowNoSuchElementException\")\npublic abstract class DnsServerAddresses {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsServerAddresses.java"
+	},
+	{
+		"id" : 90715,
+		"snippet" : "    private static DnsQuestion validateQuestion(DnsQuestion question) {\n        return ObjectUtil.checkNotNull(question, \"question\");\n    }\n\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverException.java"
+	},
+	{
+		"id" : 90727,
+		"snippet" : "    int ndots() {\n        return ndots;\n    }\n\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/UnixResolverOptions.java"
+	},
+	{
+		"id" : 90760,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/SingletonDnsServerAddresses.java"
+	},
+	{
+		"id" : 90764,
+		"snippet" : "        @Override\n        public InetSocketAddress next() {\n            return address;\n        }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/SingletonDnsServerAddresses.java"
+	},
+	{
+		"id" : 90768,
+		"snippet" : "\n    SingletonDnsServerAddresses(InetSocketAddress address) {\n        this.address = address;\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/SingletonDnsServerAddresses.java"
+	},
+	{
+		"id" : 90774,
+		"snippet" : "\/**\n * An infinite stream of DNS server addresses.\n *\/\npublic interface DnsServerAddressStream {\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsServerAddressStream.java"
+	},
+	{
+		"id" : 90776,
+		"snippet" : "     * Get the number of times {@link #next()} will return a distinct element before repeating or terminating.\n     * @return the number of times {@link #next()} will return a distinct element before repeating or terminating.\n     *\/\n    int size();\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsServerAddressStream.java"
+	},
+	{
+		"id" : 90807,
+		"snippet" : "        if (minTtl > maxTtl) {\n            throw new IllegalArgumentException(\n                    \"minTtl: \" + minTtl + \", maxTtl: \" + maxTtl + \" (expected: 0 <= minTtl <= maxTtl)\");\n        }\n        this.negativeTtl = checkPositiveOrZero(negativeTtl, \"negativeTtl\");\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsCache.java"
+	},
+	{
+		"id" : 90828,
+		"snippet" : "            this.address = address;\n            cause = null;\n        }\n\n        DefaultDnsCacheEntry(String hostname, Throwable cause) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsCache.java"
+	},
+	{
+		"id" : 90833,
+		"snippet" : "        public String toString() {\n            if (cause != null) {\n                return hostname + '\/' + cause;\n            } else {\n                return address.toString();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsCache.java"
+	},
+	{
+		"id" : 90843,
+		"snippet" : "\nabstract class DnsQueryContext implements FutureListener<AddressedEnvelope<DnsResponse, InetSocketAddress>> {\n\n    private static final InternalLogger logger = InternalLoggerFactory.getInstance(DnsQueryContext.class);\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsQueryContext.java"
+	},
+	{
+		"id" : 90875,
+		"snippet" : "        return promise.trySuccess((AddressedEnvelope<DnsResponse, InetSocketAddress>) envelope);\n    }\n\n    boolean tryFailure(String message, Throwable cause, boolean timeout) {\n        if (promise.isDone()) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsQueryContext.java"
+	},
+	{
+		"id" : 90928,
+		"snippet" : "\n    @Override\n    public String toString() {\n        return StringUtil.simpleClassName(this) + '(' + delegate + ')';\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/InflightNameResolver.java"
+	},
+	{
+		"id" : 90949,
+		"snippet" : "\npackage io.netty.resolver.dns;\n\nimport io.netty.util.internal.PlatformDependent;\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/ShuffledDnsServerAddressStream.java"
+	},
+	{
+		"id" : 90968,
+		"snippet" : "    DnsAddressResolveContext(DnsNameResolver parent, Promise<?> originalPromise,\n                             String hostname, DnsRecord[] additionals,\n                             DnsServerAddressStream nameServerAddrs, int allowedQueries, DnsCache resolveCache,\n                             AuthoritativeDnsServerCache authoritativeDnsServerCache,\n                             boolean completeEarlyIfPossible) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsAddressResolveContext.java"
+	},
+	{
+		"id" : 90979,
+		"snippet" : "    @Override\n    void doSearchDomainQuery(String hostname, Promise<List<InetAddress>> nextPromise) {\n        \/\/ Query the cache for the hostname first and only do a query if we could not find it in the cache.\n        if (!DnsNameResolver.doResolveAllCached(\n                hostname, additionals, nextPromise, resolveCache, parent.resolvedInternetProtocolFamiliesUnsafe())) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsAddressResolveContext.java"
+	},
+	{
+		"id" : 91000,
+		"snippet" : "                                    \"Skipping a nameserver URI as host portion could not be extracted: {}\", server);\n                            \/\/ If the host portion can not be parsed we should just skip this entry.\n                            continue;\n                        }\n                        int port  = uri.getPort();\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DirContextUtils.java"
+	},
+	{
+		"id" : 91005,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/package-info.java"
+	},
+	{
+		"id" : 91032,
+		"snippet" : "            return true;\n        }\n\n        @Override\n        public Object get() {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/Cache.java"
+	},
+	{
+		"id" : 91053,
+		"snippet" : "                    List<E> entries = get();\n                    if (!entries.isEmpty()) {\n                        final E firstEntry = entries.get(0);\n                        if (shouldReplaceAll(firstEntry)) {\n                            assert entries.size() == 1;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/Cache.java"
+	},
+	{
+		"id" : 91060,
+		"snippet" : "                            }\n                        } while (++i < entries.size());\n                        if (replacedEntry == null) {\n                            newEntries.add(e);\n                        }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/Cache.java"
+	},
+	{
+		"id" : 91108,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DefaultDnsCnameCache.java"
+	},
+	{
+		"id" : 91131,
+		"snippet" : " * A {@link DnsNameResolver} builder.\n *\/\npublic final class DnsNameResolverBuilder {\n    volatile EventLoop eventLoop;\n    private ChannelFactory<? extends DatagramChannel> channelFactory;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91136,
+		"snippet" : "    private String[] searchDomains;\n    private int ndots = -1;\n    private boolean decodeIdn = true;\n\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91147,
+		"snippet" : "    }\n\n    \/**\n     * Sets the {@link ChannelFactory} that will create a {@link SocketChannel} for\n     * <a href=\"https:\/\/tools.ietf.org\/html\/rfc7766\">TCP fallback<\/a> if needed.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91159,
+		"snippet" : "        this.dnsQueryLifecycleObserverFactory = checkNotNull(lifecycleObserverFactory, \"lifecycleObserverFactory\");\n        return this;\n    }\n\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91160,
+		"snippet" : "     * Sets the cache for authoritative NS servers\n     *\n     * @param authoritativeDnsServerCache the authoritative NS servers cache\n     * @return {@code this}\n     * @deprecated Use {@link #authoritativeDnsServerCache(AuthoritativeDnsServerCache)}\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91178,
+		"snippet" : "        }\n    }\n\n    \/**\n     * Sets the list of the protocol families of the address resolved.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91190,
+		"snippet" : "    public DnsNameResolverBuilder traceEnabled(boolean traceEnabled) {\n        this.traceEnabled = traceEnabled;\n        return this;\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91201,
+		"snippet" : "     * Set the list of search domains of the resolver.\n     *\n     * @param searchDomains the search domains\n     * @return {@code this}\n     *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91202,
+		"snippet" : "    public DnsNameResolverBuilder searchDomains(Iterable<String> searchDomains) {\n        checkNotNull(searchDomains, \"searchDomains\");\n\n        final List<String> list = new ArrayList<String>(4);\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsNameResolverBuilder.java"
+	},
+	{
+		"id" : 91249,
+		"snippet" : "package io.netty.resolver.dns;\n\nimport java.net.IDN;\nimport java.net.InetAddress;\nimport java.net.UnknownHostException;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsAddressDecoder.java"
+	},
+	{
+		"id" : 91252,
+		"snippet" : "\n    private static final int INADDRSZ4 = 4;\n    private static final int INADDRSZ6 = 16;\n\n    \/**\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/resolver-dns\/src\/main\/java\/io\/netty\/resolver\/dns\/DnsAddressDecoder.java"
+	},
+	{
+		"id" : 91291,
+		"snippet" : "import org.junit.Before;\nimport org.junit.Test;\n\nimport static org.hamcrest.CoreMatchers.*;\nimport static org.hamcrest.MatcherAssert.assertThat;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheEncoderTest.java"
+	},
+	{
+		"id" : 91317,
+		"snippet" : "    @Test(expected = EncoderException.class)\n    public void shouldFailWithoutLastContent() {\n        channel.writeOutbound(new DefaultMemcacheContent(Unpooled.EMPTY_BUFFER));\n        channel.writeOutbound(new DefaultBinaryMemcacheRequest());\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheEncoderTest.java"
+	},
+	{
+		"id" : 91359,
+		"snippet" : "\/*\n * Copyright 2016 The Netty Project\n *\n * The Netty Project licenses this file to you under the Apache License,\n * version 2.0 (the \"License\"); you may not use this file except in compliance\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/FullMemcacheMessageRequestTest.java"
+	},
+	{
+		"id" : 91360,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/FullMemcacheMessageRequestTest.java"
+	},
+	{
+		"id" : 91392,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheDecoderTest.java"
+	},
+	{
+		"id" : 91434,
+		"snippet" : "        content.release();\n\n        \/\/ Second message\n        response = channel.readInbound();\n        assertThat(response.status(), is(BinaryMemcacheResponseStatus.KEY_ENOENT));\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheDecoderTest.java"
+	},
+	{
+		"id" : 91442,
+		"snippet" : "        ByteBuf extras = Unpooled.copiedBuffer(\"extras\", CharsetUtil.UTF_8);\n        BinaryMemcacheRequest request = new DefaultBinaryMemcacheRequest(key, extras);\n\n        assertTrue(channel.writeOutbound(request));\n        for (;;) {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheDecoderTest.java"
+	},
+	{
+		"id" : 91453,
+		"snippet" : "                    key.readableBytes(), extras.readableBytes(), 0);\n\n            testSettingLengths(new DefaultFullBinaryMemcacheRequest(key.retain(), extras.retain()),\n                    key.readableBytes(), extras.readableBytes(), 0);\n            testSettingLengths(new DefaultFullBinaryMemcacheRequest(null, extras.retain()),\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheMessageTest.java"
+	},
+	{
+		"id" : 91456,
+		"snippet" : "            testSettingLengths(new DefaultFullBinaryMemcacheRequest(null, null, content.retain()),\n                    0, 0, content.readableBytes());\n\n            testSettingLengths(new DefaultFullBinaryMemcacheResponse(key.retain(), extras.retain()),\n                    key.readableBytes(), extras.readableBytes(), 0);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/test\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheMessageTest.java"
+	},
+	{
+		"id" : 91501,
+		"snippet" : "\n    @Override\n    FullMemcacheMessage replace(ByteBuf content);\n\n    @Override\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/FullMemcacheMessage.java"
+	},
+	{
+		"id" : 91507,
+		"snippet" : "package io.netty.handler.codec.memcache;\n\nimport io.netty.handler.codec.DecoderResult;\nimport io.netty.util.AbstractReferenceCounted;\nimport io.netty.util.internal.ObjectUtil;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/AbstractMemcacheObject.java"
+	},
+	{
+		"id" : 91529,
+		"snippet" : "\n    @Override\n    protected void deallocate() {\n        content.release();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/DefaultMemcacheContent.java"
+	},
+	{
+		"id" : 91545,
+		"snippet" : "        super(key, extras);\n        this.content = ObjectUtil.checkNotNull(content, \"content\");\n        setTotalBodyLength(keyLength() + extrasLength() + content.readableBytes());\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultFullBinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91584,
+		"snippet" : "    }\n\n    @Override\n    public long cas() {\n        return cas;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/AbstractBinaryMemcacheMessage.java"
+	},
+	{
+		"id" : 91614,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheRequestDecoder.java"
+	},
+	{
+		"id" : 91625,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91650,
+		"snippet" : "     *\n     * @param buf the {@link ByteBuf} to write into.\n     * @param msg the message to encode.\n     *\/\n    protected abstract void encodeHeader(ByteBuf buf, M msg);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/AbstractBinaryMemcacheEncoder.java"
+	},
+	{
+		"id" : 91661,
+		"snippet" : "        super(key, extras);\n        this.content = ObjectUtil.checkNotNull(content, \"content\");\n        setTotalBodyLength(keyLength() + extrasLength() + content.readableBytes());\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultFullBinaryMemcacheResponse.java"
+	},
+	{
+		"id" : 91668,
+		"snippet" : "    @Override\n    protected void deallocate() {\n        super.deallocate();\n        content.release();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultFullBinaryMemcacheResponse.java"
+	},
+	{
+		"id" : 91677,
+		"snippet" : "            extras = extras.retainedDuplicate();\n        }\n        return newInstance(key, extras, content);\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultFullBinaryMemcacheResponse.java"
+	},
+	{
+		"id" : 91697,
+		"snippet" : "\n    public static final int DEFAULT_MAX_CHUNK_SIZE = 8192;\n\n    private final int chunkSize;\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/AbstractBinaryMemcacheDecoder.java"
+	},
+	{
+		"id" : 91743,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheMessage.java"
+	},
+	{
+		"id" : 91769,
+		"snippet" : "     * Sets the CAS identifier.\n     *\n     * @param cas the CAS identifier to use.\n     *\/\n    BinaryMemcacheMessage setCas(long cas);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheMessage.java"
+	},
+	{
+		"id" : 91810,
+		"snippet" : "@UnstableApi\npublic class BinaryMemcacheObjectAggregator extends AbstractMemcacheObjectAggregator<BinaryMemcacheMessage> {\n\n    public BinaryMemcacheObjectAggregator(int maxContentLength) {\n        super(maxContentLength);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheObjectAggregator.java"
+	},
+	{
+		"id" : 91814,
+		"snippet" : "        }\n\n        \/\/ Should not reach here.\n        throw new Error();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheObjectAggregator.java"
+	},
+	{
+		"id" : 91818,
+		"snippet" : "        fullRequest.setReserved(request.reserved());\n\n        return fullRequest;\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheObjectAggregator.java"
+	},
+	{
+		"id" : 91820,
+		"snippet" : "\n        fullResponse.setMagic(response.magic());\n        fullResponse.setOpcode(response.opcode());\n        fullResponse.setKeyLength(response.keyLength());\n        fullResponse.setExtrasLength(response.extrasLength());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheObjectAggregator.java"
+	},
+	{
+		"id" : 91837,
+		"snippet" : "\n    @Override\n    protected BinaryMemcacheResponse decodeHeader(ByteBuf in) {\n        DefaultBinaryMemcacheResponse header = new DefaultBinaryMemcacheResponse();\n        header.setMagic(in.readByte());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheResponseDecoder.java"
+	},
+	{
+		"id" : 91851,
+		"snippet" : "\/*\n * Copyright 2013 The Netty Project\n *\n * The Netty Project licenses this file to you under the Apache License,\n * version 2.0 (the \"License\"); you may not use this file except in compliance\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/FullBinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91861,
+		"snippet" : "\/*\n * Copyright 2013 The Netty Project\n *\n * The Netty Project licenses this file to you under the Apache License,\n * version 2.0 (the \"License\"); you may not use this file except in compliance\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultBinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91866,
+		"snippet" : "\n    \/**\n     * Default magic byte for a request.\n     *\/\n    public static final byte REQUEST_MAGIC_BYTE = (byte) 0x80;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultBinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91867,
+		"snippet" : "\n    private short reserved;\n\n    \/**\n     * Create a new {@link DefaultBinaryMemcacheRequest} with the header only.\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultBinaryMemcacheRequest.java"
+	},
+	{
+		"id" : 91895,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheOpcodes.java"
+	},
+	{
+		"id" : 91902,
+		"snippet" : "    public static final byte GETKQ = 0x0d;\n    public static final byte APPEND = 0x0e;\n    public static final byte PREPEND = 0x0f;\n    public static final byte STAT = 0x10;\n    public static final byte SETQ = 0x11;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/BinaryMemcacheOpcodes.java"
+	},
+	{
+		"id" : 91910,
+		"snippet" : "\/**\n * The default implementation of the {@link BinaryMemcacheResponse}.\n *\/\n@UnstableApi\npublic class DefaultBinaryMemcacheResponse extends AbstractBinaryMemcacheMessage implements BinaryMemcacheResponse {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultBinaryMemcacheResponse.java"
+	},
+	{
+		"id" : 91925,
+		"snippet" : "    \/**\n     * Copies special metadata hold by this instance to the provided instance\n     *\n     * @param dst The instance where to copy the metadata of this instance to\n     *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/binary\/DefaultBinaryMemcacheResponse.java"
+	},
+	{
+		"id" : 91941,
+		"snippet" : "\/*\n * Copyright 2013 The Netty Project\n *\n * The Netty Project licenses this file to you under the Apache License,\n * version 2.0 (the \"License\"); you may not use this file except in compliance\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/MemcacheContent.java"
+	},
+	{
+		"id" : 91946,
+		"snippet" : " * A implementation of a {@link AbstractMemcacheObjectDecoder} generates {@link MemcacheContent} after\n * {@link MemcacheMessage} when the content is large. If you prefer not to receive {@link MemcacheContent}\n * in your handler, place a aggregator after an implementation of the {@link AbstractMemcacheObjectDecoder}\n * in the {@link ChannelPipeline}.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/MemcacheContent.java"
+	},
+	{
+		"id" : 91959,
+		"snippet" : "        public LastMemcacheContent copy() {\n            return EMPTY_LAST_CONTENT;\n        }\n\n        @Override\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/LastMemcacheContent.java"
+	},
+	{
+		"id" : 91972,
+		"snippet" : "        public boolean release(int decrement) {\n            return false;\n        }\n    };\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/LastMemcacheContent.java"
+	},
+	{
+		"id" : 91983,
+		"snippet" : " * distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT\n * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the\n * License for the specific language governing permissions and limitations\n * under the License.\n *\/\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/AbstractMemcacheObjectEncoder.java"
+	},
+	{
+		"id" : 92024,
+		"snippet" : "\npackage io.netty.handler.codec.memcache;\n\nimport io.netty.buffer.ByteBuf;\nimport io.netty.buffer.Unpooled;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/DefaultLastMemcacheContent.java"
+	},
+	{
+		"id" : 92033,
+		"snippet" : "    @Override\n    public LastMemcacheContent copy() {\n        return replace(content().copy());\n    }\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-memcache\/src\/main\/java\/io\/netty\/handler\/codec\/memcache\/DefaultLastMemcacheContent.java"
+	},
+	{
+		"id" : 92102,
+		"snippet" : "\n        ByteBuf buf = Unpooled.buffer(SPDY_HEADER_SIZE + length);\n        encodeControlFrameHeader(buf, type, flags, length);\n        buf.writeInt(streamId);\n        buf.writeInt(associatedToStreamId);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92105,
+		"snippet" : "    @Test\n    public void testUnidirectionalSpdySynStreamFrame() throws Exception {\n        short type = 1;\n        byte flags = 0x02; \/\/ FLAG_UNIDIRECTIONAL\n        int length = 10;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92106,
+		"snippet" : "        int streamId = RANDOM.nextInt() & 0x7FFFFFFF | 0x01;\n        int associatedToStreamId = RANDOM.nextInt() & 0x7FFFFFFF;\n        byte priority = (byte) (RANDOM.nextInt() & 0x07);\n\n        ByteBuf buf = Unpooled.buffer(SPDY_HEADER_SIZE + length);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92123,
+		"snippet" : "    }\n\n    @Test\n    public void testInvalidSpdySynStreamFrameLength() throws Exception {\n        short type = 1;\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92130,
+		"snippet" : "        buf.writeByte(0);\n\n        decoder.decode(buf);\n        verify(delegate).readFrameError(anyString());\n        assertFalse(buf.isReadable());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92227,
+		"snippet" : "        ByteBuf buf = Unpooled.buffer(SPDY_HEADER_SIZE + length);\n        encodeControlFrameHeader(buf, type, flags, length);\n        buf.writeInt(0); \/\/ invalid num_settings\n        for (int i = 0; i < numSettings; i++) {\n            buf.writeByte(idFlags);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92260,
+		"snippet" : "        int length = 8;\n        int lastGoodStreamId = RANDOM.nextInt() & 0x7FFFFFFF;\n        int statusCode = RANDOM.nextInt() | 0x01;\n\n        ByteBuf buf = Unpooled.buffer(SPDY_HEADER_SIZE + length);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92283,
+		"snippet" : "        decoder.decode(buf);\n        verify(delegate).readFrameError(anyString());\n        assertFalse(buf.isReadable());\n        buf.release();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyFrameDecoderTest.java"
+	},
+	{
+		"id" : 92316,
+		"snippet" : "import static org.junit.Assert.assertFalse;\nimport static org.junit.Assert.assertTrue;\n\npublic class SpdyHeaderBlockRawDecoderTest {\n\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockRawDecoderTest.java"
+	},
+	{
+		"id" : 92327,
+		"snippet" : "        decoder.decode(ByteBufAllocator.DEFAULT, headerBlock, frame);\n\n        assertFalse(headerBlock.isReadable());\n        assertTrue(frame.isInvalid());\n        assertEquals(0, frame.headers().names().size());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockRawDecoderTest.java"
+	},
+	{
+		"id" : 92382,
+		"snippet" : "    }\n\n    @Test\n    public void testMissingNextNameValuePair() throws Exception {\n        ByteBuf headerBlock = Unpooled.buffer(21);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockRawDecoderTest.java"
+	},
+	{
+		"id" : 92384,
+		"snippet" : "        decoder.decode(ByteBufAllocator.DEFAULT, headerBlock, frame);\n        decoder.endHeaderBlock(frame);\n\n        assertFalse(headerBlock.isReadable());\n        assertTrue(frame.isInvalid());\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockRawDecoderTest.java"
+	},
+	{
+		"id" : 92409,
+		"snippet" : "        assertTrue(frame.isTruncated());\n        assertFalse(frame.isInvalid());\n        assertEquals(0, frame.headers().names().size());\n        headerBlock.release();\n    }\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockRawDecoderTest.java"
+	},
+	{
+		"id" : 92454,
+		"snippet" : "        ByteBuf headerBlock = Unpooled.buffer(8220);\n        headerBlock.writeBytes(zlibHeader);\n        headerBlock.writeByte(0); \/\/ Non-compressed block\n        headerBlock.writeByte(0x0c); \/\/ little-endian length (8204)\n        headerBlock.writeByte(0x20); \/\/ little-endian length (8204)\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockZlibDecoderTest.java"
+	},
+	{
+		"id" : 92460,
+		"snippet" : "        headerBlock.writeBytes(zlibHeader);\n        headerBlock.writeByte(0); \/\/ Non-compressed block\n        headerBlock.writeByte(0x15); \/\/ little-endian length (21)\n        headerBlock.writeByte(0x00); \/\/ little-endian length (21)\n        headerBlock.writeByte(0xea); \/\/ one's compliment of length\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockZlibDecoderTest.java"
+	},
+	{
+		"id" : 92465,
+		"snippet" : "        headerBlock.writeByte(0x3f);\n        headerBlock.writeByte(0x01); \/\/ Unknown dictionary\n        headerBlock.writeByte(0x02); \/\/ Unknown dictionary\n        headerBlock.writeByte(0x03); \/\/ Unknown dictionary\n        headerBlock.writeByte(0x04); \/\/ Unknown dictionary\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdyHeaderBlockZlibDecoderTest.java"
+	},
+	{
+		"id" : 92501,
+		"snippet" : "        int testStreamId = spdyDataFrame.streamId();\n        sessionHandler.writeInbound(spdyDataFrame);\n        assertDataFrame(sessionHandler.readOutbound(), testStreamId, spdyDataFrame.isLast());\n        assertNull(sessionHandler.readOutbound());\n        spdyHeadersFrame.setStreamId(testStreamId);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdySessionHandlerTest.java"
+	},
+	{
+		"id" : 92530,
+		"snippet" : "\n    @Test\n    public void testSpdyServerSessionHandlerPing() {\n        logger.info(\"Running: testSpdyServerSessionHandlerPing v3.1\");\n        testSpdySessionHandlerPing(SpdyVersion.SPDY_3_1, true);\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/spdy\/SpdySessionHandlerTest.java"
+	},
+	{
+		"id" : 92553,
+		"snippet" : "    private static final CharSequence HEADER_NAME = \"testHeader\";\n\n    @Test(expected = IllegalArgumentException.class)\n    public void nullHeaderNameNotAllowed() {\n        new DefaultHttpHeaders().add(null, \"foo\");\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/http\/DefaultHttpHeadersTest.java"
+	},
+	{
+		"id" : 92565,
+		"snippet" : "        assertNotNull(value2);\n        assertEquals(connection, value2);\n    }\n\n    @Test\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/http\/DefaultHttpHeadersTest.java"
+	},
+	{
+		"id" : 92604,
+		"snippet" : " * with the License. You may obtain a copy of the License at:\n *\n *   https:\/\/www.apache.org\/licenses\/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/http\/HttpContentEncoderTest.java"
+	},
+	{
+		"id" : 92620,
+		"snippet" : "        assertThat(ch.readOutbound(), is(nullValue()));\n    }\n\n    @Test\n    public void testChunkedContent() throws Exception {\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/http\/HttpContentEncoderTest.java"
+	},
+	{
+		"id" : 92634,
+		"snippet" : "\n        chunk = ch.readOutbound();\n        assertThat(chunk.content().isReadable(), is(false));\n        assertThat(chunk, is(instanceOf(LastHttpContent.class)));\n        assertEquals(\"Netty\", ((LastHttpContent) chunk).trailingHeaders().get(of(\"X-Test\")));\n",
+		"language" : "Java",
+		"repo_file_name" : "netty\/netty\/codec-http\/src\/test\/java\/io\/netty\/handler\/codec\/http\/HttpContentEncoderTest.java"
+	}
+]}

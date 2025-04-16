@@ -28,4 +28,9 @@ build/
 
 # Temporary files
 *.tmp
-#*.*
+
+# Test Data
+data/snippets-dev
+
+# Jupyter Notebooks checkpoints
+notebooks/.ipynb_checkpoints

@@ -1,0 +1,1203 @@
+{
+"snippets": [
+	{
+		"id" : 186314,
+		"snippet" : "version = '7'\nhtml_title = \"Guzzle Documentation\"\nhtml_short_title = \"Guzzle 7\"\n\nexclude_patterns = ['_build']\n",
+		"language" : "Python",
+		"repo_file_name" : "guzzle\/guzzle\/docs\/conf.py"
+	},
+	{
+		"id" : 186322,
+		"snippet" : "    # Path to a touch icon\n    # \"touch_icon\": \"\",\n\n    # Specify a base_url used to generate sitemap.xml links. If not\n    # specified, then no sitemap will be built.\n",
+		"language" : "Python",
+		"repo_file_name" : "guzzle\/guzzle\/docs\/conf.py"
+	},
+	{
+		"id" : 186323,
+		"snippet" : "    \"base_url\": \"http:\/\/guzzlephp.org\"\n\n    # Allow the \"Table of Contents\" page to be defined separately from \"master_doc\"\n    # tocpage = Contents\n\n",
+		"language" : "Python",
+		"repo_file_name" : "guzzle\/guzzle\/docs\/conf.py"
+	},
+	{
+		"id" : 250563,
+		"snippet" : "from tensorflow.python.estimator.model_fn import EstimatorSpec\nfrom tensorflow.python.estimator.run_config import RunConfig\nfrom tensorflow.python.framework import constant_op\nfrom tensorflow.python.framework import dtypes\nfrom tensorflow.python.framework import test_util\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/core\/platform\/ram_file_system_test.py"
+	},
+	{
+		"id" : 250577,
+		"snippet" : "    self.assertFalse(gfile.Exists('ram:\/\/exists\/a\/c'))\n    self.assertFalse(gfile.Exists('ram:\/\/exists\/a\/b\/k'))\n\n  def test_estimator(self):\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/core\/platform\/ram_file_system_test.py"
+	},
+	{
+		"id" : 250583,
+		"snippet" : "    estimator.train(input_fn=input_fn, steps=10)\n    estimator.train(input_fn=input_fn, steps=10)\n    estimator.train(input_fn=input_fn, steps=10)\n    estimator.train(input_fn=input_fn, steps=10)\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/core\/platform\/ram_file_system_test.py"
+	},
+	{
+		"id" : 464802,
+		"snippet" : "        x,\n        src_format=src_format_digits,\n        dst_format=dest_format_digits,\n        name=fh.get_string())\n  except (tf.errors.InvalidArgumentError, ValueError, TypeError):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/dataFormatVecPermute_fuzz.py"
+	},
+	{
+		"id" : 464803,
+		"snippet" : "    pass\n\n\ndef main():\n  atheris.Setup(sys.argv, TestOneInput, enable_python_coverage=True)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/dataFormatVecPermute_fuzz.py"
+	},
+	{
+		"id" : 464945,
+		"snippet" : "      max_int: Maximum allowed integer.\n\n    Returns:\n      Consumed integer based on input bytes and constraints.\n    \"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/python_fuzzing.py"
+	},
+	{
+		"id" : 464957,
+		"snippet" : "    Returns:\n      Consumed integer or float list based on input bytes and constraints.\n    \"\"\"\n    if self.get_bool():\n      return self.get_int_list(min_length, max_length)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/python_fuzzing.py"
+	},
+	{
+		"id" : 465024,
+		"snippet" : "import sys\nimport atheris_no_libfuzzer as atheris\nfrom python_fuzzing import FuzzingHelper\nimport tensorflow as tf\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/immutableConst_fuzz.py"
+	},
+	{
+		"id" : 465028,
+		"snippet" : "          UnicodeEncodeError, UnicodeDecodeError):\n    pass\n\n\ndef main():\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/security\/fuzzing\/immutableConst_fuzz.py"
+	},
+	{
+		"id" : 465114,
+		"snippet" : "# Copyright 2015 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/adding_an_op\/cuda_op.py"
+	},
+	{
+		"id" : 465165,
+		"snippet" : "\"\"\"Test for version 1 of the zero_out op.\"\"\"\n\nfrom __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/adding_an_op\/zero_out_1_test.py"
+	},
+	{
+		"id" : 465170,
+		"snippet" : "      self.assertAllEqual(result, [5, 0, 0, 0, 0])\n\n  @test_util.run_deprecated_v1\n  def test_namespace_call_op_on_op(self):\n    with self.cached_session():\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/adding_an_op\/zero_out_1_test.py"
+	},
+	{
+		"id" : 465182,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/adding_an_op\/fact_test.py"
+	},
+	{
+		"id" : 465227,
+		"snippet" : "      self.assertAllEqual(result, [5, 0, 0, 0, 0])\n\n  @test_util.run_deprecated_v1\n  def test_2d(self):\n    with self.cached_session():\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/adding_an_op\/zero_out_2_test.py"
+	},
+	{
+		"id" : 465440,
+		"snippet" : "from __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n\nimport argparse\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/label_image\/label_image.py"
+	},
+	{
+		"id" : 465541,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Tests for data input for speech commands.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/wav_to_features_test.py"
+	},
+	{
+		"id" : 465546,
+		"snippet" : "      wav_data = self.evaluate(wav_encoder)\n    return wav_data\n\n  def _saveTestWavFile(self, filename, wav_data):\n    with open(filename, \"wb\") as f:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/wav_to_features_test.py"
+	},
+	{
+		"id" : 465552,
+		"snippet" : "      self.assertIn(b\"const unsigned char g_input_data\", content)\n\n  @test_util.run_deprecated_v1\n  def testWavToFeaturesMicro(self):\n    tmp_dir = self.get_temp_dir()\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/wav_to_features_test.py"
+	},
+	{
+		"id" : 465596,
+		"snippet" : "                              testing_percentage)\n      self.prepare_background_data()\n    self.prepare_processing_graph(model_settings, summaries_dir)\n\n  def maybe_download_and_extract_dataset(self, data_url, dest_directory):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data.py"
+	},
+	{
+		"id" : 465605,
+		"snippet" : "\n  def prepare_data_index(self, silence_percentage, unknown_percentage,\n                         wanted_words, validation_percentage,\n                         testing_percentage):\n    \"\"\"Prepares a list of the samples organized by set and label.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data.py"
+	},
+	{
+		"id" : 465618,
+		"snippet" : "      for _ in range(silence_size):\n        self.data_index[set_index].append({\n            'label': SILENCE_LABEL,\n            'file': silence_wav_path\n        })\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data.py"
+	},
+	{
+		"id" : 465670,
+		"snippet" : "          self.time_shift_offset_placeholder_: time_shift_offset,\n      }\n      # Choose a section of background noise to mix in.\n      if use_background or sample['label'] == SILENCE_LABEL:\n        background_index = np.random.randint(len(self.background_data))\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data.py"
+	},
+	{
+		"id" : 465676,
+		"snippet" : "      else:\n        input_dict[self.foreground_volume_placeholder_] = 1\n      # Run the graph to produce the output audio.\n      summary, data_tensor = sess.run(\n          [self.merged_summaries_, self.output_], feed_dict=input_dict)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data.py"
+	},
+	{
+		"id" : 465701,
+		"snippet" : "  def __init__(self, **entries):\n    self.__dict__.update(entries)\n\n\nclass TrainTest(test.TestCase):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train_test.py"
+	},
+	{
+		"id" : 465763,
+		"snippet" : "  Raises:\n    Exception: If the preprocessing mode isn't recognized.\n  \"\"\"\n\n  words_list = input_data.prepare_words_list(wanted_words.split(','))\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/freeze.py"
+	},
+	{
+		"id" : 465767,
+		"snippet" : "      stride=model_settings['window_stride_samples'],\n      magnitude_squared=True)\n\n  if preprocess == 'average':\n    fingerprint_input = tf.nn.pool(\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/freeze.py"
+	},
+	{
+		"id" : 465776,
+		"snippet" : "  logits = models.create_model(\n      reshaped_input, model_settings, model_architecture, is_training=False,\n      runtime_settings=runtime_settings)\n\n  # Create an output to use for inference.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/freeze.py"
+	},
+	{
+		"id" : 465961,
+		"snippet" : "\nThe model, labels and .wav file specified in the arguments will be loaded, and\nthen the predictions from running the model against the audio data will be\nprinted to the console. This is a useful script for sanity checking trained\nmodels, and as an example of how to use an audio model from Python.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/label_wav.py"
+	},
+	{
+		"id" : 466023,
+		"snippet" : "\nHere's an example of generating a test file:\n\nbazel run tensorflow\/examples\/speech_commands:generate_streaming_test_wav -- \\\n--data_dir=\/tmp\/my_wavs --background_dir=\/tmp\/my_backgrounds \\\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/generate_streaming_test_wav.py"
+	},
+	{
+		"id" : 466037,
+		"snippet" : "\n  output_audio_sample_count = FLAGS.sample_rate * FLAGS.test_duration_seconds\n  output_audio = np.zeros((output_audio_sample_count,), dtype=np.float32)\n\n  # Set up background audio.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/generate_streaming_test_wav.py"
+	},
+	{
+		"id" : 466058,
+		"snippet" : "      How loud the background noise should be, between 0 and 1.\n      \"\"\")\n  parser.add_argument(\n      '--background_frequency',\n      type=float,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/generate_streaming_test_wav.py"
+	},
+	{
+		"id" : 466071,
+		"snippet" : "      default='\/tmp\/speech_commands_train\/streaming_test_labels.txt',\n      help='File to save the generated test labels to.')\n  parser.add_argument(\n      '--test_duration_seconds',\n      type=int,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/generate_streaming_test_wav.py"
+	},
+	{
+		"id" : 466089,
+		"snippet" : "\n  @property\n  def founded_command(self):\n    return self._founded_command\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/recognize_commands.py"
+	},
+	{
+		"id" : 466097,
+		"snippet" : "    _suppression_ms: Milliseconds every two reliable founded commands should\n      apart.\n    _minimum_count: An integer count indicating the minimum results the average\n      window should cover.\n    _previous_results: A deque to store previous results.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/recognize_commands.py"
+	},
+	{
+		"id" : 466204,
+		"snippet" : "    window_stride_ms: How far to move in time between spectrogram timeslices.\n    feature_bin_count: How many bins to use for the feature fingerprint.\n    quantize: Whether to train the model for eight-bit deployment.\n    preprocess: Spectrogram processing mode; \"mfcc\", \"average\" or \"micro\".\n    input_wav: Path to the audio WAV file to read.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/wav_to_features.py"
+	},
+	{
+		"id" : 466214,
+		"snippet" : "        if quantized_value < 0:\n          quantized_value = 0\n        if quantized_value > 255:\n          quantized_value = 255\n        if i == 0:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/wav_to_features.py"
+	},
+	{
+		"id" : 466241,
+		"snippet" : "          wanted_words='a,b,c,d',\n          sample_rate=16000,\n          clip_duration_ms=1000.0,\n          clip_stride_ms=30.0,\n          window_size_ms=30.0,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/freeze_test.py"
+	},
+	{
+		"id" : 466290,
+		"snippet" : "      labels=label_list,\n      average_window_duration_ms=FLAGS.average_window_duration_ms,\n      detection_threshold=FLAGS.detection_threshold,\n      suppression_ms=FLAGS.suppression_ms,\n      minimum_count=4)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/test_streaming_accuracy.py"
+	},
+	{
+		"id" : 466296,
+		"snippet" : "        outputs = sess.run(\n            output_softmax_tensor,\n            feed_dict={\n                data_tensor:\n                    numpy.expand_dims(data[input_start:input_end], axis=-1),\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/test_streaming_accuracy.py"
+	},
+	{
+		"id" : 466301,
+		"snippet" : "            except ValueError as e:\n              tf.compat.v1.logging.error(\n                  'Statistics delta computing failed: {}'.format(e))\n            else:\n              tf.compat.v1.logging.info('{}ms {}:{}{}'.format(\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/test_streaming_accuracy.py"
+	},
+	{
+		"id" : 466401,
+		"snippet" : "      shape=[first_fc_output_channels])\n  first_fc = tf.matmul(flattened_first_conv, first_fc_weights) + first_fc_bias\n  if is_training:\n    second_fc_input = tf.nn.dropout(first_fc, rate=dropout_rate)\n  else:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/models.py"
+	},
+	{
+		"id" : 466436,
+		"snippet" : "  # weights_time: [num_filters, input_time_size, 1]\n  # outputs: [num_filters, batch, 1]\n  weights_time = tf.expand_dims(weights_time, 2)\n  outputs = tf.matmul(activations_time, weights_time)\n  # Split num_units and rank into separate dimensions (the remaining\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/models.py"
+	},
+	{
+		"id" : 466439,
+		"snippet" : "  bias = tf.compat.v1.get_variable(name='bias',\n                                   initializer=tf.compat.v1.zeros_initializer,\n                                   shape=[num_units])\n  first_bias = tf.nn.bias_add(units_output, bias)\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/models.py"
+	},
+	{
+		"id" : 466440,
+		"snippet" : "  # Relu.\n  first_relu = tf.nn.relu(first_bias)\n\n  if is_training:\n    first_dropout = tf.nn.dropout(first_relu, rate=dropout_rate)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/models.py"
+	},
+	{
+		"id" : 466477,
+		"snippet" : "  placeholder.\n\n  Args:\n    fingerprint_input: TensorFlow node that will output audio feature vectors.\n    model_settings: Dictionary of information about the model.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/models.py"
+	},
+	{
+		"id" : 466504,
+		"snippet" : "  def _saveWavFolders(self, root_dir, labels, how_many):\n    wav_data = self._getWavData()\n    for label in labels:\n      dir_name = os.path.join(root_dir, label)\n      os.mkdir(dir_name)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data_test.py"
+	},
+	{
+		"id" : 466513,
+		"snippet" : "\n  def testWhichSet(self):\n    self.assertEqual(\n        input_data.which_set(\"foo.wav\", 10, 10),\n        input_data.which_set(\"foo.wav\", 10, 10))\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data_test.py"
+	},
+	{
+		"id" : 466515,
+		"snippet" : "  def testPrepareDataIndex(self):\n    tmp_dir = self.get_temp_dir()\n    self._saveWavFolders(tmp_dir, [\"a\", \"b\", \"c\"], 100)\n    audio_processor = input_data.AudioProcessor(\"\", tmp_dir, 10, 10,\n                                                [\"a\", \"b\"], 10, 10,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/input_data_test.py"
+	},
+	{
+		"id" : 466558,
+		"snippet" : "bazel run tensorflow\/examples\/speech_commands:train\n\nThis will write out checkpoints to \/tmp\/speech_commands_train\/, and will\ndownload over 1GB of open source training data, so you'll need enough free space\nand a good internet connection. The default data is a collection of thousands of\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466561,
+		"snippet" : "organized by label. For example, here's a possible file structure:\n\nmy_wavs >\n  up >\n    audio_0.wav\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466571,
+		"snippet" : "  # training data of your own, use `--data_url= ` on the command line to avoid\n  # downloading.\n  model_settings = models.prepare_model_settings(\n      len(input_data.prepare_words_list(FLAGS.wanted_words.split(','))),\n      FLAGS.sample_rate, FLAGS.clip_duration_ms, FLAGS.window_size_ms,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466580,
+		"snippet" : "  # Define loss and optimizer\n  ground_truth_input = tf.compat.v1.placeholder(\n      tf.int64, [None], name='groundtruth_input')\n\n  # Optionally we can add runtime checks to spot when NaNs or other symptoms of\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466594,
+		"snippet" : "\n  tf.compat.v1.logging.info('Training from step: %d ', start_step)\n\n  # Save graph.pbtxt.\n  tf.io.write_graph(sess.graph_def, FLAGS.train_dir,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466598,
+		"snippet" : "      if training_step <= training_steps_sum:\n        learning_rate_value = learning_rates_list[i]\n        break\n    # Pull the audio samples we'll use for training.\n    train_fingerprints, train_ground_truth = audio_processor.get_data(\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466619,
+		"snippet" : "      type=str,\n      default='\/tmp\/speech_dataset\/',\n      help=\"\"\"\\\n      Where to download the speech training data to.\n      \"\"\")\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466632,
+		"snippet" : "  parser.add_argument(\n      '--window_stride_ms',\n      type=float,\n      default=10.0,\n      help='How far to move in time between spectrogram timeslices.',\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 466634,
+		"snippet" : "      help='How many bins to use for the MFCC fingerprint',\n  )\n  parser.add_argument(\n      '--how_many_training_steps',\n      type=str,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/examples\/speech_commands\/train.py"
+	},
+	{
+		"id" : 507481,
+		"snippet" : "\n  tf_module = module_ctor()\n  options = save_options.SaveOptions(save_debug_info=True)\n  saved_model.save(tf_module, export_path, options=options)\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/cc\/saved_model\/testdata\/generate_saved_models.py"
+	},
+	{
+		"id" : 517785,
+		"snippet" : "        (3, FindSchema(\"schema_v3.fbs\"), False, None)  # Non-callable by design.\n    ]\n    # Ensure schemas are sorted, and extract latest version and upgrade\n    # dispatch function table.\n    self._schemas.sort()\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema.py"
+	},
+	{
+		"id" : 517786,
+		"snippet" : "    self._new_version, self._new_schema = self._schemas[-1][:2]\n    self._upgrade_dispatch = {\n        version: dispatch\n        for version, unused1, unused2, dispatch in self._schemas}\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema.py"
+	},
+	{
+		"id" : 517795,
+		"snippet" : "        json_file = input_file\n      else:\n        raise ValueError(\"Invalid extension on input file %r\" % input_file)\n      return json.load(open(json_file))\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema.py"
+	},
+	{
+		"id" : 517799,
+		"snippet" : "      elif extension in [\".tflite\", \".bin\"]:\n        input_json = os.path.join(tempdir, \"temp.json\")\n        with open(input_json, \"w\") as fp:\n          json.dump(data, fp, sort_keys=True, indent=2)\n        returncode = subprocess.call([\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema.py"
+	},
+	{
+		"id" : 517898,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Testing for updating TensorFlow lite schema.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema_test.py"
+	},
+	{
+		"id" : 517922,
+		"snippet" : "        {\n            \"builtin_code\": \"DEPTHWISE_CONV_2D\"\n        },\n        {\n            \"builtin_code\": \"AVERAGE_POOL_2D\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema_test.py"
+	},
+	{
+		"id" : 517929,
+		"snippet" : "            },\n            {\n                \"builtin_options_type\": \"Conv2DOptions\"\n            },\n            {\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/schema\/upgrade_schema_test.py"
+	},
+	{
+		"id" : 522226,
+		"snippet" : "    if floating_model:\n      print('{:08.6f}: {}'.format(float(results[i]), labels[i]))\n    else:\n      print('{:08.6f}: {}'.format(float(results[i] \/ 255.0), labels[i]))\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/examples\/python\/label_image.py"
+	},
+	{
+		"id" : 524271,
+		"snippet" : "  options.no_tests_limit = FLAGS.no_tests_limit\n  options.no_conversion_report = FLAGS.no_conversion_report\n  options.mlir_quantizer = FLAGS.mlir_quantizer\n\n  if FLAGS.test_sets:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/generate_examples.py"
+	},
+	{
+		"id" : 524411,
+		"snippet" : "import traceback\nimport zipfile\n\nimport numpy as np\nfrom six import StringIO\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524433,
+		"snippet" : "  if dtype in (tf.float32, tf.float16, tf.float64):\n    value = (max_value - min_value) * np.random.random() + min_value\n  elif dtype in (tf.int32, tf.uint8, tf.int64, tf.int16):\n    value = np.random.randint(min_value, max_value + 1)\n  elif dtype == tf.bool:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524444,
+		"snippet" : "  fp.write(\"test_cases,%d\\n\" % len(examples))\n  for example in examples:\n    fp.write(\"inputs,%d\\n\" % len(example[\"inputs\"]))\n    for i in example[\"inputs\"]:\n      write_tensor(fp, i)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524472,
+		"snippet" : "    extra_toco_options.inference_input_type = tf.uint8\n    extra_toco_options.inference_output_type = tf.uint8\n    # Only count parameters when fully_quantize is True.\n    parameter_count = 0\n    for parameters in test_parameters:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524500,
+		"snippet" : "            input_tensors,\n            output_tensors,\n            extra_toco_options=extra_toco_options,\n            test_params=param_dict_real)\n        report[\"converter\"] = (\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524506,
+		"snippet" : "          zipinfo = zipfile.ZipInfo(zip_path_label + \"_tests.txt\")\n          archive.writestr(zipinfo, example_fp2.getvalue(),\n                           zipfile.ZIP_DEFLATED)\n\n          zip_manifest_label = zip_path_label + \" \" + label\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524509,
+		"snippet" : "        ignore_error = False\n        if not options.known_bugs_are_errors:\n          for pattern, bug_number in options.known_bugs.items():\n            if re.search(pattern, label):\n              print(\"Ignored converter error due to bug %s\" % bug_number)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/zip_test_utils.py"
+	},
+	{
+		"id" : 524709,
+		"snippet" : "                      escape_and_normalize(x[1][\"converter_log\"])\n                     ] for x in reports])\n  fp.write(logs)\n  fp.write(\";<\/script>\\n\")\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/generate_examples_report.py"
+	},
+	{
+		"id" : 524727,
+		"snippet" : "      },\n  ]\n\n  def build_graph(parameters):\n    \"\"\"Build the gather op testing graph.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/embedding_lookup.py"
+	},
+	{
+		"id" : 524747,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for lstm.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/lstm.py"
+	},
+	{
+		"id" : 524771,
+		"snippet" : "@register_make_test_function()\ndef make_matrix_diag_tests(options):\n  \"\"\"Make a set of tests for tf.linalg.diag op.\"\"\"\n\n  test_parameters = [\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/matrix_diag.py"
+	},
+	{
+		"id" : 524777,
+		"snippet" : "#\n#     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/pack.py"
+	},
+	{
+		"id" : 524782,
+		"snippet" : "  test_parameters = [\n      # Avoid creating all combinations to keep the test size small.\n      {\n          \"dtype\": [tf.float32],\n          \"base_shape\": [[3, 4, 3], [3, 4], [5]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/pack.py"
+	},
+	{
+		"id" : 524812,
+		"snippet" : "@register_make_test_function()\ndef make_reverse_sequence_tests(options):\n  \"\"\"Make a set of tests to do reverse_sequence.\"\"\"\n\n  test_parameters = [{\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/reverse_sequence.py"
+	},
+	{
+		"id" : 524814,
+		"snippet" : "  }, {\n      \"input_dtype\": [tf.float32],\n      \"input_shape\": [[2, 4, 5, 5, 6]],\n      \"seq_lengths\": [[2, 1]],\n      \"seq_axis\": [2],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/reverse_sequence.py"
+	},
+	{
+		"id" : 524834,
+		"snippet" : "from tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/rank.py"
+	},
+	{
+		"id" : 524836,
+		"snippet" : "      \"input_dtype\": [tf.float32, tf.int32],\n      \"input_shape\": [[], [0], [1, 1, 1, 3], [2, 3, 4, 5], [5, 5], [10]],\n  }]\n\n  def build_graph(parameters):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/rank.py"
+	},
+	{
+		"id" : 524846,
+		"snippet" : "        shape=parameters[\"input_shape\"])\n    if parameters[\"constant_indices\"]:\n      begin = parameters[\"begin\"]\n      end = parameters[\"end\"]\n      strides = parameters[\"strides\"]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/strided_slice.py"
+	},
+	{
+		"id" : 524870,
+		"snippet" : "          \"begin_mask\": [None, 1, 2],\n          \"end_mask\": [None, 1, 2],\n          \"shrink_axis_mask\": [None, 1, 2, 3, -1],\n          \"constant_indices\": [False, True],\n          \"fully_quantize\": [False],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/strided_slice.py"
+	},
+	{
+		"id" : 524880,
+		"snippet" : "  if options.use_experimental_converter:\n    test_parameters = test_parameters + [\n        # Begin equal to input dim.\n        {\n            \"dtype\": [tf.float32],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/strided_slice.py"
+	},
+	{
+		"id" : 524904,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/softmax.py"
+	},
+	{
+		"id" : 524917,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for floor.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/floor.py"
+	},
+	{
+		"id" : 524931,
+		"snippet" : "\n  def build_graph(parameters):\n    \"\"\"Build the global batch norm testing graph.\"\"\"\n    input_shape = parameters[\"input_shape\"]\n    scale_shape = input_shape[3]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/global_batch_norm.py"
+	},
+	{
+		"id" : 524935,
+		"snippet" : "    out = tf.add(input_tensor, x_norm)\n    return [input_tensor], [out]\n\n  def build_inputs(parameters, sess, inputs, outputs):\n    input_value = create_tensor_data(parameters[\"dtype\"],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/global_batch_norm.py"
+	},
+	{
+		"id" : 524965,
+		"snippet" : "    return all_tensors, [out]\n\n  def build_inputs(parameters, sess, inputs, outputs):\n    all_values = []\n    for n in range(0, parameters[\"num_tensors\"]):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/concat.py"
+	},
+	{
+		"id" : 524972,
+		"snippet" : "\nimport numpy as np\nimport tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/hardswish.py"
+	},
+	{
+		"id" : 524977,
+		"snippet" : "@register_make_test_function()\ndef make_hardswish_tests(options):\n  \"\"\"Make a set of tests to do hardswish.\"\"\"\n\n  # Chose a set of parameters\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/hardswish.py"
+	},
+	{
+		"id" : 524993,
+		"snippet" : "          \"paddings\": [[[0, 1], [2, 3]]],\n          \"constant_paddings\": [True, False],\n          \"constant_values\": [0, 2],\n      },\n      # 1D:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/padv2.py"
+	},
+	{
+		"id" : 525011,
+		"snippet" : "\n    # Chose a set of parameters\n    test_parameters = [\n        {\n            \"ksize\": [[2, 1, 1, 2], [1, 1, 1, 1], [1, 1, 2, 1], [1, 10, 11, 1]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/pool.py"
+	},
+	{
+		"id" : 525041,
+		"snippet" : "        shape=parameters[\"input_shape_pair\"][1])\n    out = tf.less_equal(input_value1, input_value2)\n    return [input_value1, input_value2], [out]\n\n  def build_inputs(parameters, sess, inputs, outputs):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/less_equal.py"
+	},
+	{
+		"id" : 525046,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for zeros_like.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/zeros_like.py"
+	},
+	{
+		"id" : 525053,
+		"snippet" : "    # the resulting tflite graph retains the zeros_like as a Fill op, which\n    # is unsupported by TFLite, even as a custom op.\n    out = tf.maximum(zeros, input_tensor)\n    return [input_tensor], [out]\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/zeros_like.py"
+	},
+	{
+		"id" : 525104,
+		"snippet" : "      input_value = create_scalar_data(parameters[\"value_dtype\"])\n    else:\n      input_value = create_tensor_data(parameters[\"value_dtype\"],\n                                       [parameters[\"value_count\"]])\n    return [input_value], sess.run(\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/sparse_to_dense.py"
+	},
+	{
+		"id" : 525151,
+		"snippet" : "          min_value=-1,\n          max_value=1)\n    else:\n      input1 = create_tensor_data(parameters[\"dtype\"],\n                                  parameters[\"input_shape_1\"])\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/binary_op.py"
+	},
+	{
+		"id" : 525153,
+		"snippet" : "            inputs[1]: input2\n        })\n\n  make_zip_of_tests(\n      options,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/binary_op.py"
+	},
+	{
+		"id" : 525154,
+		"snippet" : "      test_parameters,\n      build_graph,\n      build_inputs,\n      expected_tf_failures=expected_tf_failures)\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/binary_op.py"
+	},
+	{
+		"id" : 525168,
+		"snippet" : "  make_binary_op_tests(options, tf.math.floormod)\n\n\n@register_make_test_function()\ndef make_squared_difference_tests(options):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/binary_op.py"
+	},
+	{
+		"id" : 525172,
+		"snippet" : "from __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n\nimport numpy as np\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/space_to_batch_nd.py"
+	},
+	{
+		"id" : 525177,
+		"snippet" : "      {\n          \"dtype\": [tf.float32],\n          \"input_shape\": [[2, 3, 7, 3]],\n          \"block_shape\": [[1, 3], [2, 2]],\n          \"paddings\": [[[0, 0], [2, 0]], [[1, 0], [1, 0]]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/space_to_batch_nd.py"
+	},
+	{
+		"id" : 525196,
+		"snippet" : "import tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/mirror_pad.py"
+	},
+	{
+		"id" : 525205,
+		"snippet" : "      },\n      {\n          \"input_shape\": [[3]],\n          \"padding_matrix\": [[[0, 2]]],\n          \"mode\": [\"SYMMETRIC\"],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/mirror_pad.py"
+	},
+	{
+		"id" : 525242,
+		"snippet" : "    return [indices, updates, shape], [out]\n\n  def build_inputs(parameters, sess, inputs, outputs):\n    indices = np.array(parameters[\"indices_value\"])\n    updates = create_tensor_data(parameters[\"updates_dtype\"],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/scatter_nd.py"
+	},
+	{
+		"id" : 525270,
+		"snippet" : "import tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/expand_dims.py"
+	},
+	{
+		"id" : 525282,
+		"snippet" : "#\n#     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/relu1.py"
+	},
+	{
+		"id" : 525301,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/prelu.py"
+	},
+	{
+		"id" : 525302,
+		"snippet" : "#\n#     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/prelu.py"
+	},
+	{
+		"id" : 525329,
+		"snippet" : "          \"has_bias\": [False],\n          \"strides\": [[1, 1, 1, 1], [1, 3, 3, 1]],\n          \"padding\": [\"SAME\", \"VALID\"],\n          \"data_format\": [\"NHWC\"],\n          \"channel_multiplier\": [1, 2],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/transpose_conv.py"
+	},
+	{
+		"id" : 525360,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/elu.py"
+	},
+	{
+		"id" : 525371,
+		"snippet" : "#\n#     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/exp.py"
+	},
+	{
+		"id" : 525372,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for exp.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/exp.py"
+	},
+	{
+		"id" : 525407,
+		"snippet" : "    # Add the 2 results up.\n    out = result1 + result2\n    return input_tensors, [out]\n\n  def build_inputs(parameters, sess, inputs, outputs):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv_to_depthwiseconv_with_shared_weights.py"
+	},
+	{
+		"id" : 525444,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unique.py"
+	},
+	{
+		"id" : 525447,
+		"snippet" : "from __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n\nimport tensorflow.compat.v1 as tf\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unique.py"
+	},
+	{
+		"id" : 525462,
+		"snippet" : "  test_parameters = [{\n      \"dims_dtype\": [tf.int32, tf.int64],\n      \"dims_shape\": [[], [1], [3], [3, 3]],\n      \"value_dtype\": [tf.int32, tf.int64, tf.float32, tf.bool, tf.string],\n  }]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/fill.py"
+	},
+	{
+		"id" : 525481,
+		"snippet" : "from tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/not_equal.py"
+	},
+	{
+		"id" : 525511,
+		"snippet" : "      unread_input = tf.compat.v1.placeholder(\n          dtype=parameters[\"dtype\"],\n          name=\"unread_input\",\n          shape=parameters[\"input_shape\"])\n      inputs.append(unread_input)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/constant.py"
+	},
+	{
+		"id" : 525574,
+		"snippet" : "      \"input_dtype\": [tf.float32],\n      \"input_shape\": [[], [1], [1, 2], [5, 6, 7, 8], [3, 4, 5, 6]],\n  }]\n\n  def build_graph(parameters):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/round.py"
+	},
+	{
+		"id" : 525582,
+		"snippet" : "\ndef make_conv_activation_tests(activation_op):\n  \"\"\"Make a set of tests to do convolution with activation.\"\"\"\n\n  def f(options):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv_activation.py"
+	},
+	{
+		"id" : 525583,
+		"snippet" : "    \"\"\"Actual function that generates examples.\"\"\"\n    test_parameters = [\n        {\n            \"input_shape\": [[1, 3, 4, 3], [4, 6, 6, 1]],\n            \"filter_shape\": [[1, 1], [2, 3], [3, 3]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv_activation.py"
+	},
+	{
+		"id" : 525595,
+		"snippet" : "      # Get filter input either as a placeholder or constants. Also get a list\n      # of the input tensors that are represented as placeholders.\n      if parameters[\"constant_filter\"]:\n        filter_input = create_tensor_data(\n            np.float32, filter_shape, min_value=-10, max_value=10)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv_activation.py"
+	},
+	{
+		"id" : 525600,
+		"snippet" : "      values = [\n          create_tensor_data(\n              np.float32, input_shape, min_value=-1, max_value=1)\n      ]\n      if not parameters[\"constant_filter\"]:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv_activation.py"
+	},
+	{
+		"id" : 525608,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unidirectional_sequence_lstm.py"
+	},
+	{
+		"id" : 525671,
+		"snippet" : "from tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/resize_bilinear.py"
+	},
+	{
+		"id" : 525675,
+		"snippet" : "      \"align_corners\": [True, False],\n      \"half_pixel_centers\": [False],\n      \"fully_quantize\": [True]\n  }, {\n      \"dtype\": [tf.float32],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/resize_bilinear.py"
+	},
+	{
+		"id" : 525688,
+		"snippet" : "from tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/gather_nd.py"
+	},
+	{
+		"id" : 525691,
+		"snippet" : "      },\n      {\n          \"params_dtype\": [tf.float32, tf.int32, tf.int64, tf.string],\n          \"params_shape\": [[5, 5]],\n          \"indices_dtype\": [tf.int32, tf.int64],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/gather_nd.py"
+	},
+	{
+		"id" : 525692,
+		"snippet" : "          \"indices_shape\": [[2, 1], [2, 2]],\n      },\n      {\n          \"params_dtype\": [tf.float32, tf.int32, tf.int64, tf.string],\n          \"params_shape\": [[5, 5, 10]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/gather_nd.py"
+	},
+	{
+		"id" : 525703,
+		"snippet" : "# TODO(chaomei): refactor the test to cover more cases, like negative stride,\n# negative array index etc.\n@register_make_test_function()\ndef make_resolve_constant_strided_slice_tests(options):\n  \"\"\"Make a set of tests to show strided_slice yields incorrect results.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/resolve_constant_strided_slice.py"
+	},
+	{
+		"id" : 525707,
+		"snippet" : "    del parameters\n    input_values = np.zeros([4, 2], dtype=np.float32)\n    return [input_values], sess.run(\n        outputs, feed_dict={inputs[0]: input_values})\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/resolve_constant_strided_slice.py"
+	},
+	{
+		"id" : 525725,
+		"snippet" : "import tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/split.py"
+	},
+	{
+		"id" : 525738,
+		"snippet" : "      \"dtype\": [tf.int32, tf.float32, tf.int64],\n      \"input_shape\": [[1, 2, 1, 3, 1, 4, 1, 1]],\n      \"axis\": [\n          None, [], [0, 2], [4, 7], [-1, 0, 2, 0, 7, -6], [1], [2, 3, 2],\n          [-1, -2, -4, -6, -8], [0, 2, 4, 6, 7], [7, 6, 4, 2, 0], [6, 6],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/squeeze.py"
+	},
+	{
+		"id" : 525755,
+		"snippet" : "import tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/l2norm.py"
+	},
+	{
+		"id" : 525773,
+		"snippet" : "      \"quant_16x8\": [False]\n  }, {\n      \"shape1\": [[40, 37]],\n      \"shape2\": [[37, 40]],\n      \"transpose_a\": [False],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/fully_connected.py"
+	},
+	{
+		"id" : 525837,
+		"snippet" : "      # 1-D case\n      {\n          \"dtype\": [tf.float32],\n          \"shape\": [[44]],\n          \"spec\": [[slice(3, 7, 2)], [tf.newaxis, slice(None)]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/strided_slice_np_style.py"
+	},
+	{
+		"id" : 525861,
+		"snippet" : "        name=\"input1\",\n        shape=parameters[\"input_shape_pair\"][0])\n    input_value2 = tf.compat.v1.placeholder(\n        dtype=parameters[\"input_dtype\"],\n        name=\"input2\",\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/equal.py"
+	},
+	{
+		"id" : 525873,
+		"snippet" : "      axis -= 1\n    return axis\n\n  def build_graph(parameters):\n    input_tensor = tf.compat.v1.placeholder(\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/reverse_v2.py"
+	},
+	{
+		"id" : 525876,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unidirectional_sequence_rnn.py"
+	},
+	{
+		"id" : 525904,
+		"snippet" : "        dtype=parameters[\"indices_type\"],\n        name=\"indices\",\n        shape=parameters[\"indices_shape\"])\n    depth = tf.compat.v1.placeholder(dtype=tf.int32, name=\"depth\", shape=())\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/one_hot.py"
+	},
+	{
+		"id" : 525922,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/tanh.py"
+	},
+	{
+		"id" : 525927,
+		"snippet" : "\n@register_make_test_function()\ndef make_tanh_tests(options):\n  \"\"\"Make a set of tests to do tanh.\"\"\"\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/tanh.py"
+	},
+	{
+		"id" : 525947,
+		"snippet" : "      {\n          \"input_dtype\": [tf.float32, tf.int32],\n          \"input_shape_set\": [([1, 2, 3, 4], [1, 2, 3, 4]),],\n          \"use_where_v2\": [False, True],\n          \"fully_quantize\": [False],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/where.py"
+	},
+	{
+		"id" : 525953,
+		"snippet" : "            \"input_dtype\": [tf.float32],\n            \"input_shape_set\": [([8, 7, 6, 5, 4, 3, 2, 1], [4, 3, 2, 1]),],\n            \"use_where_v2\": [True],\n            \"fully_quantize\": [True],\n        },\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/where.py"
+	},
+	{
+		"id" : 525961,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for identity.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/identity.py"
+	},
+	{
+		"id" : 525993,
+		"snippet" : "      \"input_shape\": [[3, 4, 5, 7], [4, 105], [21, 5, 2, 2], [420]],\n      \"output_shape\": [[15, 28], [420], [1, -1, 5, 7], [-1]],\n      \"constant_shape\": [True],\n      \"fully_quantize\": [True],\n  }]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/reshape.py"
+	},
+	{
+		"id" : 525997,
+		"snippet" : "      output_shape = tf.compat.v1.placeholder(\n          dtype=tf.int32, name=\"output_shape\", shape=shape_tensor_shape)\n      input_tensors = [input_tensor, output_shape]\n    out = tf.reshape(input_tensor, shape=output_shape)\n    return input_tensors, [out]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/reshape.py"
+	},
+	{
+		"id" : 526041,
+		"snippet" : "\n  def build_inputs(parameters, sess, inputs, outputs):\n    \"\"\"Build inputs for slice test.\"\"\"\n    input_values = create_tensor_data(\n        parameters[\"dtype\"],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/slice.py"
+	},
+	{
+		"id" : 526050,
+		"snippet" : "from tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unroll_batch_matmul.py"
+	},
+	{
+		"id" : 526067,
+		"snippet" : "@register_make_test_function()\ndef make_unpack_tests(options):\n  \"\"\"Make a set of tests to do unpack.\"\"\"\n\n  test_parameters = [{\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/unpack.py"
+	},
+	{
+		"id" : 526077,
+		"snippet" : "import tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_scalar_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/eye.py"
+	},
+	{
+		"id" : 526132,
+		"snippet" : "        is_training=parameters[\"is_training\"])\n\n    input_tensor = tf.compat.v1.placeholder(\n        dtype=parameters[\"dtype\"],\n        name=\"input\",\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/fused_batch_norm.py"
+	},
+	{
+		"id" : 526149,
+		"snippet" : "\n  def build_inputs(parameters, sess, inputs, outputs):\n    input_values = []\n    if not parameters[\"constant_params\"]:\n      params = create_tensor_data(parameters[\"params_dtype\"],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/gather.py"
+	},
+	{
+		"id" : 526162,
+		"snippet" : "          \"channel_multiplier\": [2],\n          \"rate\": [[2, 2]],  #  Only [1, 1] is supported\n          \"padding\": [\"SAME\"],\n          \"data_format\": [\"NHWC\"],\n          \"constant_filter\": [True, False],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/depthwiseconv.py"
+	},
+	{
+		"id" : 526168,
+		"snippet" : "          \"constant_filter\": [True],\n          \"fully_quantize\": [True],\n          \"quant_16x8\": [True]\n      },\n  ]\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/depthwiseconv.py"
+	},
+	{
+		"id" : 526171,
+		"snippet" : "    \"\"\"Build a depthwise conv graph given `parameters`.\"\"\"\n    input_shape, filter_shape = get_tensor_shapes(parameters)\n    input_tensor = tf.compat.v1.placeholder(\n        dtype=tf.float32, name=\"input\", shape=input_shape)\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/depthwiseconv.py"
+	},
+	{
+		"id" : 526177,
+		"snippet" : "    \"\"\"\n\n    input_shape, filter_shape = get_tensor_shapes(parameters)\n    values = [\n        create_tensor_data(np.float32, input_shape, min_value=-1, max_value=1)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/depthwiseconv.py"
+	},
+	{
+		"id" : 526190,
+		"snippet" : "# Copyright 2019 The TensorFlow Authors. All Rights Reserved.\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv2d_transpose.py"
+	},
+	{
+		"id" : 526203,
+		"snippet" : "        filter_tensor,\n        output_shape=output_shape,\n        padding=\"SAME\",\n        strides=(1, 2, 2, 1))\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/conv2d_transpose.py"
+	},
+	{
+		"id" : 526208,
+		"snippet" : "# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n# ==============================================================================\n\"\"\"Test configs for add_n.\"\"\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/add_n.py"
+	},
+	{
+		"id" : 526209,
+		"snippet" : "from __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n\nimport tensorflow.compat.v1 as tf\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/add_n.py"
+	},
+	{
+		"id" : 526235,
+		"snippet" : "\nimport tensorflow.compat.v1 as tf\nfrom tensorflow.lite.testing.zip_test_utils import create_tensor_data\nfrom tensorflow.lite.testing.zip_test_utils import make_zip_of_tests\nfrom tensorflow.lite.testing.zip_test_utils import register_make_test_function\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/arg_min_max.py"
+	},
+	{
+		"id" : 526277,
+		"snippet" : "    \"\"\"Actual function that generates examples.\"\"\"\n    test_parameters = [\n        {\n            \"input_dtype\": [tf.float32],\n            \"input_shape\": [[], [1], [1, 2], [5, 6, 7, 8], [3, 4, 5, 6]],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/elementwise.py"
+	},
+	{
+		"id" : 526278,
+		"snippet" : "            \"fully_quantize\": [False],\n            \"input_range\": [[min_value, max_value]],\n        },\n        {\n            \"input_dtype\": [tf.float32],\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/elementwise.py"
+	},
+	{
+		"id" : 526355,
+		"snippet" : "\n@register_make_test_function()\ndef make_topk_tests(options):\n  \"\"\"Make a set of tests to do topk.\"\"\"\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/op_tests\/topk.py"
+	},
+	{
+		"id" : 526745,
+		"snippet" : "  \"\"\"Create TOCO options to process a model.\n\n  Args:\n    data_types: input and inference types used by TOCO.\n    input_arrays: names of the input tensors\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/toco_convert.py"
+	},
+	{
+		"id" : 526749,
+		"snippet" : "    inference_type = \"QUANTIZED_UINT8\"\n  s = (\" --input_data_types=%s\" % \",\".join(data_types) +\n       \" --inference_type=%s\" % inference_type +\n       \" --input_format=TENSORFLOW_GRAPHDEF\" + \" --output_format=TFLITE\" +\n       \" --input_arrays=%s\" % \",\".join(input_arrays) +\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/toco_convert.py"
+	},
+	{
+		"id" : 527242,
+		"snippet" : "    converter: TFLiteConverter object.\n    **kwargs: Additional arguments to be passed into the converter. Supported\n      flags are {\"target_ops\", \"post_training_quantize\", \"quantize_to_float16\",\n      \"post_training_quantize_int8\", \"post_training_quantize_16x8\",\n      \"model_input_size\"}.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527243,
+		"snippet" : "\n  Returns:\n    The converted TFLite model in serialized format.\n\n  Raises:\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527252,
+		"snippet" : "  for tensor in all_tensor_details:\n    if \"_int16\" in tensor[\"name\"]:\n      found_input = True\n      if tensor[\"dtype\"] is not np.int16:\n        raise ValueError(\"Activations should be int16.\")\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527285,
+		"snippet" : "  graph_def = _graph_pb2.GraphDef()\n  try:\n    graph_def.ParseFromString(file_content)\n  except (_text_format.ParseError, DecodeError):\n    if not isinstance(file_content, str):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527294,
+		"snippet" : "    inputs, outputs = _convert_saved_model.get_inputs_outputs(signature_def)\n\n    return lambda input_data: sess.run(outputs, dict(zip(inputs, input_data)))\n\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527305,
+		"snippet" : "def _compare_tf_tflite_results(tf_results,\n                               tflite_results,\n                               tflite_labels,\n                               tolerance=5):\n  \"\"\"Compare the result of TF and TFLite model.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527319,
+		"snippet" : "def compare_tflite_keras_models_v2(tflite_model,\n                                   keras_model,\n                                   input_data=None,\n                                   input_data_range=None,\n                                   tolerance=5,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527327,
+		"snippet" : "\ndef compare_model_golden(tflite_model,\n                         input_data,\n                         golden_name,\n                         update_golden=False,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527349,
+		"snippet" : "    if not quantized_tensors:\n      raise ValueError(\"--post_training_quantize flag was unable to quantize \"\n                       \"the graph as expected in TFLite.\")\n  elif not has_quant_tensor:\n    raise ValueError(\"--post_training_quantize flag was unable to quantize the \"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527372,
+		"snippet" : "\n  Args:\n    directory: SavedModel directory to convert.\n    tag_set: Set of tags identifying the MetaGraphDef within the SavedModel to\n      analyze. All tags in the tag set must be present.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527381,
+		"snippet" : "  tflite_model_float = _convert(converter, version=2, **kwargs)\n\n  interpreter_float = _get_tflite_interpreter(tflite_model_float)\n  interpreter_float.allocate_tensors()\n  float_tensors = interpreter_float.get_tensor_details()\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527383,
+		"snippet" : "      quantize_to_float16=True,\n      **kwargs)\n\n  interpreter_quant = _get_tflite_interpreter(tflite_model_quant)\n  interpreter_quant.allocate_tensors()\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527390,
+		"snippet" : "    input_data: np.ndarray to pass into models during inference.\n    golden_name: Optional golden values to compare the output of the model\n      against.\n    update_golden: Whether to update the golden values with the model output\n      instead of comparing against them.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib.py"
+	},
+	{
+		"id" : 527441,
+		"snippet" : "class EvaluateSavedModel(test.TestCase):\n\n  def testFloat(self):\n    saved_model_dir = os.path.join(self.get_temp_dir(), 'simple_savedmodel')\n    with ops.Graph().as_default():\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib_test.py"
+	},
+	{
+		"id" : 527445,
+		"snippet" : "\n    input_size = [5, 5, 3]\n    kernel_size = [3, 3, 1]\n    layer_name = 'test_conv2d'\n    input_0 = keras.layers.Input(shape=input_size)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib_test.py"
+	},
+	{
+		"id" : 527452,
+		"snippet" : "    keras.backend.clear_session()\n\n    xs = np.array([-1, 0, 1, 2, 3, 4])\n    ys = np.array([-3, -1, 1, 3, 5, 7])\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/testing\/model_coverage\/model_coverage_lib_test.py"
+	},
+	{
+		"id" : 539993,
+		"snippet" : "\nfrom __future__ import absolute_import\nfrom __future__ import division\nfrom __future__ import print_function\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html.py"
+	},
+	{
+		"id" : 540006,
+		"snippet" : "  elif op_name in conversion_log.custom_ops:\n    return \"CUSTOM OP\"\n  else:\n    return \"SELECT OP\"\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html.py"
+	},
+	{
+		"id" : 540009,
+		"snippet" : "        should point to a '.html' file with date and time in its name.\n        e.g. 2019-01-01-10:05.toco_report.html.\n\n    Raises:\n      IOError: File doesn't exist.\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html.py"
+	},
+	{
+		"id" : 540042,
+		"snippet" : "  with io.open(dot_before_path, \"r\", encoding=\"utf-8\") as f:\n    dot_before = f.read().rstrip()\n  with io.open(dot_after_path, \"r\", encoding=\"utf-8\") as f:\n    dot_after = f.read().rstrip()\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html.py"
+	},
+	{
+		"id" : 540118,
+		"snippet" : "#\n#     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html_test.py"
+	},
+	{
+		"id" : 540124,
+		"snippet" : "    toco_conversion_log_after = _toco_conversion_log_pb2.TocoConversionLog()\n\n    toco_conversion_log_before.op_list.extend([\n        \"Conv1\", \"Conv2\", \"Identity\", \"Reshape\", \"Dense\", \"Dense\", \"CustomOp\",\n        \"AvgPool3D\", \"Softmax\"\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html_test.py"
+	},
+	{
+		"id" : 540129,
+		"snippet" : "    html_generator.generate(toco_conversion_log_before,\n                            toco_conversion_log_after, True,\n                            \"digraph  {a -> b}\", \"digraph  {a -> b}\", \"\",\n                            \"\/path\/to\/flatbuffer\")\n\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/toco\/logging\/gen_html_test.py"
+	},
+	{
+		"id" : 583930,
+		"snippet" : "      self.num = len(lines)\n\n  def test_read_data(self):\n    self.assertEqual(len(self.data), self.num)\n    self.assertIsInstance(self.data, list)\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/micro\/examples\/magic_wand\/train\/data_split_test.py"
+	},
+	{
+		"id" : 583931,
+		"snippet" : "    self.assertIsInstance(self.data[0], dict)\n    self.assertEqual(\n        set(list(self.data[-1])), set([\"gesture\", \"accel_ms2_xyz\", \"name\"]))\n\n  def test_split_data(self):\n",
+		"language" : "Python",
+		"repo_file_name" : "tensorflow\/tensorflow\/tensorflow\/lite\/micro\/examples\/magic_wand\/train\/data_split_test.py"
+	}
+]}

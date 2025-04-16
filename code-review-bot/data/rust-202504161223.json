@@ -1,0 +1,1203 @@
+{
+"SELECT id, snippet, \"language\", repo_file_name\r\nFROM snippets\r\nWHERE language = 'Rust' LIMIT 200": [
+	{
+		"id" : 3282577,
+		"snippet" : "            \/\/ add span for final state\n            let start = self.offset - self.spans_start + prev_cursor;\n            let end = start + (line.len() - prev_cursor);\n            let scope_id = self.identifier_for_stack(&scope_state, &repo);\n            let span = ScopeSpan { start, end, scope_id };\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282596,
+		"snippet" : "        if !builder.is_empty() {\n            view.edit(builder.build(), INDENTATION_PRIORITY, false, false, String::from(\"syntect\"));\n        }\n\n        self.indentation_state.clear();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282603,
+		"snippet" : "                        insert_region.as_bytes().iter().all(u8::is_ascii_whitespace)\n                    };\n                    if !is_whitespace {\n                        self.indentation_state.push(IndentationTask::Edit(line_of_edit));\n                    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282613,
+		"snippet" : "                    line.as_bytes().iter().take_while(|b| **b == b' ' || **b == b'\\t').count()\n                };\n\n                let indent_text =\n                    if use_spaces { n_spaces(base_indent) } else { n_tabs(base_indent \/ tab_size) };\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282634,
+		"snippet" : "    \/\/\/ by testing the _previous_ line against a regex.\n    fn test_increase(\n        &mut self,\n        view: &mut MyView,\n        syntax_set: &SyntaxSet,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282643,
+		"snippet" : "\n    fn previous_nonblank_line(\n        &self,\n        view: &mut MyView,\n        line: usize,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282649,
+		"snippet" : "\n        for (start, end) in lines {\n            let range = Range { start: *start, end: *end - 1 };\n            self.bulk_autoindent(view, &mut builder, syntax_set, range).expect(\"error on reindent\");\n        }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282664,
+		"snippet" : "            })\n            .min()\n            .unwrap_or(0);\n\n        let comment_txt = Rope::from(&comment_str);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282686,
+		"snippet" : "        {\n            if let Some(delta) = delta {\n                let state = self.view_state.get_mut(&view.get_id()).unwrap();\n                state.consider_indentation(view, delta, edit_type.unwrap());\n            }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282691,
+		"snippet" : "            other => eprintln!(\"syntect received unexpected command {}\", other),\n        }\n    }\n\n    fn idle(&mut self, view: &mut View<Self::Cache>) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282708,
+		"snippet" : "impl Node {\n    pub fn new(value: u32) -> Self {\n        Node { value: Some(value), children: HashMap::new() }\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/syntect-plugin\/src\/stackmap.rs"
+	},
+	{
+		"id" : 3282819,
+		"snippet" : "\/\/\/ Currently, this plugin has a single noteworthy behaviour,\n\/\/\/ intended to demonstrate how to edit a document; when the plugin is active,\n\/\/\/ and the user inserts an exclamation mark, the plugin will capitalize the\n\/\/\/ preceding word.\nstruct SamplePlugin;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/sample-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282823,
+		"snippet" : "        eprintln!(\"saved view {}\", view.get_id());\n    }\n\n    fn config_changed(&mut self, _view: &mut View<Self::Cache>, _changes: &ConfigTable) {}\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/sample-plugin\/src\/main.rs"
+	},
+	{
+		"id" : 3282878,
+		"snippet" : "        let mut layer_iter = self.layers.values();\n        let mut resolved = layer_iter.next().unwrap().style_spans.subseq(iv);\n\n        for other in layer_iter {\n            let spans = other.style_spans.subseq(iv);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/layers.rs"
+	},
+	{
+		"id" : 3282880,
+		"snippet" : "        }\n        self.merged.edit(iv, resolved);\n    }\n\n    \/\/\/ Prints scopes and style information for the given `Interval`.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/layers.rs"
+	},
+	{
+		"id" : 3282897,
+		"snippet" : "        }\n\n        let mut new_styles = self.styles_for_stacks(stacks.as_slice(), style_map);\n        self.stack_lookup.append(&mut stacks);\n        self.style_lookup.append(&mut new_styles);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/layers.rs"
+	},
+	{
+		"id" : 3282905,
+		"snippet" : "\n            new_styles.push(style);\n        }\n        new_styles\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/layers.rs"
+	},
+	{
+		"id" : 3282907,
+		"snippet" : "\n    \/\/\/ Applies `delta`, which is presumed to contain empty spans.\n    \/\/\/ This is only used when we receive an edit, to adjust current span\n    \/\/\/ positions.\n    fn blank_scopes(&mut self, delta: &RopeDelta) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/layers.rs"
+	},
+	{
+		"id" : 3282932,
+		"snippet" : "            .collect()\n    }\n\n    pub fn iter(&self) -> impl Iterator<Item = &Arc<LanguageDefinition>> {\n        self.named.values()\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/syntax.rs"
+	},
+	{
+		"id" : 3282948,
+		"snippet" : "\/\/ Copyright 2018 The xi-editor Authors.\n\/\/\n\/\/ Licensed under the Apache License, Version 2.0 (the \"License\");\n\/\/ you may not use this file except in compliance with the License.\n\/\/ You may obtain a copy of the License at\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/annotations.rs"
+	},
+	{
+		"id" : 3282958,
+		"snippet" : "    pub start_col: usize,\n    pub end_line: usize,\n    pub end_col: usize,\n}\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/annotations.rs"
+	},
+	{
+		"id" : 3282964,
+		"snippet" : "        range.end_col = seq[3];\n\n        Ok(range)\n    }\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/annotations.rs"
+	},
+	{
+		"id" : 3282972,
+		"snippet" : "    ) -> Self {\n        AnnotationSlice { annotation_type, ranges, payloads }\n    }\n\n    \/\/\/ Returns json representation.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/annotations.rs"
+	},
+	{
+		"id" : 3282982,
+		"snippet" : "            entry.iter_mut().find(|a| a.annotation_type == item.annotation_type)\n        {\n            annotation.update(interval, item.items);\n        } else {\n            entry.push(item);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/annotations.rs"
+	},
+	{
+		"id" : 3283026,
+		"snippet" : "#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/line_ending.rs"
+	},
+	{
+		"id" : 3283031,
+		"snippet" : "\/\/ Copyright 2017 The xi-editor Authors.\n\/\/\n\/\/ Licensed under the Apache License, Version 2.0 (the \"License\");\n\/\/ you may not use this file except in compliance with the License.\n\/\/ You may obtain a copy of the License at\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/fuchsia\/sync.rs"
+	},
+	{
+		"id" : 3283098,
+		"snippet" : "                    };\n                    assert_eq!(MergeResultProvider_Metadata::VERSION, result_provider.version);\n                    let mut result_provider_proxy =\n                        MergeResultProvider_new_Proxy(result_provider.inner);\n                    result_provider_proxy.merge(vec![merged]);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/fuchsia\/sync.rs"
+	},
+	{
+		"id" : 3283133,
+		"snippet" : "\npub mod annotations;\npub mod backspace;\npub mod client;\npub mod config;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/lib.rs"
+	},
+	{
+		"id" : 3283140,
+		"snippet" : "\n#[cfg(feature = \"ledger\")]\nuse apps_ledger_services_public::Ledger_Proxy;\n\npub use crate::config::{BufferItems as BufferConfig, Table as ConfigTable};\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/lib.rs"
+	},
+	{
+		"id" : 3283168,
+		"snippet" : "            p1.underline.or(p2.underline),\n            p1.italic.or(p2.italic),\n        )\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283176,
+		"snippet" : "}\n\nimpl ThemeStyleMap {\n    pub fn new(themes_dir: Option<PathBuf>) -> ThemeStyleMap {\n        let themes = ThemeSet::load_defaults();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283177,
+		"snippet" : "        let theme_name = DEFAULT_THEME.to_owned();\n        let theme = themes.themes.get(&theme_name).expect(\"missing theme\").to_owned();\n        let default_themes = themes.themes.keys().cloned().collect();\n        let default_style = Style::default_for_theme(&theme);\n        let cache_dir = None;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283182,
+		"snippet" : "\n    pub fn get_highlighter(&self) -> Highlighter {\n        Highlighter::new(&self.theme)\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283202,
+		"snippet" : "        if !self.caching_enabled {\n            return None;\n        }\n\n        let theme_name = theme_p.file_stem().and_then(OsStr::to_str)?;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283203,
+		"snippet" : "\n        let dump_p = self.get_dump_path(theme_name)?;\n\n        if !&dump_p.exists() {\n            return None;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283206,
+		"snippet" : "            \/\/ Delete dump file\n            let _ = fs::remove_file(&dump_p);\n            None\n        }\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283227,
+		"snippet" : "    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n        fn fmt_color(f: &mut fmt::Formatter, c: Option<u32>) -> fmt::Result {\n            if let Some(c) = c {\n                write!(f, \"#{:X}\", c)\n            } else {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/styles.rs"
+	},
+	{
+		"id" : 3283238,
+		"snippet" : "    Move(Movement),\n    ModifySelection(Movement),\n    SelectAll,\n    Scroll(LineRange),\n    AddSelectionAbove,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_types.rs"
+	},
+	{
+		"id" : 3283252,
+		"snippet" : "\nimpl From<BufferEvent> for EventDomain {\n    fn from(src: BufferEvent) -> EventDomain {\n        EventDomain::Buffer(src)\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_types.rs"
+	},
+	{
+		"id" : 3283258,
+		"snippet" : "                    movement: Movement::Right,\n                    kill: false\n                }.into(),\n            DeleteBackward =>\n                BufferEvent::Backspace.into(),\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_types.rs"
+	},
+	{
+		"id" : 3283265,
+		"snippet" : "            MoveDownAndModifySelection =>\n                ViewEvent::ModifySelection(Movement::Down).into(),\n            MoveLeft | MoveBackward =>\n                ViewEvent::Move(Movement::Left).into(),\n            MoveLeftAndModifySelection =>\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_types.rs"
+	},
+	{
+		"id" : 3283302,
+		"snippet" : "}\n\nimpl Selection {\n    \/\/\/ Creates a new empty selection.\n    pub fn new() -> Selection {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/selection.rs"
+	},
+	{
+		"id" : 3283350,
+		"snippet" : "    \/\/\/ A saved horizontal position (used primarily for line up\/down movement).\n    pub horiz: Option<HorizPos>,\n\n    \/\/\/ The affinity of the cursor.\n    pub affinity: Affinity,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/selection.rs"
+	},
+	{
+		"id" : 3283387,
+		"snippet" : "    fn caret_regions_in_range() {\n        let s = Selection::new_simple(r(4, 4));\n        assert_eq!(s.regions_in_range(0, 1), &[]);\n        assert_eq!(s.regions_in_range(0, 2), &[]);\n        assert_eq!(s.regions_in_range(0, 3), &[]);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/selection.rs"
+	},
+	{
+		"id" : 3283393,
+		"snippet" : "        s.add_region(r(4, 5));\n        s.add_region(r(5, 6));\n        s.add_region(r(6, 9));\n        assert_eq!(s.deref(), &[r(1, 4), r(4, 5), r(5, 6), r(6, 9)]);\n        s.add_region(r(2, 8));\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/selection.rs"
+	},
+	{
+		"id" : 3283404,
+		"snippet" : "        s.add_region(r(4, 8));\n        assert_eq!(s.deref(), &[r(0, 4), r(4, 8)]);\n\n        \/\/ simulate outside edit between two adjacent selections\n        \/\/ like \"texthere!\" -> \"text here!\"\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/selection.rs"
+	},
+	{
+		"id" : 3283427,
+		"snippet" : "    UnknownEncoding(PathBuf),\n    HasChanged(PathBuf),\n}\n\n#[derive(Debug, Clone, Copy)]\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/file.rs"
+	},
+	{
+		"id" : 3283437,
+		"snippet" : "        }\n\n        let (rope, info) = try_load_file(path)?;\n\n        self.open_files.insert(path.to_owned(), id);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/file.rs"
+	},
+	{
+		"id" : 3283439,
+		"snippet" : "    }\n\n    pub fn close(&mut self, id: BufferId) {\n        if let Some(info) = self.file_info.remove(&id) {\n            self.open_files.remove(&info.path);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/file.rs"
+	},
+	{
+		"id" : 3283446,
+		"snippet" : "    }\n\n    fn save_existing(&mut self, path: &Path, text: &Rope, id: BufferId) -> Result<(), FileError> {\n        let prev_path = self.file_info[&id].path.clone();\n        if prev_path != path {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/file.rs"
+	},
+	{
+		"id" : 3283449,
+		"snippet" : "            self.file_info.get_mut(&id).unwrap().mod_time = get_mod_time(path);\n        }\n        Ok(())\n    }\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/file.rs"
+	},
+	{
+		"id" : 3283511,
+		"snippet" : "            }\n            let invalid_start = max(start, line_num);\n            let invalid_end = min(end, line_num + span.n);\n            if invalid_end > invalid_start {\n                b.add_span(\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/line_cache_shadow.rs"
+	},
+	{
+		"id" : 3283517,
+		"snippet" : "\n    pub fn iter_with_plan<'a>(&'a self, plan: &'a RenderPlan) -> PlanIterator<'a> {\n        PlanIterator {\n            lc_shadow: self,\n            plan,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/line_cache_shadow.rs"
+	},
+	{
+		"id" : 3283571,
+		"snippet" : "        PluginLoadError::Io(err)\n    }\n}\n\nimpl From<toml::de::Error> for PluginLoadError {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/catalog.rs"
+	},
+	{
+		"id" : 3283597,
+		"snippet" : "}\n\n#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]\n#[serde(rename_all = \"snake_case\")]\n\/\/\/ A placeholder type which can represent a generic RPC.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/manifest.rs"
+	},
+	{
+		"id" : 3283606,
+		"snippet" : "        if arg_type == ArgumentType::Choice {\n            assert!(options.is_some())\n        }\n        CommandArgument { title, description, key, arg_type, options }\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/manifest.rs"
+	},
+	{
+		"id" : 3283612,
+		"snippet" : "    }\n\n    \/\/\/ Returns a reference to the placeholder's params.\n    pub fn params_ref(&self) -> &Value {\n        &self.params\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/manifest.rs"
+	},
+	{
+		"id" : 3283614,
+		"snippet" : "    }\n\n    \/\/\/ Returns a reference to the placeholder's method.\n    pub fn method_ref(&self) -> &str {\n        &self.method\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/manifest.rs"
+	},
+	{
+		"id" : 3283718,
+		"snippet" : "\/\/\/ plugin to core.\n#[derive(Serialize, Deserialize, Debug, Clone)]\n#[serde(rename_all = \"snake_case\")]\npub struct Range {\n    pub start: usize,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/rpc.rs"
+	},
+	{
+		"id" : 3283726,
+		"snippet" : "        #[derive(Deserialize)]\n        struct InnerIds {\n            view_id: ViewId,\n            plugin_id: PluginPid,\n        }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/rpc.rs"
+	},
+	{
+		"id" : 3283743,
+		"snippet" : "    use serde_json;\n\n    #[test]\n    fn test_plugin_update() {\n        let json = r#\"{\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/rpc.rs"
+	},
+	{
+		"id" : 3283746,
+		"snippet" : "        let val: PluginUpdate = match serde_json::from_str(json) {\n            Ok(val) => val,\n            Err(err) => panic!(\"{:?}\", err),\n        };\n        assert!(val.delta.is_some());\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/plugins\/rpc.rs"
+	},
+	{
+		"id" : 3283758,
+		"snippet" : "use std::sync::Arc;\n\nuse serde::de::{self, Deserialize};\nuse serde_json::{self, Value};\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283790,
+		"snippet" : "    pub font_size: f32,\n    pub auto_indent: bool,\n    pub scroll_past_end: bool,\n    pub wrap_width: usize,\n    pub word_wrap: bool,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283804,
+		"snippet" : "            config_dir,\n            extras_dir,\n        }\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283816,
+		"snippet" : "    \/\/\/ Instructs the `ConfigManager` to stop tracking a given buffer.\n    \/\/\/\n    \/\/\/ # Panics:\n    \/\/\/\n    \/\/\/ Panics if `id` does not exist.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283823,
+		"snippet" : "    }\n\n    fn update_all_buffer_configs(&mut self) -> Vec<(BufferId, Table)> {\n        self.buffer_configs\n            .keys()\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283846,
+		"snippet" : "    pub fn set_user_config(\n        &mut self,\n        domain: ConfigDomain,\n        config: Table,\n    ) -> Result<Vec<(BufferId, Table)>, ConfigError> {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283861,
+		"snippet" : "\n        if let Some(p) = themes_dir {\n            if p.exists() {\n                return Some(p);\n            }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283867,
+		"snippet" : "    \/\/\/ Create a single table representing the final config values.\n    fn collate(&self) -> Table {\n        \/\/ NOTE: This is fairly expensive; a future optimization would borrow\n        \/\/ from the underlying collections.\n        let mut out = Table::new();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283868,
+		"snippet" : "        for table in &self.0 {\n            for (k, v) in table.iter() {\n                if !out.contains_key(k) {\n                    \/\/ cloning these objects feels a bit gross, we could\n                    \/\/ improve this by implementing Deserialize for TableStack.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283875,
+		"snippet" : "    \/\/\/ which have changed from `other`.\n    fn diff(&self, other: &TableStack) -> Option<Table> {\n        let mut out: Option<Table> = None;\n        let this = self.collate();\n        for (k, v) in this.iter() {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283915,
+		"snippet" : "        assert_eq!(config.items.tab_size, 67);\n\n        \/\/ user override trumps everything\n        let changes = json!({\"tab_size\": 85}).as_object().unwrap().to_owned();\n        manager.set_user_config(ConfigDomain::UserOverride(buf_id_3), changes).unwrap();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/config.rs"
+	},
+	{
+		"id" : 3283948,
+		"snippet" : "    \/\/\/ Returns a guard to the core state. A convenience around `Mutex::lock`.\n    \/\/\/\n    \/\/\/ # Panics\n    \/\/\/\n    \/\/\/ Panics if core has not yet received the `client_started` message.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/core.rs"
+	},
+	{
+		"id" : 3283967,
+		"snippet" : "    pub fn handle_plugin_update(\n        &self,\n        plugin: PluginId,\n        view: ViewId,\n        response: Result<Value, RpcError>,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/core.rs"
+	},
+	{
+		"id" : 3283970,
+		"snippet" : "    type Notification = PluginCommand<PluginNotification>;\n    type Request = PluginCommand<PluginRequest>;\n\n    fn handle_notification(&mut self, ctx: &RpcCtx, rpc: Self::Notification) {\n        let PluginCommand { view_id, plugin_id, cmd } = rpc;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/core.rs"
+	},
+	{
+		"id" : 3283995,
+		"snippet" : "                return;\n            }\n        }\n\n        recording_buffer.push(current_event);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/recorder.rs"
+	},
+	{
+		"id" : 3284031,
+		"snippet" : "        for event in expected_events.iter().rev() {\n            recorder.record(event.clone());\n        }\n        recorder.toggle_recording(Some(recording_name.clone()));\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/recorder.rs"
+	},
+	{
+		"id" : 3284085,
+		"snippet" : "    }\n\n    \/\/\/ Deletes the given range from the set.\n    pub fn delete_range(&mut self, start: usize, end: usize) {\n        let mut ix = match self.ranges.binary_search_by(|r| r.1.cmp(&start)) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/index_set.rs"
+	},
+	{
+		"id" : 3284094,
+		"snippet" : "        MinusIter { ranges, start, end }\n    }\n\n    \/\/\/ Computes a new set based on applying a delta to the old set. Collapsed regions are removed\n    \/\/\/ and contiguous regions are combined.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/index_set.rs"
+	},
+	{
+		"id" : 3284110,
+		"snippet" : "#[cfg(test)]\nmod tests {\n    use super::IndexSet;\n\n    #[test]\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/index_set.rs"
+	},
+	{
+		"id" : 3284118,
+		"snippet" : "    fn minus_one_range_double_ended_iter() {\n        let mut e = IndexSet::new();\n        e.union_one_range(3, 5);\n        e.union_one_range(7, 9);\n        e.union_one_range(12, 15);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/index_set.rs"
+	},
+	{
+		"id" : 3284149,
+		"snippet" : "                }\n            }\n            _ => Ok(None),\n        }\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/whitespace.rs"
+	},
+	{
+		"id" : 3284159,
+		"snippet" : "\/\/\/ Simple implementation to calculate greatest common divisor, based on Euclid's algorithm\nfn gcd(a: usize, b: usize) -> usize {\n    if a == 0 {\n        b\n    } else if b == 0 || a == b {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/whitespace.rs"
+	},
+	{
+		"id" : 3284177,
+		"snippet" : "But the majority is still 0.\n\"#,\n        ));\n\n        assert_eq!(result.unwrap(), None);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/whitespace.rs"
+	},
+	{
+		"id" : 3284178,
+		"snippet" : "\/\/ Copyright 2018 The xi-editor Authors.\n\/\/\n\/\/ Licensed under the Apache License, Version 2.0 (the \"License\");\n\/\/ you may not use this file except in compliance with the License.\n\/\/ You may obtain a copy of the License at\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284180,
+		"snippet" : "\/\/ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n\/\/ See the License for the specific language governing permissions and\n\/\/ limitations under the License.\n\n\/\/! A container for the state relevant to a single event.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284218,
+		"snippet" : "                });\n                self.editor.borrow_mut().set_force_undo_group(false);\n\n                \/\/ The action that follows the block must belong to a separate undo group\n                self.editor.borrow_mut().update_edit_type();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284317,
+		"snippet" : "                \/\/ TODO: Get Range from hover here and use it to highlight text\n                self.client.show_hover(self.view_id, request_id, hover.content)\n            }\n            Err(err) => warn!(\"Hover Response from Client Error {:?}\", err),\n        }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284320,
+		"snippet" : "}\n\n#[cfg(test)]\n#[rustfmt::skip]\nmod tests {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284328,
+		"snippet" : "                             style_map, width_cache, config_manager, recorder };\n            harness.make_context().view_init();\n            harness.make_context().finish_init(&config);\n            harness\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284329,
+		"snippet" : "        }\n\n        \/\/\/ Renders the text and selections. cursors are represented with\n        \/\/\/ the pipe '|', and non-caret regions are represented by \\[braces\\].\n        fn debug_render(&self) -> String {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284347,
+		"snippet" : "        ctx.do_edit(EditNotification::MoveToEndOfParagraph);\n        ctx.do_edit(EditNotification::MoveToBeginningOfParagraphAndModifySelection);\n        assert_eq!(harness.debug_render(),\"\\\n        [|this is a string]\\n\\\n        that has three\\n\\\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284356,
+		"snippet" : "        this [is a string|]\\n\\\n        that [has three|]\\n\\\n        li|nes.\" );\n\n        ctx.do_edit(EditNotification::MoveToLeftEndOfLine);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284360,
+		"snippet" : "        [|lines].\" );\n\n        ctx.do_edit(EditNotification::CollapseSelections);\n        ctx.do_edit(EditNotification::MoveToRightEndOfLine);\n        assert_eq!(harness.debug_render(),\"\\\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284395,
+		"snippet" : "        ctx.do_edit(EditNotification::Insert { chars: \"\\u{1F469}\\u{200D}\\u{1F373}\".into() });\n        assert_eq!(harness.debug_render(), \"\\u{1F469}\\u{200D}\\u{1F373}|\");\n        ctx.do_edit(EditNotification::DeleteBackward);\n        assert_eq!(harness.debug_render(), \"|\");\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284398,
+		"snippet" : "        ctx.do_edit(EditNotification::Insert { chars: \"\\u{1F468}\\u{200D}\\u{2764}\\u{FE0F}\\u{200D}\\u{1F48B}\\u{200D}\\u{1F468}\".into() });\n        assert_eq!(harness.debug_render(), \"\\u{1F468}\\u{200D}\\u{2764}\\u{FE0F}\\u{200D}\\u{1F48B}\\u{200D}\\u{1F468}|\");\n        ctx.do_edit(EditNotification::DeleteBackward);\n        assert_eq!(harness.debug_render(), \"|\");\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284400,
+		"snippet" : "\n        \/\/ End with ZERO WIDTH JOINER\n        ctx.do_edit(EditNotification::Insert { chars: \"\\u{1F441}\\u{200D}\".into() });\n        assert_eq!(harness.debug_render(), \"\\u{1F441}\\u{200D}|\");\n        ctx.do_edit(EditNotification::DeleteBackward);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284405,
+		"snippet" : "\n        \/\/ Multiple ZERO WIDTH JOINER\n        ctx.do_edit(EditNotification::Insert { chars: \"\\u{1F441}\\u{200D}\\u{200D}\\u{1F5E8}\".into() });\n        assert_eq!(harness.debug_render(), \"\\u{1F441}\\u{200D}\\u{200D}\\u{1F5E8}|\");\n        ctx.do_edit(EditNotification::DeleteBackward);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284460,
+		"snippet" : "        ctx.do_edit(EditNotification::Insert { chars: \"\\u{1F469}\\u{200D}\\u{1F1FA}\".into() });\n        ctx.do_edit(EditNotification::DeleteBackward);\n        assert_eq!(harness.debug_render(), \"\\u{1F469}\\u{200D}|\");\n        ctx.do_edit(EditNotification::DeleteBackward);\n        assert_eq!(harness.debug_render(), \"\\u{1F469}|\");\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284501,
+		"snippet" : "\n        ctx.do_edit(EditNotification::Indent);\n        assert_eq!(harness.debug_render(),\"    \\\n        this |is a string\\n    \\\n        that has t|hree\\n\\\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284555,
+		"snippet" : "        this is a about\\n\\\n        that has string\\n\\\n        four really see.|\\n\\\n        lines to nice\" );\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284561,
+		"snippet" : "        lines to see.\" );\n    }\n\n    #[test]\n    fn test_exact_position() {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284577,
+		"snippet" : "        ctx.do_edit(EditNotification::Transpose);\n\n        assert_eq!(harness.debug_render(), \"|\"); \/\/ should be noop\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/event_context.rs"
+	},
+	{
+		"id" : 3284618,
+		"snippet" : "            } else {\n                (r.min(), None)\n            }\n        }\n        Movement::Right => {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/movement.rs"
+	},
+	{
+		"id" : 3284717,
+		"snippet" : "        \/\/\/ Write some data to a file\n        fn write(&self, p: &str);\n        \/\/\/ Remove file or directory\n        fn remove(&self, p: &str);\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/watcher.rs"
+	},
+	{
+		"id" : 3284731,
+		"snippet" : "        };\n        assert!(w.applies_to_path(&PathBuf::from(\"\/hi\/there\/friend.txt\")));\n        assert!(w.applies_to_path(&PathBuf::from(\"\/hi\/there\/\")));\n        assert!(!w.applies_to_path(&PathBuf::from(\"\/hi\/there\/dear\/friend.txt\")));\n        assert!(!w.applies_to_path(&PathBuf::from(\"\/oh\/hi\/there\/\")));\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/watcher.rs"
+	},
+	{
+		"id" : 3284744,
+		"snippet" : "\n    #[test]\n    fn two_watchers_one_file() {\n        let (tx, rx) = unbounded();\n        let tmp = tempdir::TempDir::new(\"xi-test-two-watchers\").unwrap();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/watcher.rs"
+	},
+	{
+		"id" : 3284774,
+		"snippet" : "\n    \/\/\/ Tracks whether find highlights should be rendered.\n    \/\/\/ Highlights are only rendered when search dialog is open.\n    highlight_find: bool,\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284784,
+		"snippet" : "#[derive(Debug, Default, PartialEq, Serialize, Deserialize, Clone)]\npub struct Size {\n    pub width: f64,\n    pub height: f64,\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284792,
+		"snippet" : "            replace: None,\n            replace_changed: false,\n            annotations: AnnotationStore::new(),\n        }\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284899,
+		"snippet" : "            }\n        }\n        for &(sel_start, sel_end) in sel {\n            encoded_styles.push((sel_start as isize) - ix);\n            encoded_styles.push(sel_end as isize - sel_start as isize);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284909,
+		"snippet" : "            .chain(find_annotations)\n            .chain(plugin_annotations)\n            .collect::<Vec<_>>();\n\n        if !self.lc_shadow.needs_render(plan) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284953,
+		"snippet" : "    ) {\n        let visible = self.first_line..self.first_line + self.height;\n        match self.lines.after_edit(text, last_text, delta, width_cache, client, visible) {\n            Some(InvalLines { start_line, inval_count, new_count }) => {\n                self.lc_shadow.edit(start_line, start_line + inval_count, new_count);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284956,
+		"snippet" : "        self.annotations.invalidate(iv);\n\n        \/\/ update only find highlights affected by change\n        for find in &mut self.find {\n            find.update_highlights(text, delta);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3284961,
+		"snippet" : "                    text.slice_to_cow(start..end)\n                }\n            }\n            _ => return,\n        };\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3285009,
+		"snippet" : "        match self.selection.len() {\n            1 if self.selection[0].is_caret() => {\n                let offset = self.selection[0].start;\n                Some(offset)\n            }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3285017,
+		"snippet" : "    } else {\n        max\n    }\n}\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/view.rs"
+	},
+	{
+		"id" : 3285062,
+		"snippet" : "\/\/ Copyright 2018 The xi-editor Authors.\n\/\/\n\/\/ Licensed under the Apache License, Version 2.0 (the \"License\");\n\/\/ you may not use this file except in compliance with the License.\n\/\/ You may obtain a copy of the License at\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/backspace.rs"
+	},
+	{
+		"id" : 3285073,
+		"snippet" : "            };\n            let mut state = State::Start;\n            let mut tmp_offset = region.end;\n\n            let mut delete_code_point_count = 0;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/backspace.rs"
+	},
+	{
+		"id" : 3285095,
+		"snippet" : "                        if code_point.is_emoji() {\n                            delete_code_point_count += 2;\n                            state = if code_point.is_emoji_modifier() {\n                                State::BeforeEmojiModifier\n                            } else {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/backspace.rs"
+	},
+	{
+		"id" : 3285111,
+		"snippet" : "\/\/\/ Replaces the selection with the text `T`.\npub fn insert<T: Into<Rope>>(base: &Rope, regions: &[SelRegion], text: T) -> RopeDelta {\n    let rope = text.into();\n    let mut builder = DeltaBuilder::new(base.len());\n    for region in regions {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285117,
+		"snippet" : "        builder.replace(after_iv, after_rope.clone());\n    }\n\n    builder.build()\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285168,
+		"snippet" : "        }\n    }\n\n    builder.build()\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285171,
+		"snippet" : "        let interval = Interval::new(region.min(), region.max());\n        builder.replace(interval, Rope::from(transform_function(&selected_text)));\n    }\n\n    builder.build()\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285172,
+		"snippet" : "}\n\n\/\/\/ Changes the number(s) under the cursor(s) with the `transform_function`.\n\/\/\/ If there is a number next to or on the beginning of the region, then\n\/\/\/ this number will be replaced with the result of `transform_function` and\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285177,
+		"snippet" : "        if start > 0 && base.byte_at(start - 1) == (b'-') {\n            start -= 1;\n        }\n\n        let word = base.slice_to_cow(start..end);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285180,
+		"snippet" : "pub fn capitalize_text(base: &Rope, regions: &[SelRegion]) -> (RopeDelta, Selection) {\n    let mut builder = DeltaBuilder::new(base.len());\n    let mut final_selection = Selection::new();\n\n    for &region in regions {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/edit_ops.rs"
+	},
+	{
+		"id" : 3285199,
+		"snippet" : "use crate::event_context::EventContext;\nuse crate::file::FileManager;\nuse crate::line_ending::LineEnding;\nuse crate::plugin_rpc::{PluginNotification, PluginRequest};\nuse crate::plugins::rpc::ClientPluginInfo;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285230,
+		"snippet" : "    }\n\n    fn next_plugin_id(&self) -> PluginId {\n        PluginPid(self.id_counter.next())\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285239,
+		"snippet" : "        } else {\n            self.peer.alert(format!(\"Unexpected config file {:?}\", path));\n        }\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285248,
+		"snippet" : "                view_id,\n                buffer_id,\n                view,\n                editor,\n                config: &config.items,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285278,
+		"snippet" : "        if let Some(buffer_id) = buffer_id {\n            if close_buffer {\n                self.editors.remove(&buffer_id);\n                self.file_manager.close(buffer_id);\n                self.config_manager.remove_buffer(buffer_id);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285291,
+		"snippet" : "    }\n\n    fn do_set_language(&mut self, view_id: ViewId, language_id: LanguageId) {\n        if let Some(view) = self.views.get(&view_id) {\n            let buffer_id = view.borrow().get_buffer_id();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285335,
+		"snippet" : "        };\n\n        let has_changes = self.file_manager.check_file(path, buffer_id);\n        let is_pristine = self.editors.get(&buffer_id).map(|ed| ed.borrow().is_pristine()).unwrap();\n        \/\/TODO: currently we only use the file's modification time when\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285347,
+		"snippet" : "            }\n            \/\/ the way FSEvents on macOS work, we want to verify that this path\n            \/\/ has actually be removed before we do anything.\n            EventKind::Remove(RemoveKind::Any) if !event.paths[0].exists() => {\n                if let Some(plugin) = self.plugins.get_from_path(&event.paths[0]) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285361,
+		"snippet" : "\n    \/\/\/ Load a single theme file. Updates if already present.\n    fn load_theme_file(&mut self, path: &Path) {\n        let _t = trace_block(\"CoreState::load_theme_file\", &[\"core\"]);\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285387,
+		"snippet" : "    }\n}\n\n\/\/\/ test helpers\nimpl CoreState {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285395,
+		"snippet" : "    fn next(&mut self) -> Option<Self::Item> {\n        let &mut Iter { ref mut views, ref mut seen, ref inner } = self;\n        loop {\n            let next_view = match views.next() {\n                None => return None,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285400,
+		"snippet" : "    }\n}\n\n\/\/ these two only exist so that we can use ViewIds as idle tokens\nimpl From<usize> for ViewId {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/tabs.rs"
+	},
+	{
+		"id" : 3285426,
+		"snippet" : "    pub strings: Vec<String>,\n}\n\n\/\/\/ The response for a batch of [`WidthReq`]s.\npub type WidthResponse = Vec<Vec<Width>>;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/width_cache.rs"
+	},
+	{
+		"id" : 3285450,
+		"snippet" : "\nuse std::ops::Range;\n\nuse xi_rope::Rope;\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/line_offset.rs"
+	},
+	{
+		"id" : 3285453,
+		"snippet" : "        text.offset_of_line(line)\n    }\n\n    \/\/\/ Returns the visible line number containing the given offset.\n    fn line_of_offset(&self, text: &Rope, offset: usize) -> usize {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/line_offset.rs"
+	},
+	{
+		"id" : 3285487,
+		"snippet" : "        Self::with_text(\"\")\n    }\n\n    \/\/\/ Creates a new `Editor`, loading text into a new buffer.\n    pub fn with_text<T: Into<Rope>>(text: T) -> Editor {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285511,
+		"snippet" : "        let has_undos = !self.live_undos.is_empty();\n        let force_undo_group = self.force_undo_group;\n        let is_unbroken_group = !self.this_edit_type.breaks_undo_group(self.last_edit_type);\n\n        if has_undos && (force_undo_group || is_unbroken_group) {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285565,
+		"snippet" : "    }\n\n    fn do_capitalize_text(&mut self, view: &mut View) {\n        let (delta, final_selection) = edit_ops::capitalize_text(&self.text, view.sel_regions());\n        if !delta.is_identity() {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285595,
+		"snippet" : "\n    pub fn update_annotations(\n        &mut self,\n        view: &mut View,\n        plugin: PluginId,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285605,
+		"snippet" : "    pub fn plugin_get_data(\n        &self,\n        start: usize,\n        unit: TextUnit,\n        max_size: usize,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285606,
+		"snippet" : "        rev: RevToken,\n    ) -> Option<GetDataResponse> {\n        let _t = trace_block(\"Editor::plugin_get_data\", &[\"core\"]);\n        let text_cow = self.get_rev(rev)?;\n        let text = &text_cow;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285610,
+		"snippet" : "\n        Some(GetDataResponse { chunk, offset, first_line, first_line_offset })\n    }\n}\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/editor.rs"
+	},
+	{
+		"id" : 3285631,
+		"snippet" : "pub struct Client(RpcPeer);\n\nimpl Client {\n    pub fn new(peer: RpcPeer) -> Self {\n        Client(peer)\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/client.rs"
+	},
+	{
+		"id" : 3285653,
+		"snippet" : "        );\n    }\n\n    pub fn def_style(&self, style: &Value) {\n        self.0.send_rpc_notification(\"def_style\", &style)\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/client.rs"
+	},
+	{
+		"id" : 3285655,
+		"snippet" : "            &json!({\n                \"view_id\": view_id,\n                \"queries\": queries,\n            }),\n        );\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/client.rs"
+	},
+	{
+		"id" : 3285719,
+		"snippet" : "        (Punctuation, Lf) => Interior,\n        (Space, Punctuation) => Interior,\n        (Punctuation, Space) => Interior,\n        _ => classify_boundary(prev, next),\n    }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/word_boundaries.rs"
+	},
+	{
+		"id" : 3285733,
+		"snippet" : "\n\/\/\/ The notifications which make up the base of the protocol.\n\/\/\/\n\/\/\/ # Note\n\/\/\/\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285735,
+		"snippet" : "\/\/\/\n\/\/\/ ```\n\/\/\/ # extern crate xi_core_lib as xi_core;\n\/\/\/ extern crate serde_json;\n\/\/\/ use crate::xi_core::rpc::CoreNotification;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285779,
+		"snippet" : "\/\/\/     \"method\": \"scroll\",\n\/\/\/     \"params\": [0, 6]\n\/\/\/     }\"#;\n\/\/\/\n\/\/\/ let cmd: EditCommand<EditNotification> = serde_json::from_str(&json).unwrap();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285781,
+		"snippet" : "#[derive(Debug, Clone, PartialEq)]\npub struct EditCommand<T> {\n    pub view_id: ViewId,\n    pub cmd: T,\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285787,
+		"snippet" : "    LineSelect,\n    WordSelect,\n    MultiLineSelect,\n    MultiWordSelect,\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285805,
+		"snippet" : "    MoveDownAndModifySelection,\n    MoveLeft,\n    \/\/ synoynm for `MoveLeft`\n    MoveBackward,\n    MoveLeftAndModifySelection,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285807,
+		"snippet" : "    MoveWordLeftAndModifySelection,\n    MoveWordRight,\n    MoveWordRightAndModifySelection,\n    MoveToBeginningOfParagraph,\n    MoveToBeginningOfParagraphAndModifySelection,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/rpc.rs"
+	},
+	{
+		"id" : 3285862,
+		"snippet" : "use xi_rope::delta::DeltaRegion;\nuse xi_rope::find::{find, is_multiline_regex, CaseMatching};\nuse xi_rope::{Cursor, Interval, LinesMetric, Metric, Rope, RopeDelta};\n\nconst REGEX_SIZE_LIMIT: usize = 1000000;\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/find.rs"
+	},
+	{
+		"id" : 3285883,
+		"snippet" : "        }\n    }\n\n    pub fn set_hls_dirty(&mut self, is_dirty: bool) {\n        self.hls_dirty = is_dirty\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/find.rs"
+	},
+	{
+		"id" : 3285886,
+		"snippet" : "            self.occurrences = self.occurrences.apply_delta(delta, false, InsertDrift::Default);\n\n            \/\/ invalidate occurrences around insert positions\n            for DeltaRegion { new_offset, len, .. } in delta.iter_inserts() {\n                \/\/ also invalidate previous occurrence since it might expand after insertion\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/find.rs"
+	},
+	{
+		"id" : 3285921,
+		"snippet" : "\n    \/\/\/ Return the occurrence closest to the provided selection `sel`. If searched is reversed then\n    \/\/\/ the occurrence closest to the start of the selection is returned. `wrapped` indicates that\n    \/\/\/ if the end of the text is reached the search continues from the start.\n    pub fn next_occurrence(\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/find.rs"
+	},
+	{
+		"id" : 3285967,
+		"snippet" : "        prev_selection.add_region(SelRegion::new(19, 19));\n        assert_eq!(\n            find.next_occurrence(&base_text, false, true, &prev_selection),\n            Some(SelRegion::new(16, 19))\n        );\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/find.rs"
+	},
+	{
+		"id" : 3286009,
+		"snippet" : "            }\n        }\n        if let Some(end) = new_task.take() {\n            self.work.push(end);\n        }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286035,
+		"snippet" : "            None\n        } else {\n            let summary = self.do_wrap_task(text, width_cache, client, visible_lines, None);\n            let WrapSummary { start_line, inval_count, new_count, .. } = summary;\n            Some(InvalLines { start_line, inval_count, new_count })\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286038,
+		"snippet" : "        width_cache: &mut WidthCache,\n        client: &Client,\n        visible_lines: Range<usize>,\n    ) -> Option<InvalLines> {\n        let (iv, newlen) = delta.summary();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286064,
+		"snippet" : "\n        let inval_count = inval_soft + hard_count;\n        let new_soft = breaks.measure::<BreaksMetric>();\n        let new_count = new_soft + hard_count;\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286075,
+		"snippet" : "    pot_breaks: Vec<PotentialBreak>,\n    \/\/\/ Index within `pot_breaks`\n    pot_break_ix: usize,\n    max_width: f64,\n}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286136,
+		"snippet" : "    use xi_rpc::test_utils::DummyPeer;\n\n    fn make_lines(text: &Rope, width: f64) -> Lines {\n        let client = Client::new(Box::new(DummyPeer));\n        let mut width_cache = WidthCache::new();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/src\/linewrap.rs"
+	},
+	{
+		"id" : 3286233,
+		"snippet" : "\/\/ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n\/\/ See the License for the specific language governing permissions and\n\/\/ limitations under the License.\n\n#![feature(test)]\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/benches\/wrap.rs"
+	},
+	{
+		"id" : 3286240,
+		"snippet" : "        }\n    })\n}\n\n#[bench]\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/benches\/wrap.rs"
+	},
+	{
+		"id" : 3286246,
+		"snippet" : "#[bench]\nfn offset_of_line_col_breaks(b: &mut Bencher) {\n    let text = Rope::from(build_short_lines(10_000));\n    let mut view = View::new(1.into(), BufferId::new(2));\n    view.debug_force_rewrap_cols(&text, 20);\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/benches\/wrap.rs"
+	},
+	{
+		"id" : 3286277,
+		"snippet" : "                        \/\/ step over leading \"invalidate\" and \"skip\"\n                        .skip_while(|op| op[\"op\"].as_str().unwrap() == \"invalidate\"\n                            || op[\"op\"].as_str().unwrap() == \"skip\")\n                        \/\/ current op (ins\/copy\/update) adds lines;\n                        \/\/ wait for another invalidate\/skip\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/tests\/rpc.rs"
+	},
+	{
+		"id" : 3286304,
+		"snippet" : "    rx.expect_rpc(\"theme_changed\");\n    rx.expect_response().unwrap();\n    rx.expect_rpc(\"available_plugins\");\n    rx.expect_rpc(\"config_changed\");\n    rx.expect_rpc(\"language_changed\");\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/tests\/rpc.rs"
+	},
+	{
+		"id" : 3286305,
+		"snippet" : "    rx.expect_rpc(\"update\");\n    rx.expect_rpc(\"scroll_to\");\n\n    let json = make_reader(r#\"{\"method\":\"get_config\",\"id\":1,\"params\":{\"view_id\":\"view-id-1\"}}\"#);\n    rpc_looper.mainloop(|| json, &mut state).unwrap();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/tests\/rpc.rs"
+	},
+	{
+		"id" : 3286313,
+		"snippet" : "{\"method\":\"edit\",\"params\":{\"view_id\":\"view-id-1\",\"method\":\"move_up_and_modify_selection\",\"params\":[]}}\n{\"method\":\"edit\",\"params\":{\"view_id\":\"view-id-1\",\"method\":\"move_down_and_modify_selection\",\"params\":[]}}\n{\"method\":\"edit\",\"params\":{\"view_id\":\"view-id-1\",\"method\":\"move_left\",\"params\":[]}}\n{\"method\":\"edit\",\"params\":{\"view_id\":\"view-id-1\",\"method\":\"move_backward\",\"params\":[]}}\n{\"method\":\"edit\",\"params\":{\"view_id\":\"view-id-1\",\"method\":\"move_right\",\"params\":[]}}\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/core-lib\/tests\/rpc.rs"
+	},
+	{
+		"id" : 3286361,
+		"snippet" : "}\n\n\/\/\/ Blocking call to read a message from the provided BufRead\npub fn read_message<T: BufRead>(reader: &mut T) -> Result<String, ParseError> {\n    let mut buffer = String::new();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/parse_helper.rs"
+	},
+	{
+		"id" : 3286376,
+		"snippet" : "\/\/ Copyright 2018 The xi-editor Authors.\n\/\/\n\/\/ Licensed under the Apache License, Version 2.0 (the \"License\");\n\/\/ you may not use this file except in compliance with the License.\n\/\/ You may obtain a copy of the License at\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/bin\/xi-lsp-plugin.rs"
+	},
+	{
+		"id" : 3286382,
+		"snippet" : "        \/\/ Default to info\n        Err(_) => log::LevelFilter::Info,\n    };\n\n    fern::Dispatch::new()\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/bin\/xi-lsp-plugin.rs"
+	},
+	{
+		"id" : 3286407,
+		"snippet" : "    fn update(\n        &mut self,\n        view: &mut View<Self::Cache>,\n        delta: Option<&RopeDelta>,\n        _edit_type: String,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/lsp_plugin.rs"
+	},
+	{
+		"id" : 3286415,
+		"snippet" : "        trace!(\"new view {}\", view.get_id());\n\n        let document_text = view.get_document().unwrap();\n        let path = view.get_path();\n        let view_id = view.get_id();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/lsp_plugin.rs"
+	},
+	{
+		"id" : 3286485,
+		"snippet" : "\n        trace!(\"Sending RPC: {:?}\", rpc);\n        self.write(rpc.as_ref());\n    }\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/language_server_client.rs"
+	},
+	{
+		"id" : 3286490,
+		"snippet" : "            root_path: None,\n            initialization_options: None,\n            capabilities: client_capabilities,\n            trace: Some(TraceOption::Verbose),\n            workspace_folders: None,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/language_server_client.rs"
+	},
+	{
+		"id" : 3286492,
+		"snippet" : "\n    \/\/\/ Send textDocument\/didOpen Notification to the Language Server\n    pub fn send_did_open(&mut self, view_id: ViewId, document_uri: Url, document_text: String) {\n        self.opened_documents.insert(view_id, document_uri.clone());\n\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/language_server_client.rs"
+	},
+	{
+		"id" : 3286544,
+		"snippet" : "#[derive(Debug)]\npub enum LanguageResponseError {\n    LanguageServerError(String),\n    PluginLibError(PluginLibError),\n    NullResponse,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/types.rs"
+	},
+	{
+		"id" : 3286572,
+		"snippet" : "                range: None,\n                range_length: None,\n                text: view.get_document().unwrap(),\n            };\n            Some(vec![text_document_content_change_event])\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/utils.rs"
+	},
+	{
+		"id" : 3286580,
+		"snippet" : "            }\n            current_path = path;\n        } else {\n            break Err(Error::PathError);\n        }\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/utils.rs"
+	},
+	{
+		"id" : 3286582,
+		"snippet" : "\/\/\/ server\npub fn start_new_server(\n    command: String,\n    arguments: Vec<String>,\n    file_extensions: Vec<String>,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/utils.rs"
+	},
+	{
+		"id" : 3286583,
+		"snippet" : "    language_id: &str,\n    core: CoreProxy,\n    result_queue: ResultQueue,\n) -> Result<Arc<Mutex<LanguageServerClient>>, String> {\n    let mut process = Command::new(command)\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/lsp-lib\/src\/utils.rs"
+	},
+	{
+		"id" : 3286953,
+		"snippet" : "    \/\/\/ Map the contents of `self` into the 0-regions of `other`.\n    \/\/\/ Precondition: `self.count(CountMatcher::All) == other.count(CountMatcher::Zero)`\n    fn transform(&self, other: &Subset, union: bool) -> Subset {\n        let mut sb = SubsetBuilder::new();\n        let mut seg_iter = self.segments.iter();\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3286954,
+		"snippet" : "        let mut cur_seg = Segment { len: 0, count: 0 };\n        for oseg in &other.segments {\n            if oseg.count > 0 {\n                sb.push_segment(oseg.len, if union { oseg.count } else { 0 });\n            } else {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3286956,
+		"snippet" : "                            .next()\n                            .expect(\"self must cover all 0-regions of other\")\n                            .clone();\n                    }\n                    \/\/ consume as much of the segment as possible and necessary\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3286962,
+		"snippet" : "    pub fn transform_union(&self, other: &Subset) -> Subset {\n        self.transform(other, true)\n    }\n\n    \/\/\/ Transform subset through other coordinate transform, shrinking.\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3286991,
+		"snippet" : "    type Item = ZipSegment;\n\n    \/\/\/ Consume as far as possible from `self.consumed` until reaching a\n    \/\/\/ segment boundary in either `Subset`, and return the resulting\n    \/\/\/ `ZipSegment`. Will panic if it reaches the end of one `Subset` before\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3287026,
+		"snippet" : "    }\n\n    #[test]\n    #[should_panic(expected = \"non-decreasing\")]\n    fn test_mapper_requires_non_decreasing() {\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3287037,
+		"snippet" : "            \"2345679CEFGHKLMRSTUVWZabdehijlmnoprstuvwxyz\",\n        );\n        transform_case(\n            \"01245689ABCDGJKLMPQSTWXYbcdfgjlmnosvy\",\n            \"01245ABCDJLQSWXYgsv\",\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/multiset.rs"
+	},
+	{
+		"id" : 3287039,
+		"snippet" : "\/\/\n\/\/     http:\/\/www.apache.org\/licenses\/LICENSE-2.0\n\/\/\n\/\/ Unless required by applicable law or agreed to in writing, software\n\/\/ distributed under the License is distributed on an \"AS IS\" BASIS,\n",
+		"language" : "Rust",
+		"repo_file_name" : "xi-editor\/xi-editor\/rust\/rope\/src\/lib.rs"
+	}
+]}
