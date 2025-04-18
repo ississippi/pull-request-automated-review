@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const filePath = path.join(__dirname, '..\\data\\python-snippets.json');
+const filePath = path.join(__dirname, '..\\test-data\\python-snippets.json');
 jsonData = {};
 function getCodeSnippet() {
     // "snippets": [

@@ -47,3 +47,7 @@ dist/
 # Other
 *.db
 *.sqlite3
+
+
+# Jupyter Notebooks checkpoints
+notebooks/.ipynb_checkpoints
