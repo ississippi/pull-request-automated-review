@@ -40,7 +40,7 @@ def main():
     print(snippet)
     code_review = prompt_engine.buildCodeReviewPrompt(snippet)
     print(code_review)
-    #api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
         raise ValueError("OPENAI_API_KEY environment variable is not set.")
     print("API Key is set.", api_key)
