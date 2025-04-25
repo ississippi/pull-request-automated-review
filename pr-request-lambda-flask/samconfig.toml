@@ -1,0 +1,9 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "pr-request"
+resolve_s3 = true
+s3_prefix = "pr-request"
+region = "us-east-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=\"dev\" SnsTopicArn=\"arn:aws:sns:us-east-1:238338230919:pr-review-standard-dev\""
+image_repositories = []
