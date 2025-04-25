@@ -1,0 +1,93 @@
+{
+  "resource": "/code-review",
+  "path": "/code-review",
+  "httpMethod": "POST",
+  "headers": {
+    "accept": "*/*",
+    "Authorization": "Bearer",
+    "content-type": "application/json",
+    "Host": "1lenggefi3.execute-api.us-east-1.amazonaws.com",
+    "User-Agent": "curl/8.5.0",
+    "X-Amzn-Trace-Id": "Root=1-6808fd99-240bc01c2a1300a72c310e5b",
+    "X-Forwarded-For": "20.49.55.149",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+    "accept": [
+      "*/*"
+    ],
+    "Authorization": [
+      "Bearer"
+    ],
+    "content-type": [
+      "application/json"
+    ],
+    "Host": [
+      "1lenggefi3.execute-api.us-east-1.amazonaws.com"
+    ],
+    "User-Agent": [
+      "curl/8.5.0"
+    ],
+    "X-Amzn-Trace-Id": [
+      "Root=1-6808fd99-240bc01c2a1300a72c310e5b"
+    ],
+    "X-Forwarded-For": [
+      "20.49.55.149"
+    ],
+    "X-Forwarded-Port": [
+      "443"
+    ],
+    "X-Forwarded-Proto": [
+      "https"
+    ]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "resourceId": "x3ywsc",
+    "resourcePath": "/code-review",
+    "httpMethod": "POST",
+    "extendedRequestId": "JeyQDGjsoAMEDeQ=",
+    "requestTime": "23/Apr/2025:14:47:53 +0000",
+    "path": "/prod/code-review",
+    "accountId": "238338230919",
+    "protocol": "HTTP/1.1",
+    "stage": "prod",
+    "domainPrefix": "1lenggefi3",
+    "requestTimeEpoch": 1745419673592,
+    "requestId": "75bbd4d1-8476-4cdb-8503-607cfef03bec",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "sourceIp": "20.49.55.149",
+      "principalOrgId": null,
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "curl/8.5.0",
+      "user": null
+    },
+    "domainName": "1lenggefi3.execute-api.us-east-1.amazonaws.com",
+    "deploymentId": "exebi4",
+    "apiId": "1lenggefi3"
+  },
+  "body": {
+    "pr_number": "8",
+    "repo": "ississippi/pull-request-test-repo",
+    "pr_title": "More debugging",
+    "user_login": "ississippi",
+    "created_at": "2025-04-23T14:47:43Z",
+    "pr_state": "open",
+    "pr_body": "",
+    "html_url": "https://github.com/ississippi/pull-request-test-repo/pull/8",
+    "head_sha": "da5d080d0280e7aca6ff0dff028fadeef7892bcb",
+    "base_ref": "main"
+  },
+  "isBase64Encoded": false
+}
