@@ -1,0 +1,6 @@
+{
+    "httpMethod": "POST",
+    "path": "/prrequest",
+    "body": "{\"title\": \"New Feature\", \"description\": \"Adds cool feature\"}"
+  }
+  
