@@ -1,5 +1,0 @@
-openai
-flask==2.3.3
-mangum==0.17.0
-python-dotenv
-requests==2.31.0
