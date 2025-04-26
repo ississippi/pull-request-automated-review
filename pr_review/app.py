@@ -1,7 +1,7 @@
 import json
 import boto3
 import os
-import pr_review.git_provider as git_provider
+import git_provider
 
 sns_client = boto3.client('sns')
 
