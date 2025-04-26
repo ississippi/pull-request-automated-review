@@ -1,0 +1,98 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: PR Request / Review system - API + SNS
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+
+  ## Health Check Function (Optional)
+  HealthCheckFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: health-check-function
+      CodeUri: health_check/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Policies:
+        - CloudWatchLogsPolicy
+      Events:
+        HealthApi:
+          Type: Api
+          Properties:
+            Path: /health
+            Method: get
+
+  ## PR Request API Lambda
+  PrRequestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: pr-request-function
+      CodeUri: pr_request/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Policies:
+        - CloudWatchLogsPolicy
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt PrRequestTopic.TopicName
+      Environment:
+        Variables:
+          PR_REQUEST_TOPIC_ARN: !Ref PrRequestTopic
+      Events:
+        PrRequestApi:
+          Type: Api
+          Properties:
+            Path: /prrequest
+            Method: post
+
+  ## PR Review Lambda (triggered by SNS)
+  PrReviewFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: pr-review-function
+      CodeUri: pr_review/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Policies:
+        - CloudWatchLogsPolicy
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt PrReviewTopic.TopicName
+      Environment:
+        Variables:
+          PR_REVIEW_TOPIC_ARN: !Ref PrReviewTopic
+      Events:
+        PrRequestSnsEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref PrRequestTopic
+
+  ## Topics
+  PrRequestTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: pr-request-topic
+
+  PrReviewTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: pr-review-topic
+
+Outputs:
+
+  HealthApiUrl:
+    Description: "Health Check URL"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/health/"
+
+  PrRequestApiUrl:
+    Description: "PR Request API URL"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/prrequest"
+
+  PrRequestTopicArn:
+    Description: "SNS Topic ARN for PR Requests"
+    Value: !Ref PrRequestTopic
+
+  PrReviewTopicArn:
+    Description: "SNS Topic ARN for PR Reviews"
+    Value: !Ref PrReviewTopic
