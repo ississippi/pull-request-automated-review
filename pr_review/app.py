@@ -1,6 +1,7 @@
 import json
 import boto3
 import os
+import pr_review.git_provider as git_provider
 
 sns_client = boto3.client('sns')
 
@@ -14,6 +15,13 @@ def lambda_handler(event, context):
             
             try:
                 request_data = json.loads(sns_message)
+
+                # 1. Get the diff for this PR
+                repo = request_data.get("repo")
+                pr_number = request_data.get("pr_number")
+                diff = git_provider.get_pr_diff(repo, pr_number)
+                print(f'diff for PR #{pr_number} in {repo}...')
+
                 # Build review message
                 review_message = {
                     "reviewTitle": f"Review: {request_data.get('title')}",

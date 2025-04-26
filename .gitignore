@@ -1,2 +1,2 @@
-# Test Data
-code-review-experiments-test-data/snippets-dev
+# AWS SAM build artifacts
+.aws-sam/
