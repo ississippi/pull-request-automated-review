@@ -11,7 +11,7 @@ def lambda_handler(event, context):
         body = json.loads(event.get('body', '{}'))
         
         # Optionally validate body here (title, description, etc.)
-
+        print(f"Received PR Request: {json.dumps(body)}")
         sns_client.publish(
             TopicArn=PR_REQUEST_TOPIC_ARN,
             Message=json.dumps(body)
