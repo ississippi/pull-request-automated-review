@@ -7,8 +7,53 @@ Globals:
     Timeout: 3
 
 Resources:
+  PrRequestFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowPublishToPrRequestTopic
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - sns:Publish
+                Resource: "*"
 
-  ## Health Check Function (Optional)
+  PrReviewFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: AllowPublishToPrReviewTopic
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - sns:Publish
+                Resource: "*"
+
+  ## Health Check Function
   HealthCheckFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -17,7 +62,7 @@ Resources:
       Handler: app.lambda_handler
       Runtime: python3.11
       Policies:
-        - CloudWatchLogsPolicy
+        - AWSLambdaBasicExecutionRole
       Events:
         HealthApi:
           Type: Api
@@ -33,10 +78,7 @@ Resources:
       CodeUri: pr_request/
       Handler: app.lambda_handler
       Runtime: python3.11
-      Policies:
-        - CloudWatchLogsPolicy
-        - SNSPublishMessagePolicy:
-            TopicName: !GetAtt PrRequestTopic.TopicName
+      Role: !GetAtt PrRequestFunctionRole.Arn
       Environment:
         Variables:
           PR_REQUEST_TOPIC_ARN: !Ref PrRequestTopic
@@ -55,10 +97,7 @@ Resources:
       CodeUri: pr_review/
       Handler: app.lambda_handler
       Runtime: python3.11
-      Policies:
-        - CloudWatchLogsPolicy
-        - SNSPublishMessagePolicy:
-            TopicName: !GetAtt PrReviewTopic.TopicName
+      Role: !GetAtt PrReviewFunctionRole.Arn
       Environment:
         Variables:
           PR_REVIEW_TOPIC_ARN: !Ref PrReviewTopic
@@ -68,16 +107,28 @@ Resources:
           Properties:
             Topic: !Ref PrRequestTopic
 
+  ## PR Notifications Lambda
+  PrNotificationsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: pr-notifications-function
+      CodeUri: pr_notifications/
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      # No Events yet
+
   ## Topics
   PrRequestTopic:
     Type: AWS::SNS::Topic
     Properties:
-      TopicName: pr-request-topic
+      TopicName: pr-request-automation-topic
 
   PrReviewTopic:
     Type: AWS::SNS::Topic
     Properties:
-      TopicName: pr-review-topic
+      TopicName: pr-review-automation-topic
 
 Outputs:
 
