@@ -51,6 +51,8 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                   - sns:Publish
+                  - ssm:GetParameter
+                  - ssm:GetParameters
                 Resource: "*"
 
   ## Health Check Function
@@ -97,10 +99,13 @@ Resources:
       CodeUri: pr_review/
       Handler: app.lambda_handler
       Runtime: python3.11
+      Timeout: 40
       Role: !GetAtt PrReviewFunctionRole.Arn
       Environment:
         Variables:
           PR_REVIEW_TOPIC_ARN: !Ref PrReviewTopic
+          GIT_API_KEY: ""
+          ANTHROPIC_API_KEY: ""     
       Events:
         PrRequestSnsEvent:
           Type: SNS

@@ -1,2 +1,7 @@
 # AWS SAM build artifacts
 .aws-sam/
+
+# Environment
+.env
+.env.*
+env.json
