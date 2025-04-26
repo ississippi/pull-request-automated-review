@@ -1,7 +1,11 @@
 import json
 import boto3
 import os
-import pr_review.git_provider as git_provider
+import git_provider
+import sonnet_client
+import time
+
+
 
 sns_client = boto3.client('sns')
 
@@ -22,6 +26,14 @@ def lambda_handler(event, context):
                 diff = git_provider.get_pr_diff(repo, pr_number)
                 print(f'diff for PR #{pr_number} in {repo}...')
 
+                # 2. Submit the diff to the code review system
+                start_time = time.time()
+                review = sonnet_client.get_code_review(diff)
+                end_time = time.time()
+                elapsed_time = end_time - start_time
+                print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
+                print("==USAGE==:", review.usage)                
+                
                 # Build review message
                 review_message = {
                     "reviewTitle": f"Review: {request_data.get('title')}",

@@ -1,4 +1,5 @@
 import os
+import boto3
 import json
 import time
 import requests
@@ -43,6 +44,17 @@ headers = {
     # "Authorization": "Bearer YOUR_TOKEN"
 }
 
+# Create an SSM client
+ssm = boto3.client('ssm')
+def get_parameter(name):
+    """Fetch parameter value from Parameter Store"""
+    response = ssm.get_parameter(
+        Name=name,
+        WithDecryption=True
+    )
+    return response['Parameter']['Value']
+# Load secrets at cold start
+GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
 
 def get_pr_details():
     response = requests.get(url, headers=headers)
@@ -60,8 +72,8 @@ def get_pr_diff(repo,pr_number):
     diff_headers = {
         "Accept": "application/vnd.github.v3.diff",
     }
-    load_dotenv()  # Load from .env in current directory
-    token = os.environ.get("GIT_API_KEY")
+    token = GIT_API_KEY
+    # print(f"Using GitHub API Key: {token}")
     if token:
         headers["Authorization"] = f"token {token}"
 
@@ -72,7 +84,7 @@ def get_pr_diff(repo,pr_number):
     response = requests.get(url, headers=diff_headers)
     if response.status_code == 200:
         diff = response.text
-        print(f'Diff: {diff}')
+        #print(f'Diff: {diff}')
         return diff
     else:
         print(f"Error: {response.status_code}")

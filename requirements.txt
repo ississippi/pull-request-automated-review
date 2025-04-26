@@ -1,3 +1,4 @@
+anthropic
 PyGitHub
 openai
 python-dotenv
