@@ -36,8 +36,9 @@ def lambda_handler(event, context):
                 
                 # Build review message
                 review_message = {
-                    "reviewTitle": f"Review: {request_data.get('title')}",
-                    "status": "Pending"
+                    "reviewTitle": f'Review for PR #{pr_number} in {repo}: {request_data.get("title", "No Title Provided")}',
+                    "metadata": request_data,
+                    "review": review
                 }
                 
                 sns_client.publish(
@@ -52,3 +53,22 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body": json.dumps({"message": "Processed PR Requests"})
     }
+
+if __name__ == "__main__":
+    # For local testing, you can simulate an event
+    test_event = {
+        "Records": [
+            {
+                "EventSource": "aws:sns",
+                "Sns": {
+                    "Message": json.dumps({
+                        "repo": "example/repo",
+                        "pr_number": 123,
+                        "title": "Fix issue with code review"
+                    })
+                }
+            }
+        ]
+    }
+    lambda_handler(test_event, None)  # Call the handler with the test event
+    print("Local test completed.")
