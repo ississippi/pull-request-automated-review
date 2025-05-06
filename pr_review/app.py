@@ -5,7 +5,10 @@ import git_provider
 import sonnet_client
 import time
 
-
+dynamodb = boto3.resource('dynamodb')
+PR_REVIEWS_TABLE = os.environ.get('PR_REVIEWS_TABLE', 'PRReviews')  # Default if env not set
+#PR_REVIEWS_TABLE = get_parameter("/prreview/PR_REVIEWS_TABLE")
+table = dynamodb.Table(PR_REVIEWS_TABLE)
 
 sns_client = boto3.client('sns')
 
@@ -16,7 +19,7 @@ def lambda_handler(event, context):
         if record.get("EventSource") == "aws:sns":
             sns_message = record["Sns"]["Message"]
             print(f"Received PR Request: {sns_message}")
-            
+            # print(f'event: {event}')
             try:
                 request_data = json.loads(sns_message)
 
@@ -32,23 +35,43 @@ def lambda_handler(event, context):
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
-                print("==USAGE==:", review.usage)                
-                
+                print("==USAGE==:", review.usage)
+
                 # Build review message
+                review_title = f'Review for PR #{pr_number} in {repo}: {request_data.get("pr_title", "No Title Provided")}'
+                print(f'{review_title}')
+                #review_title = f'{request_data.get("pr_title", "No Title Provided")} in repo {repo}'
+
                 review_message = {
-                    "reviewTitle": f'Review for PR #{pr_number} in {repo}: {request_data.get("title", "No Title Provided")}',
-                    "metadata": request_data,
-                    "review": review
+                    "reviewTitle": review_title,
+                    "metadata": request_data,  # << KEEP as dictionary, NOT json.dumps!
+                    "review": review.content[0].text
                 }
-                
+
+                # Now publish
                 sns_client.publish(
                     TopicArn=PR_REVIEW_TOPIC_ARN,
-                    Message=json.dumps(review_message)
+                    Message=json.dumps(review_message)  # << Here is where the full serialization happens
                 )
-                print(f"Published PR Review: {review_message}")
+
+                print(f"Published PR Review: {review_title}")
+
+                # Store the review in DynamoDB
+                pr_id = f"{repo}#{pr_number}"
+                item = {
+                    "prId": pr_id,
+                    "reviewTitle": review_title,
+                    "metadata": request_data,
+                    "review": review.content[0].text
+                }
+                table.put_item(Item=item)
+                print(f"Stored PR Review in DynamoDB with prId: {pr_id}")
+
                 
             except json.JSONDecodeError:
                 print(f"Invalid JSON in SNS Message: {sns_message}")
+            except Exception as e:
+                print(f"Error processing PR Request: {e}")
     return {
         "statusCode": 200,
         "body": json.dumps({"message": "Processed PR Requests"})

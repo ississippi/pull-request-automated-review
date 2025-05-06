@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DynamoDB table and IAM policy for PR Reviews
+
+Parameters:
+  LambdaExecutionRoleName:
+    Type: String
+    Description: Name of the Lambda execution role to attach DynamoDB permissions (optional)
+
+Resources:
+  PRReviewsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: PRReviews
+      AttributeDefinitions:
+        - AttributeName: prId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: prId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST # Use on-demand billing mode for flexibility
+      Tags:
+        - Key: Name
+          Value: PRReviewsTable
+
+  PRReviewsDynamoPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: PRReviewsDynamoAccess
+      Roles:
+        - !Ref LambdaExecutionRoleName
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Scan
+              - dynamodb:Query
+            Resource: !GetAtt PRReviewsTable.Arn
+
+Outputs:
+  TableName:
+    Description: Name of the DynamoDB table
+    Value: !Ref PRReviewsTable
+
+  TableArn:
+    Description: ARN of the DynamoDB table
+    Value: !GetAtt PRReviewsTable.Arn
