@@ -4,7 +4,20 @@ import json
 from dotenv import load_dotenv
 from botocore.exceptions import ClientError
 
-def retrieve_from_knowledge_base(query_text, knowledge_base_id, region="us-east-1"):
+ssm = boto3.client('ssm')
+def get_parameter(name):
+    """Fetch parameter value from Parameter Store"""
+    response = ssm.get_parameter(
+        Name=name,
+        WithDecryption=True
+    )
+    return response['Parameter']['Value']
+# Load secrets at cold start
+BEDROCK_KB_ID = get_parameter("/prreview/BEDROCK_KB_ID")
+if BEDROCK_KB_ID is None:
+    raise Exception("bedrock_retrieve: BEDROCK_KB_ID environment variable not set")
+
+def retrieve_from_knowledge_base(query_text, region="us-east-1"):
     """
     Use the AWS Bedrock Retrieve API to query a knowledge base.
     
@@ -22,7 +35,7 @@ def retrieve_from_knowledge_base(query_text, knowledge_base_id, region="us-east-
     try:
         # Call the retrieve API
         response = bedrock_agent_runtime.retrieve(
-            knowledgeBaseId=knowledge_base_id,
+            knowledgeBaseId=BEDROCK_KB_ID,
             retrievalQuery={
                 'text': query_text
             },

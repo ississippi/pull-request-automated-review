@@ -44,7 +44,7 @@ def get_code_review_augmented(code,context):
     print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
     
     # Create a prompt for the code review
-    prompt = prompt_engine.buildDiffReviewAugmentedPrompt(code,context)
+    prompt = prompt_engine.buildDiffReviewPromptAugmented(code,context)
     
     # Create an OpenAI client
     load_dotenv()  # Load from .env in current directory

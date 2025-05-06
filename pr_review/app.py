@@ -30,21 +30,25 @@ def lambda_handler(event, context):
                 pr_number = request_data.get("pr_number")
                 diff = git_provider.get_pr_diff(repo, pr_number)
                 print(f'diff for PR #{pr_number} in {repo}...')
-
+                if diff is None:
+                    raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
+                                    
                 # 2. Get context from the vector DB - Bedrock Opensearch
                 context_prompt = prompt_engine.buildPythonContextPrompt()
-                print("Context Prompt:")
-                print(context_prompt)
-                retrieve_results = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt, KB_ID)
-                print("Retrieved results from Bedrock KB:")
-                for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
-                    print(f"Result {i+1}: {result.get('content', {}).get('text')}")
-                    print(f"Score: {result.get('score')}")
-                    print("-" * 40)                
 
+                context = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt)
+                # print("Retrieved results from Bedrock KB:")
+                # for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
+                #     print(f"Result {i+1}: {result.get('content', {}).get('text')}")
+                #     print(f"Score: {result.get('score')}")
+                #     print("-" * 40)                
+                if context is None:
+                    raise Exception(f'No bedrock results returned for for PR #{pr_number} in {repo}...')
+                
                 # 2. Submit the diff to the code review system
                 start_time = time.time()
-                review = sonnet_client.get_code_review(diff)
+                # review = sonnet_client.get_code_review(diff)
+                review = sonnet_client.get_code_review_augmented(diff, context)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
