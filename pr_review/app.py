@@ -33,7 +33,9 @@ def lambda_handler(event, context):
 
                 # 2. Get context from the vector DB - Bedrock Opensearch
                 context_prompt = prompt_engine.buildPythonContextPrompt()
-                retrieve_results = bedrock_retrieve.retrieve_from_knowledge_base(queryRetrieveOnly, KB_ID)
+                print("Context Prompt:")
+                print(context_prompt)
+                retrieve_results = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt, KB_ID)
                 print("Retrieved results from Bedrock KB:")
                 for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
                     print(f"Result {i+1}: {result.get('content', {}).get('text')}")
@@ -42,7 +44,7 @@ def lambda_handler(event, context):
 
                 # 2. Submit the diff to the code review system
                 start_time = time.time()
-                review = sonnet_client.get_code_review_augmented(diff,context_prompt)
+                review = sonnet_client.get_code_review(diff)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
