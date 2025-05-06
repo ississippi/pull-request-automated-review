@@ -33,6 +33,8 @@ def lambda_handler(event, context):
 
                 # 2. Get context from the vector DB - Bedrock Opensearch
                 context_prompt = prompt_engine.buildPythonContextPrompt()
+                print("Context Prompt:")
+                print(context_prompt)
                 retrieve_results = bedrock_retrieve.retrieve_from_knowledge_base(queryRetrieveOnly, KB_ID)
                 print("Retrieved results from Bedrock KB:")
                 for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
