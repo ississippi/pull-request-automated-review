@@ -36,6 +36,29 @@ def buildDiffReviewPrompt(code):
     #print ("==PROMPT==\n", prompt)
     return prompt
 
+def buildDiffReviewPromptAugmented(code, context):
+    prompt = f"""
+        You're a senior software engineer. Review the following diff for:
+        
+        - Bugs
+        - Security issues
+        - Performance concerns
+        - Best practices
+        - Readability
+        
+        Respond with bullet points and helpful suggestions.
+        Reference the following Python standards where relevant{context}
+        
+        \`\`\`
+        ${code}
+        \`\`\`
+            """.strip()
+    #print ("==PROMPT==\n", prompt)
+    return prompt
+
+def buildPythonContextPrompt():
+    return "What are the Python naming conventions?"
+
 
 if __name__ == "__main__":
     # Example usage

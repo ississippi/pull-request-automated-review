@@ -39,6 +39,28 @@ def get_code_review(code):
     
     return message
 
+def get_code_review_augmented(code,context):
+    model = 'claude-3-7-sonnet-20250219'
+    print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
+    
+    # Create a prompt for the code review
+    prompt = prompt_engine.buildDiffReviewAugmentedPrompt(code,context)
+    
+    # Create an OpenAI client
+    load_dotenv()  # Load from .env in current directory
+    # print(f"Using Anthropic API Key: {api_key}")
+    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+    
+    message = client.messages.create(
+        model=model,
+        max_tokens=1500,
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+    
+    return message
+
 
 if __name__ == "__main__":
     # Example usage

@@ -1,18 +1,20 @@
-import json
-import boto3
 import os
+import json
+import time
+import boto3
 import git_provider
 import sonnet_client
-import time
+import bedrock_retrieve
+import prompt_engine
+from dotenv import load_dotenv
 
 dynamodb = boto3.resource('dynamodb')
 PR_REVIEWS_TABLE = os.environ.get('PR_REVIEWS_TABLE', 'PRReviews')  # Default if env not set
+PR_REVIEW_TOPIC_ARN = os.environ.get('PR_REVIEW_TOPIC_ARN')
+KB_ID = os.environ.get("BEDROCK_KB_ID")
 #PR_REVIEWS_TABLE = get_parameter("/prreview/PR_REVIEWS_TABLE")
 table = dynamodb.Table(PR_REVIEWS_TABLE)
-
 sns_client = boto3.client('sns')
-
-PR_REVIEW_TOPIC_ARN = os.environ.get('PR_REVIEW_TOPIC_ARN')
 
 def lambda_handler(event, context):
     for record in event.get("Records", []):
@@ -29,9 +31,18 @@ def lambda_handler(event, context):
                 diff = git_provider.get_pr_diff(repo, pr_number)
                 print(f'diff for PR #{pr_number} in {repo}...')
 
+                # 2. Get context from the vector DB - Bedrock Opensearch
+                context_prompt = prompt_engine.buildPythonContextPrompt()
+                retrieve_results = bedrock_retrieve.retrieve_from_knowledge_base(queryRetrieveOnly, KB_ID)
+                print("Retrieved results from Bedrock KB:")
+                for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
+                    print(f"Result {i+1}: {result.get('content', {}).get('text')}")
+                    print(f"Score: {result.get('score')}")
+                    print("-" * 40)                
+
                 # 2. Submit the diff to the code review system
                 start_time = time.time()
-                review = sonnet_client.get_code_review(diff)
+                review = sonnet_client.get_code_review_augmented(diff,context_prompt)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
