@@ -37,7 +37,7 @@ url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}"
 pulls_url = f"https://api.github.com/repos/{owner}/{repo}/pulls"
 # vinta_pulls = "https://api.github.com/vinta/awesome-python/pulls"  # Example for a different repo
 
-
+load_dotenv()
 headers = {
     "Accept": "application/vnd.github.v3+json",
     # Optional: Add token for higher rate limits
@@ -89,15 +89,23 @@ def get_pr_diff(repo,pr_number):
     else:
         print(f"Error: {response.status_code}")
 
-def get_pr_files():
-    files_url = f"{url}/files"
-    response = requests.get(files_url, headers=headers)
-    if response.status_code == 200:
-        files_data = response.json()
-        for file in files_data:
-            print(f"File: {file['filename']}, Changes: {file['changes']}")
-    else:
-        print(f"Error: {response.status_code}, {response.json().get('message')}")
+def get_pr_files(owner, repo, pr_number, github_token):
+    url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/files"
+    load_dotenv()  # Load from .env in current directory
+    token = os.environ.get("GIT_API_KEY")
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "python-script"
+    }
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()  # Raise an error for bad responses
+
+    files = response.json()
+    for file in files:
+        filename = file.get("filename")
+        status = file.get("status")  # e.g. 'added', 'modified', 'removed'
+        print(f"{status.upper()}: {filename}")
 
 
 def get_pull_requests(state='open'):
@@ -180,6 +188,10 @@ def print_pull_requests(prs):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    owner = "ississippi"
+    repo = "pull-request-test-repo"
+    pr_number = 16  # Replace with the desired PR number
     # get_pr_details()
     # get_pr_files()  # Uncomment to fetch and print file changes in the PR
     get_pr_diff("ississippi/pull-request-test-repo", 16)
@@ -189,3 +201,4 @@ if __name__ == "__main__":
     # print(f"Found {len(prs)} pull requests:")
     # print_pull_requests(prs)  
     # git_pr_list()  : needs work
+    get_pr_files(owner=owner,repo=repo,pr_number=pr_number,github_token=GIT_API_KEY)
