@@ -38,12 +38,6 @@ pulls_url = f"https://api.github.com/repos/{owner}/{repo}/pulls"
 # vinta_pulls = "https://api.github.com/vinta/awesome-python/pulls"  # Example for a different repo
 
 load_dotenv()
-headers = {
-    "Accept": "application/vnd.github.v3+json",
-    # Optional: Add token for higher rate limits
-    # "Authorization": "Bearer YOUR_TOKEN"
-}
-
 # Create an SSM client
 ssm = boto3.client('ssm')
 def get_parameter(name):
@@ -54,7 +48,23 @@ def get_parameter(name):
     )
     return response['Parameter']['Value']
 # Load secrets at cold start
-GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
+
+if __name__ == "__main__":
+    # Load environment variables from .env file
+    GIT_API_KEY = os.getenv("GIT_API_KEY")
+    if GIT_API_KEY is None:
+        raise ValueError("GIT_API_KEY not found in environment variables.")
+else:
+    # Load environment variables from .env file
+    GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
+    if GIT_API_KEY is None:
+        raise ValueError("GIT_API_KEY not found in parameter store.")
+
+headers = {
+    "Accept": "application/vnd.github.v3+json",
+    # Optional: Add token for higher rate limits
+    # "Authorization": "Bearer YOUR_TOKEN"
+}
 
 def get_pr_details():
     response = requests.get(url, headers=headers)
@@ -89,10 +99,11 @@ def get_pr_diff(repo,pr_number):
     else:
         print(f"Error: {response.status_code}")
 
-def get_pr_files(owner, repo, pr_number, github_token):
+def get_pr_files(owner, repo, pr_number):
     url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/files"
     load_dotenv()  # Load from .env in current directory
-    token = os.environ.get("GIT_API_KEY")
+    token = GIT_API_KEY
+    # print(f"Using GitHub API Key: {token}")
     headers = {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github.v3+json",
@@ -191,14 +202,14 @@ if __name__ == "__main__":
     load_dotenv()
     owner = "ississippi"
     repo = "pull-request-test-repo"
-    pr_number = 16  # Replace with the desired PR number
+    pr_number = 16
     # get_pr_details()
-    # get_pr_files()  # Uncomment to fetch and print file changes in the PR
-    get_pr_diff("ississippi/pull-request-test-repo", 16)
+    # get_pr_files()
+    # get_pr_diff("ississippi/pull-request-test-repo", 16)
     # Fetch pull requests
     # prs = get_pull_requests()
     # # Print results
     # print(f"Found {len(prs)} pull requests:")
     # print_pull_requests(prs)  
     # git_pr_list()  : needs work
-    get_pr_files(owner=owner,repo=repo,pr_number=pr_number,github_token=GIT_API_KEY)
+    get_pr_files(owner=owner,repo=repo,pr_number=pr_number)

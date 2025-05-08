@@ -32,48 +32,52 @@ def lambda_handler(event, context):
                 print(f'diff for PR #{pr_number} in {repo}...')
                 if diff is None:
                     raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
-                                    
-                # 2. Get context from the vector DB - Bedrock Opensearch
-                context_prompt = prompt_engine.buildPythonContextPrompt()
 
-                context = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt)
-                # print("Retrieved results from Bedrock KB:")
-                # for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
-                #     print(f"Result {i+1}: {result.get('content', {}).get('text')}")
-                #     print(f"Score: {result.get('score')}")
-                #     print("-" * 40)                
-                if context is None:
-                    raise Exception(f'No bedrock results returned for for PR #{pr_number} in {repo}...')
+                # 2. Get context from the vector DB - Bedrock Opensearch
+                # for augmented queries and Google styles, need to
+                #     1. Identify the language based on file extension.
+                #     2. Build the context prompt based on the language(s)
+                #     3. Since a PR can contain multiple commits with
+                #        different languages, we need to include 1 or more contexts, one for each language.
+
+
+                # context_prompt = prompt_engine.buildPythonContextPrompt()
+                # context = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt)
+                # # print("Retrieved results from Bedrock KB:")
+                # # for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
+                # #     print(f"Result {i+1}: {result.get('content', {}).get('text')}")
+                # #     print(f"Score: {result.get('score')}")
+                # #     print("-" * 40)                
+                # if context is None:
+                #     raise Exception(f'No bedrock results returned for for PR #{pr_number} in {repo}...')
                 
                 # 2. Submit the diff to the code review system
                 start_time = time.time()
                 # review = sonnet_client.get_code_review(diff)
-                review = sonnet_client.get_code_review_augmented(diff, context)
+                review = sonnet_client.get_code_review(diff)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
                 print("==USAGE==:", review.usage)
 
-                # Build review message
+                # 3. Build review message
                 review_title = f'Review for PR #{pr_number} in {repo}: {request_data.get("pr_title", "No Title Provided")}'
                 print(f'{review_title}')
                 #review_title = f'{request_data.get("pr_title", "No Title Provided")} in repo {repo}'
-
                 review_message = {
                     "reviewTitle": review_title,
                     "metadata": request_data,  # << KEEP as dictionary, NOT json.dumps!
                     "review": review.content[0].text
                 }
 
-                # Now publish
+                # 4. Now publish to SNS topic
                 sns_client.publish(
                     TopicArn=PR_REVIEW_TOPIC_ARN,
                     Message=json.dumps(review_message)  # << Here is where the full serialization happens
                 )
-
                 print(f"Published PR Review: {review_title}")
 
-                # Store the review in DynamoDB
+                # 5. Store the review in DynamoDB
                 pr_id = f"{repo}#{pr_number}"
                 item = {
                     "prId": pr_id,
@@ -95,6 +99,10 @@ def lambda_handler(event, context):
     }
 
 if __name__ == "__main__":
+    load_dotenv()
+    owner = "ississippi"
+    repo = "pull-request-test-repo"
+    pr_number = 16    
     # For local testing, you can simulate an event
     test_event = {
         "Records": [
@@ -102,9 +110,9 @@ if __name__ == "__main__":
                 "EventSource": "aws:sns",
                 "Sns": {
                     "Message": json.dumps({
-                        "repo": "example/repo",
-                        "pr_number": 123,
-                        "title": "Fix issue with code review"
+                        "repo": "ississippi/pull-request-test-repo",
+                        "pr_number": 16,
+                        "pr_title": "Fix issue with code review"
                     })
                 }
             }

@@ -15,7 +15,17 @@ def get_parameter(name):
     )
     return response['Parameter']['Value']
 # Load secrets at cold start
-ANTHROPIC_API_KEY = get_parameter("/prreview/ANTHROPIC_API_KEY")
+if __name__ == "__main__":
+    # Load environment variables from .env file
+    ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+    if ANTHROPIC_API_KEY is None:
+        raise ValueError("ANTHROPIC_API_KEY not found in environment variables.")
+else:
+    # Load environment variables from .env file
+    ANTHROPIC_API_KEY = get_parameter("/prreview/ANTHROPIC_API_KEY")
+    if ANTHROPIC_API_KEY is None:
+        raise ValueError("ANTHROPIC_API_KEY not found in parameter store.")
+# ANTHROPIC_API_KEY = get_parameter("/prreview/ANTHROPIC_API_KEY")
 
 def get_code_review(code):
     model = 'claude-3-7-sonnet-20250219'
