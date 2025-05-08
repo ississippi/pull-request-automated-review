@@ -197,6 +197,39 @@ def print_pull_requests(prs):
     # for pr in prs:
     #     print(f"PR #{pr.number}: {pr.title}")
 
+def post_review(repo, pr_number):
+    headers = {
+        "Accept": "application/vnd.github.v3.diff",
+        "X-GitHub-Api-Version" : "2022-11-28"
+    }
+    if GIT_API_KEY:
+        headers["Authorization"] = f"token {GIT_API_KEY}"
+    
+    payload = {
+        "body": "This is close to perfect! Please address the suggested inline change.",
+        "event": "REQUEST_CHANGES",
+        "comments": [
+            {
+                "path": "path/to/file.py",
+                "position": 1,
+                "body": "Please change this line to improve readability."
+            }
+        ]
+    }    
+    url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/reviews"
+    response = requests.post(url, headers=headers)
+    if response.status_code == 200:
+        review_data = response.json()
+        print("Review submitted successfully.")
+        print(f"Review ID: {review_data['id']}")
+        print(f"State: {review_data['state']}")
+        print(f"Submitted by: {review_data['user']['login']}")
+        print(f"HTML URL: {review_data['html_url']}")
+    else:
+        print(f"Failed to submit review: {response.status_code} - {response.text}")
+
+
+
 
 if __name__ == "__main__":
     load_dotenv()
@@ -212,4 +245,5 @@ if __name__ == "__main__":
     # print(f"Found {len(prs)} pull requests:")
     # print_pull_requests(prs)  
     # git_pr_list()  : needs work
-    get_pr_files(owner=owner,repo=repo,pr_number=pr_number)
+    # get_pr_files(owner=owner,repo=repo,pr_number=pr_number)
+    post_review(repo=repo, pr_number=pr_number)

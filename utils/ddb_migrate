@@ -1,32 +1,50 @@
+import argparse
 import boto3
-from boto3.dynamodb.conditions import Key
+from botocore.exceptions import ClientError
 
-# Initialize DynamoDB client
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+def migrate(source_table_name, target_table_name, region):
+    dynamodb = boto3.resource('dynamodb', region_name=region)
+    source_table = dynamodb.Table(source_table_name)
+    target_table = dynamodb.Table(target_table_name)
 
-old_table_name = 'PRReviews'
-new_table_name = 'PRReviewsV2'
-
-old_table = dynamodb.Table(old_table_name)
-new_table = dynamodb.Table(new_table_name)
-
-def migrate():
-    print(f"Scanning old table: {old_table_name}")
-    response = old_table.scan()
+    print(f"Scanning source table: {source_table_name}")
+    response = source_table.scan()
     items = response['Items']
-    
+
     while 'LastEvaluatedKey' in response:
-        response = old_table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+        response = source_table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
         items.extend(response['Items'])
 
     print(f"Total items to migrate: {len(items)}")
 
-    for idx, item in enumerate(items):
-        new_table.put_item(Item=item)
-        if idx % 25 == 0:
-            print(f"Migrated {idx + 1} items...")
+    migrated_count = 0
 
-    print("Migration complete.")
+    for item in items:
+        try:
+            # Put item into target table
+            target_table.put_item(Item=item)
 
-if __name__ == "__main__":
-    migrate()
+            # Delete item from source table using primary key
+            key = { 'prId': item['prId'] }  # Add sort key here if needed, e.g., 'sk': item['sk']
+            source_table.delete_item(Key=key)
+
+            migrated_count += 1
+            if migrated_count % 25 == 0:
+                print(f"Migrated and deleted {migrated_count} items...")
+
+        except ClientError as e:
+            print(f"Failed on item {item.get('prId', '[no id]')}: {e}")
+
+    print(f"Migration and deletion complete. {migrated_count} items processed.")
+
+def main():
+    parser = argparse.ArgumentParser(description='Migrate and delete items between DynamoDB tables.')
+    parser.add_argument('--source', required=True, help='Source DynamoDB table name')
+    parser.add_argument('--target', required=True, help='Target DynamoDB table name')
+    parser.add_argument('--region', default='us-east-1', help='AWS region (default: us-east-1)')
+
+    args = parser.parse_args()
+    migrate(args.source, args.target, args.region)
+
+if __name__ == '__main__':
+    main()
