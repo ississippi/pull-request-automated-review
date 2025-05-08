@@ -28,6 +28,7 @@ def buildDiffReviewPrompt(code):
         - Readability
         
         Respond with bullet points and helpful suggestions.
+        List the files in the diff and their status (added, modified, removed).
         
         \`\`\`
         ${code}
@@ -47,7 +48,8 @@ def buildDiffReviewPromptAugmented(code, context):
         - Readability
         
         Respond with bullet points and helpful suggestions.
-        Reference the following Python standards where relevant{context}
+        List the files in the diff and their status (added, modified, removed).
+        Reference the following Python standards where relevant and list the rules not in compliance {context}
         
         \`\`\`
         ${code}

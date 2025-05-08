@@ -37,13 +37,7 @@ url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}"
 pulls_url = f"https://api.github.com/repos/{owner}/{repo}/pulls"
 # vinta_pulls = "https://api.github.com/vinta/awesome-python/pulls"  # Example for a different repo
 
-
-headers = {
-    "Accept": "application/vnd.github.v3+json",
-    # Optional: Add token for higher rate limits
-    # "Authorization": "Bearer YOUR_TOKEN"
-}
-
+load_dotenv()
 # Create an SSM client
 ssm = boto3.client('ssm')
 def get_parameter(name):
@@ -54,7 +48,23 @@ def get_parameter(name):
     )
     return response['Parameter']['Value']
 # Load secrets at cold start
-GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
+
+if __name__ == "__main__":
+    # Load environment variables from .env file
+    GIT_API_KEY = os.getenv("GIT_API_KEY")
+    if GIT_API_KEY is None:
+        raise ValueError("GIT_API_KEY not found in environment variables.")
+else:
+    # Load environment variables from .env file
+    GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
+    if GIT_API_KEY is None:
+        raise ValueError("GIT_API_KEY not found in parameter store.")
+
+headers = {
+    "Accept": "application/vnd.github.v3+json",
+    # Optional: Add token for higher rate limits
+    # "Authorization": "Bearer YOUR_TOKEN"
+}
 
 def get_pr_details():
     response = requests.get(url, headers=headers)
@@ -89,15 +99,24 @@ def get_pr_diff(repo,pr_number):
     else:
         print(f"Error: {response.status_code}")
 
-def get_pr_files():
-    files_url = f"{url}/files"
-    response = requests.get(files_url, headers=headers)
-    if response.status_code == 200:
-        files_data = response.json()
-        for file in files_data:
-            print(f"File: {file['filename']}, Changes: {file['changes']}")
-    else:
-        print(f"Error: {response.status_code}, {response.json().get('message')}")
+def get_pr_files(owner, repo, pr_number):
+    url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/files"
+    load_dotenv()  # Load from .env in current directory
+    token = GIT_API_KEY
+    # print(f"Using GitHub API Key: {token}")
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "python-script"
+    }
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()  # Raise an error for bad responses
+
+    files = response.json()
+    for file in files:
+        filename = file.get("filename")
+        status = file.get("status")  # e.g. 'added', 'modified', 'removed'
+        print(f"{status.upper()}: {filename}")
 
 
 def get_pull_requests(state='open'):
@@ -180,12 +199,17 @@ def print_pull_requests(prs):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    owner = "ississippi"
+    repo = "pull-request-test-repo"
+    pr_number = 16
     # get_pr_details()
-    # get_pr_files()  # Uncomment to fetch and print file changes in the PR
-    get_pr_diff("ississippi/pull-request-test-repo", 16)
+    # get_pr_files()
+    # get_pr_diff("ississippi/pull-request-test-repo", 16)
     # Fetch pull requests
     # prs = get_pull_requests()
     # # Print results
     # print(f"Found {len(prs)} pull requests:")
     # print_pull_requests(prs)  
     # git_pr_list()  : needs work
+    get_pr_files(owner=owner,repo=repo,pr_number=pr_number)
