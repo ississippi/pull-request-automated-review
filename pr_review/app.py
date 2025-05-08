@@ -81,6 +81,7 @@ def lambda_handler(event, context):
                 pr_id = f"{repo}#{pr_number}"
                 item = {
                     "prId": pr_id,
+                    "prState": request_data.get("pr_state", "unknown"),
                     "reviewTitle": review_title,
                     "metadata": request_data,
                     "review": review.content[0].text
@@ -97,6 +98,26 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body": json.dumps({"message": "Processed PR Requests"})
     }
+
+# Sample incoming SNS message:
+
+# {
+#     "reviewTitle": "Review for PR #9 in ississippi/pull-request-automated-review: get_pr_files rafactoring",
+#     "metadata": {
+#         "pr_event_type": "reopened",
+#         "pr_number": "9",
+#         "repo": "ississippi/pull-request-automated-review",
+#         "pr_title": "get_pr_files rafactoring",
+#         "user_login": "ississippi",
+#         "created_at": "2025-05-07T15:26:25Z",
+#         "pr_state": "open",
+#         "pr_body": "",
+#         "html_url": "https://github.com/ississippi/pull-request-automated-review/pull/9",
+#         "head_sha": "68c1e0d03ba0148e9c2095b8a310c40895c9032a",
+#         "base_ref": "main"
+#     },
+#     "review": "# Diff Review - Files and Status\n\n- **Modified Files:**\n  - `pr_review/app.py`\n  - `pr_review/bedrock_retr
+
 
 if __name__ == "__main__":
     load_dotenv()

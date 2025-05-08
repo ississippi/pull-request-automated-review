@@ -1,0 +1,32 @@
+import boto3
+from boto3.dynamodb.conditions import Key
+
+# Initialize DynamoDB client
+dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+
+old_table_name = 'PRReviews'
+new_table_name = 'PRReviewsV2'
+
+old_table = dynamodb.Table(old_table_name)
+new_table = dynamodb.Table(new_table_name)
+
+def migrate():
+    print(f"Scanning old table: {old_table_name}")
+    response = old_table.scan()
+    items = response['Items']
+    
+    while 'LastEvaluatedKey' in response:
+        response = old_table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+        items.extend(response['Items'])
+
+    print(f"Total items to migrate: {len(items)}")
+
+    for idx, item in enumerate(items):
+        new_table.put_item(Item=item)
+        if idx % 25 == 0:
+            print(f"Migrated {idx + 1} items...")
+
+    print("Migration complete.")
+
+if __name__ == "__main__":
+    migrate()
