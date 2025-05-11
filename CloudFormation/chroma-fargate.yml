@@ -1,0 +1,59 @@
+Parameters:
+  Subnet1:
+    Type: String
+  Subnet2:
+    Type: String
+  SecurityGroupId:
+    Type: String
+  ClusterName:
+    Type: String
+  TargetGroupArn:
+    Type: String
+
+Resources:
+
+  TaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ChromaTaskExecutionRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+
+  ChromaTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: chroma-task
+      Cpu: "256"
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities: [FARGATE]
+      ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: chroma
+          Image: chroma/chroma
+          PortMappings:
+            - ContainerPort: 8000
+
+  ChromaService:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: !Ref ClusterName
+      LaunchType: FARGATE
+      DesiredCount: 1
+      TaskDefinition: !Ref ChromaTaskDefinition
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          Subnets: [!Ref Subnet1, !Ref Subnet2]
+          SecurityGroups: [!Ref SecurityGroupId]
+          AssignPublicIp: ENABLED
+      LoadBalancers:
+        - ContainerName: chroma
+          ContainerPort: 8000
+          TargetGroupArn: !Ref TargetGroupArn

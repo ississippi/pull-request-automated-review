@@ -90,7 +90,7 @@ def get_pr_diff(repo,pr_number):
     # Construct the diff URL
     url = f"https://github.com/{repo}/pull/{pr_number}.diff"
     # Get the diff for this PR
-    print(f"Fetching diff for PR #{pr_number} in {repo}...")
+    # print(f"Fetching diff for PR #{pr_number} in {repo}...")
     response = requests.get(url, headers=diff_headers)
     if response.status_code == 200:
         diff = response.text
@@ -197,7 +197,7 @@ def print_pull_requests(prs):
     # for pr in prs:
     #     print(f"PR #{pr.number}: {pr.title}")
 
-def post_review(repo, pr_number):
+def post_review(repo, pr_number, decision, review):
     headers = {
         "Accept": "application/vnd.github.v3.diff",
         "X-GitHub-Api-Version" : "2022-11-28"
@@ -206,8 +206,8 @@ def post_review(repo, pr_number):
         headers["Authorization"] = f"token {GIT_API_KEY}"
     
     payload = {
-        "body": "This is close to perfect! Please address the suggested inline change.",
-        "event": "REQUEST_CHANGES",
+        "body": f"{review}",
+        "event": f"{decision}",
         "comments": [
             {
                 "path": "path/to/file.py",
@@ -229,13 +229,31 @@ def post_review(repo, pr_number):
         print(f"Failed to submit review: {response.status_code} - {response.text}")
 
 
+def request_review(repo, pr_number, reviewer):
+    url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/requested_reviewers"
+    headers = {
+        "Authorization": f"token {GIT_API_KEY}",
+        "Accept": "application/vnd.github+json"
+    }
+    payload = {
+        "reviewers": [reviewer]
+        # Optional: "team_reviewers": ["team-slug"]
+    }
+
+    response = requests.post(url, headers=headers, json=payload)
+
+    if response.status_code == 201:
+        print("Reviewers requested successfully.")
+    else:
+        print(f"Failed to request reviewers: {response.status_code} - {response.text}")    
 
 
 if __name__ == "__main__":
     load_dotenv()
     owner = "ississippi"
-    repo = "pull-request-test-repo"
-    pr_number = 16
+    # repo = "ississippi/pull-request-test-repo"
+    repo = "ississippi/pull-request-automated-review"
+    pr_number = 16    
     # get_pr_details()
     # get_pr_files()
     # get_pr_diff("ississippi/pull-request-test-repo", 16)
@@ -246,4 +264,7 @@ if __name__ == "__main__":
     # print_pull_requests(prs)  
     # git_pr_list()  : needs work
     # get_pr_files(owner=owner,repo=repo,pr_number=pr_number)
-    post_review(repo=repo, pr_number=pr_number)
+    # request_review(repo, 10, "ississippi")
+    decision = "REQUEST_CHANGES"
+    review = "This is close to perfect! Please address the suggested inline change."
+    post_review(repo, 10, decision, review)

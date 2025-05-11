@@ -1,0 +1,18 @@
+Workflow
+	1. An SDE logs into Github and creates a new PR.
+	2. The Open PR event triggers a custom Github workflow.
+	3. The Github workflow makes a REST POST call to an AWS based Python Lambda, the "Request Service".
+	4. The Request Service receives Pull Request metadata from the Github POST.
+	5. The Request Service packages the PR metadata into an SNS message and posts to an SNS Topic "Request".
+	6. The "Review Service",  another AWS based Python Lambda, subscribes to the SNS request topic and receives the message posted by the Request Service.
+	7. The Review Service:
+		a. Makes a call to Github to gather details, including diffs for each to the files included in the PR.
+		b. Makes a call to a chroma vector store to get coding style context.
+		c. Makes a call to an LLM such as Anthropic Sonnet 3.7 submitting the code diffs and the style context to get a code review.
+		d. Stores the PR metadata and the review from the LLM in a DynamoDB table "PRReview".
+		e. Posts PR metadata to an "Review" SNS topic.
+	8. The Notifications Service, an ECS hosted container, a .Net C# WebAPI, is a subscriber to to the SNS Review topic.
+	9. The Notifications Service receives the SNS Review message.
+	10. If there are any Reviewer UI clients connected via websockets, the Notifications service pushes the new PR item to the Review UI.
+	11. Reviewers login to the Reviewer UI, an HTML/Javascript/Bootstrap application also running in a container in ECS.
+Upon first launch of the Reviewers UI, the UI makes a REST GET call to the Notifications Service to retrieve all open PRs currently stored in DynamoDB.
