@@ -29,7 +29,7 @@ def lambda_handler(event, context):
                 repo = request_data.get("repo")
                 pr_number = request_data.get("pr_number")
                 diff = git_provider.get_pr_diff(repo, pr_number)
-                print(f'diff for PR #{pr_number} in {repo}...')
+                # print(f'diff for PR #{pr_number} in {repo}...')
                 if diff is None:
                     raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
 
@@ -57,25 +57,26 @@ def lambda_handler(event, context):
                 review = sonnet_client.get_code_review(diff)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
-                print(f"==ELAPSED TIME== Anthropic Code Review took {elapsed_time:.4f} seconds")
+                print(f"==ELAPSED TIME==: Anthropic Code Review for PR #{pr_number} in {repo} took {elapsed_time:.4f} seconds")
                 print("==USAGE==:", review.usage)
 
                 # 3. Build review message
                 review_title = f'Review for PR #{pr_number} in {repo}: {request_data.get("pr_title", "No Title Provided")}'
-                print(f'{review_title}')
+                #print(f'{review_title}')
                 #review_title = f'{request_data.get("pr_title", "No Title Provided")} in repo {repo}'
                 review_message = {
                     "reviewTitle": review_title,
                     "metadata": request_data,  # << KEEP as dictionary, NOT json.dumps!
                     "review": review.content[0].text
                 }
+                print(f"--Review-- from LLM for PR #{pr_number} in {repo}: {review_message}")
 
                 # 4. Now publish to SNS topic
                 sns_client.publish(
                     TopicArn=PR_REVIEW_TOPIC_ARN,
                     Message=json.dumps(review_message)  # << Here is where the full serialization happens
                 )
-                print(f"Published PR Review: {review_title}")
+                print(f"Published Review for PR #{pr_number} in {repo}: {review_title}")
 
                 # 5. Store the review in DynamoDB
                 pr_id = f"{repo}#{pr_number}"
@@ -87,7 +88,7 @@ def lambda_handler(event, context):
                     "review": review.content[0].text
                 }
                 table.put_item(Item=item)
-                print(f"Stored PR Review in DynamoDB with prId: {pr_id}")
+                # print(f"Stored PR Review in DynamoDB with prId: {pr_id}")
 
                 
             except json.JSONDecodeError:

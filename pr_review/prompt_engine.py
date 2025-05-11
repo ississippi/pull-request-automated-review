@@ -27,6 +27,7 @@ def buildDiffReviewPrompt(code):
         - Best practices
         - Readability
         
+        Title the review "Pull Request Code Review".
         Respond with bullet points and helpful suggestions.
         List the files in the diff and their status (added, modified, removed).
         
@@ -39,7 +40,7 @@ def buildDiffReviewPrompt(code):
 
 def buildDiffReviewPromptAugmented(code, context):
     prompt = f"""
-        You're a senior software engineer. Review the following diff for:
+        You're a senior software engineer. Review the following diff(s) for:
         
         - Bugs
         - Security issues
@@ -47,9 +48,10 @@ def buildDiffReviewPromptAugmented(code, context):
         - Best practices
         - Readability
         
+        Title the review "Pull Request Code Review".
         Respond with bullet points and helpful suggestions.
         List the files in the diff and their status (added, modified, removed).
-        Reference the following Python standards where relevant and list the rules not in compliance {context}
+        Reference the following standards where relevant and list the rules where the code is not in compliance {context}
         
         \`\`\`
         ${code}
