@@ -29,16 +29,11 @@ def lambda_handler(event, context):
                 # 1. Get the diff for this PR
                 repo = request_data.get("repo")
                 pr_number = request_data.get("pr_number")
-                diff = git_provider.get_pr_diff(repo, pr_number)
+                # diff = git_provider.get_pr_diff(repo, pr_number)
+                diffs = git_provider.get_supported_diffs(repo, pr_number)
                 # print(f'diff for PR #{pr_number} in {repo}...')
-                if diff is None:
-                    raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
-                
-                # only do code reviews for supported filetypes
-                supported_filetypes = ['.cs', '.py', '.js', '.java', '.cpp', '.c']
-                # filename = Path("example.tar.gz")
-                # print(f'Suffix {filename.suffix} Name {filename.name} Stem {filename.stem}')       # Output: .gz
-
+                if diffs is None:
+                    raise Exception(f'No supported diffs returned for for PR #{pr_number} in {repo}...') 
 
                 # 2. Get context from the vector DB - Bedrock Opensearch
                 # for augmented queries and Google styles, need to
@@ -58,10 +53,9 @@ def lambda_handler(event, context):
                 # if context is None:
                 #     raise Exception(f'No bedrock results returned for for PR #{pr_number} in {repo}...')
                 
-                # 2. Submit the diff to the code review system
+                # 2. Submit the diffs to the code review system
                 start_time = time.time()
-                # review = sonnet_client.get_code_review(diff)
-                review = sonnet_client.get_code_review(diff)
+                review = sonnet_client.get_code_review(diffs)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME==: Anthropic Code Review for PR #{pr_number} in {repo} took {elapsed_time:.4f} seconds")

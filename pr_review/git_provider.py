@@ -9,25 +9,8 @@ from dotenv import load_dotenv
 from datetime import datetime, timezone
 from dateutil import tz
 from zoneinfo import ZoneInfo
+from pathlib import Path
 
-
-# Received PR Request: 
-# {
-#     "pr_number": "16",
-#     "repo": "ississippi/pull-request-test-repo",
-#     "pr_title": "Update the POST url for the new lambda",
-#     "user_login": "ississippi",
-#     "created_at": "2025-04-26T19:13:22Z",
-#     "pr_state": "open",
-#     "pr_body": "",
-#     "html_url": "https://github.com/ississippi/pull-request-test-repo/pull/16",
-#     "head_sha": "45a7b179af22cb9ceb62084c22bc03d81543cf79",
-#     "base_ref": "main"
-# }
-# owner = "ccxt"
-# repo = "ccxt"
-# owner = "ississippi"
-# repo = "JupyterLearning"
 owner = "TheAlgorithms"
 repo = "Python"
 owner = "public-apis"
@@ -36,8 +19,8 @@ pull_number = 25653  # Replace with the desired PR number
 url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}"
 pulls_url = f"https://api.github.com/repos/{owner}/{repo}/pulls"
 # vinta_pulls = "https://api.github.com/vinta/awesome-python/pulls"  # Example for a different repo
+SUPPORTED_EXTENSIONS = {'.py', '.js', '.ts', '.java', '.cs', '.cpp', '.c', '.go', '.rb'}
 
-load_dotenv()
 # Create an SSM client
 ssm = boto3.client('ssm')
 def get_parameter(name):
@@ -47,10 +30,11 @@ def get_parameter(name):
         WithDecryption=True
     )
     return response['Parameter']['Value']
-# Load secrets at cold start
 
+# Load secrets at cold start
 if __name__ == "__main__":
     # Load environment variables from .env file
+    load_dotenv()
     GIT_API_KEY = os.getenv("GIT_API_KEY")
     if GIT_API_KEY is None:
         raise ValueError("GIT_API_KEY not found in environment variables.")
@@ -94,21 +78,42 @@ def get_pr_diff(repo,pr_number):
     response = requests.get(url, headers=diff_headers)
     if response.status_code == 200:
         diff = response.text
-        print(f'Diff: {diff}')
+        #print(f'Diff: {diff}')
         return diff
     else:
         print(f"Error: {response.status_code}")
-    
 
-def get_pr_files(owner, repo, pr_number):
-    url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/files"
-    load_dotenv()  # Load from .env in current directory
-    token = GIT_API_KEY
+def get_supported_diffs(repo, pr_number):
+    url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/files"
+    headers = {
+            "Authorization": f"token {GIT_API_KEY}",
+            "Accept": "application/vnd.github.v3+json"
+    }
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    all_files = response.json()
+    # for file in all_files:
+    #     print(f"File: {file['filename']}, Status: {file['status']}")
+
+        
+    # Check if the response contains a list of files
+
+    # Keep only files with a supported extension
+    supported_diffs = [
+        file for file in all_files
+        if os.path.splitext(file['filename'])[1] in SUPPORTED_EXTENSIONS and 'patch' in file
+    ]
+    if len(all_files) != len(supported_diffs):   
+        print(f"Found {len(all_files) - len(supported_diffs)} out of {len(all_files)} filetypes in diffs which are not supported for PR #{pr_number} in {repo}.")
+
+    return supported_diffs
+
+def get_pr_files(repo, pr_number):
+    url = f"https://api.github.com/repos/{repo}/pulls/{pr_number}/files"
     # print(f"Using GitHub API Key: {token}")
     headers = {
-        "Authorization": f"Bearer {token}",
+        "Authorization": f"Bearer {GIT_API_KEY}",
         "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "python-script"
     }
     response = requests.get(url, headers=headers)
     response.raise_for_status()  # Raise an error for bad responses
@@ -118,6 +123,8 @@ def get_pr_files(owner, repo, pr_number):
         filename = file.get("filename")
         status = file.get("status")  # e.g. 'added', 'modified', 'removed'
         print(f"{status.upper()}: {filename}")
+    
+    return files
 
 
 def get_pull_requests(state='open'):
@@ -133,10 +140,6 @@ def get_pull_requests(state='open'):
     Returns:
         list: List of pull requests
     """
-    load_dotenv()  # Load from .env in current directory
-    token = os.environ.get("GIT_API_KEY")
-    if token:
-        headers["Authorization"] = f"token {token}"
     params = {
         "state": state,
         "per_page": 5  # Maximum number of PRs per page
@@ -250,11 +253,9 @@ def request_review(repo, pr_number, reviewer):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    owner = "ississippi"
     # repo = "ississippi/pull-request-test-repo"
     repo = "ississippi/pull-request-automated-review"
-    pr_number = 16    
+    pr_number = 13    
     # get_pr_details()
     # get_pr_files()
     # get_pr_diff("ississippi/pull-request-test-repo", 16)
@@ -266,6 +267,7 @@ if __name__ == "__main__":
     # git_pr_list()  : needs work
     # get_pr_files(owner=owner,repo=repo,pr_number=pr_number)
     # request_review(repo, 10, "ississippi")
-    decision = "REQUEST_CHANGES"
-    review = "This is close to perfect! Please address the suggested inline change."
-    post_review(repo, 10, decision, review)
+    # decision = "REQUEST_CHANGES"
+    # review = "This is close to perfect! Please address the suggested inline change."
+    # post_review(repo, 10, decision, review)
+    get_supported_diffs(repo, pr_number)
