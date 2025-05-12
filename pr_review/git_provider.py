@@ -94,10 +94,11 @@ def get_pr_diff(repo,pr_number):
     response = requests.get(url, headers=diff_headers)
     if response.status_code == 200:
         diff = response.text
-        #print(f'Diff: {diff}')
+        print(f'Diff: {diff}')
         return diff
     else:
         print(f"Error: {response.status_code}")
+    
 
 def get_pr_files(owner, repo, pr_number):
     url = f"https://api.github.com/repos/{owner}/{repo}/pulls/{pr_number}/files"

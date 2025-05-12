@@ -7,6 +7,7 @@ import sonnet_client
 import bedrock_retrieve
 import prompt_engine
 from dotenv import load_dotenv
+from pathlib import Path
 
 dynamodb = boto3.resource('dynamodb')
 PR_REVIEWS_TABLE = os.environ.get('PR_REVIEWS_TABLE', 'PRReviews')  # Default if env not set
@@ -32,6 +33,12 @@ def lambda_handler(event, context):
                 # print(f'diff for PR #{pr_number} in {repo}...')
                 if diff is None:
                     raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
+                
+                # only do code reviews for supported filetypes
+                supported_filetypes = ['.cs', '.py', '.js', '.java', '.cpp', '.c']
+                # filename = Path("example.tar.gz")
+                # print(f'Suffix {filename.suffix} Name {filename.name} Stem {filename.stem}')       # Output: .gz
+
 
                 # 2. Get context from the vector DB - Bedrock Opensearch
                 # for augmented queries and Google styles, need to
