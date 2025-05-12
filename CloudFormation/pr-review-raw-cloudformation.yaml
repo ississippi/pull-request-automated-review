@@ -108,18 +108,6 @@ Resources:
           GIT_API_KEY: ""
           ANTHROPIC_API_KEY: ""
 
-  PrNotificationsFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      FunctionName: pr-notifications-function
-      Code:
-        S3Bucket: your-bucket-name
-        S3Key: pr_notifications.zip
-      Handler: app.lambda_handler
-      Runtime: python3.11
-      Role: arn:aws:iam::your-account-id:role/service-role/lambda-basic-role
-      Timeout: 3
-
   # API Gateway Rest API
   ApiGatewayRestApi:
     Type: AWS::ApiGateway::RestApi

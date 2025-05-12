@@ -14,6 +14,8 @@ Resources:
       AttributeDefinitions:
         - AttributeName: prId
           AttributeType: S
+        - AttributeName: prState
+          AttributeType: S
       KeySchema:
         - AttributeName: prId
           KeyType: HASH
