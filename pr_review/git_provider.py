@@ -5,7 +5,6 @@ import time
 import requests
 from github import Github
 from github import Auth
-from dotenv import load_dotenv
 from datetime import datetime, timezone
 from dateutil import tz
 from zoneinfo import ZoneInfo
@@ -32,17 +31,9 @@ def get_parameter(name):
     return response['Parameter']['Value']
 
 # Load secrets at cold start
-if __name__ == "__main__":
-    # Load environment variables from .env file
-    load_dotenv()
-    GIT_API_KEY = os.getenv("GIT_API_KEY")
-    if GIT_API_KEY is None:
-        raise ValueError("GIT_API_KEY not found in environment variables.")
-else:
-    # Load environment variables from .env file
-    GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
-    if GIT_API_KEY is None:
-        raise ValueError("GIT_API_KEY not found in parameter store.")
+GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
+if GIT_API_KEY is None:
+    raise ValueError("GIT_API_KEY was not found in the parameter store.")
 
 headers = {
     "Accept": "application/vnd.github.v3+json",
@@ -189,17 +180,6 @@ def print_pull_requests(prs):
 
         print(f"URL: {pr['html_url']}")
         print("-" * 50)
-
-# def git_pr_list():
-#     load_dotenv()  # Load from .env in current directory   
-#     token = os.environ.get("GIT_API_KEY") 
-#     print(f"token: {token}")
-#     g = Github("GIT_API_KEY")
-#     print(f"g: {g.get_user()}")
-    # repo = g.get_repo("public-apis/public-apis")
-    # prs = repo.get_pulls(state="open")
-    # for pr in prs:
-    #     print(f"PR #{pr.number}: {pr.title}")
 
 def post_review(repo, pr_number, decision, review):
     headers = {
