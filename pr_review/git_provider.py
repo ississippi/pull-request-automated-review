@@ -30,7 +30,7 @@ def get_parameter(name):
     )
     return response['Parameter']['Value']
 
-# Load secrets at cold start
+# Load secrets from AWS at cold start
 GIT_API_KEY = get_parameter("/prreview/GIT_API_KEY")
 if GIT_API_KEY is None:
     raise ValueError("GIT_API_KEY was not found in the parameter store.")

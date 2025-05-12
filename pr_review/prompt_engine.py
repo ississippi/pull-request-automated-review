@@ -31,6 +31,7 @@ def buildDiffReviewPrompt(code):
         Respond with bullet points and helpful suggestions.
         List the files in the diff and their status (added, modified, removed).
         State file line numbers for each suggested change.
+        Emphasize with a green checkbox the good things and a red cross for the most important issues.
         
         \`\`\`
         ${code}
