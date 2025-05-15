@@ -6,6 +6,10 @@ Parameters:
     Type: String
     Default: 238338230919.dkr.ecr.us-east-1.amazonaws.com/notifications-service
 
+  ChromaEcrImageUri:
+    Type: String
+    Default: 238338230919.dkr.ecr.us-east-1.amazonaws.com/chroma-server
+
   HostedZoneName:
     Type: String
     Default: codeominous.com.
@@ -109,6 +113,11 @@ Resources:
           FromPort: 5000
           ToPort: 5000
           SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
+        - IpProtocol: tcp
+          FromPort: 8000
+          ToPort: 8000
+          SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
+
 
   ## Load Balancer ##
   PrNotificationsALB:
@@ -123,7 +132,7 @@ Resources:
       Scheme: internet-facing
       Type: application
 
-  ## Target Group ##
+  ## Notifications Service Target Group ##
   PrNotificationsTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
@@ -136,6 +145,22 @@ Resources:
       HealthCheckIntervalSeconds: 30
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
+
+## Chroma Target Group ##
+  ChromaTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: pr-notifications-chroma-tg
+      Port: 8000
+      Protocol: HTTP
+      TargetType: ip
+      VpcId: !Ref PrNotificationsVPC
+      HealthCheckPath: /api/v1/heartbeat
+      HealthCheckProtocol: HTTP
+      HealthCheckIntervalSeconds: 30
+      HealthyThresholdCount: 2
+      UnhealthyThresholdCount: 2
+
 
   ## ACM Certificate ##
   PrNotificationsCertificate:
@@ -173,6 +198,21 @@ Resources:
       LoadBalancerArn: !Ref PrNotificationsALB
       Port: 80
       Protocol: HTTP
+
+  ## Listener Rule for Chroma Target Group ##
+  ChromaListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !Ref PrNotificationsHTTPSListener
+      Priority: 10
+      Conditions:
+        - Field: path-pattern
+          Values:
+            - /chroma/*
+      Actions:
+        - Type: forward
+          TargetGroupArn: !Ref ChromaTargetGroup
+
 
   ## ECS Cluster ##
   PrNotificationsCluster:
@@ -220,7 +260,7 @@ Resources:
                   - dynamodb:DeleteItem
                 Resource: arn:aws:dynamodb:us-east-1:238338230919:table/PRReviews
 
-  ## Task Definition ##
+  ## Notifications Service Task Definition ##
   PrNotificationsTaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
@@ -245,14 +285,38 @@ Resources:
               awslogs-region: us-east-1
               awslogs-stream-prefix: ecs
 
-  ## ECS Service ##
+  ## Chroma Server Task Definition ##
+  ChromaServerTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: chroma-server-task
+      Cpu: 512
+      Memory: 1024
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      ExecutionRoleArn: !Ref PrNotificationsTaskExecutionRole
+      ContainerDefinitions:
+        - Name: chroma-server
+          Image: !Ref ChromaEcrImageUri
+          PortMappings:
+            - ContainerPort: 8000
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: /ecs/chroma-server
+              awslogs-region: us-east-1
+              awslogs-stream-prefix: ecs
+
+
+  ## Notiifcations Service ECS Service ##
   PrNotificationsService:
     Type: AWS::ECS::Service
     DependsOn: PrNotificationsHTTPSListener
     Properties:
       Cluster: !Ref PrNotificationsCluster
       LaunchType: FARGATE
-      DesiredCount: 2
+      DesiredCount: 1
       TaskDefinition: !Ref PrNotificationsTaskDefinition
       NetworkConfiguration:
         AwsvpcConfiguration:
@@ -266,6 +330,31 @@ Resources:
         - ContainerName: notifications-service
           ContainerPort: 5000
           TargetGroupArn: !Ref PrNotificationsTargetGroup
+
+  ## Chroma Server ECS Service ##
+  ChromaServerService:
+    Type: AWS::ECS::Service
+    DependsOn:
+      - ChromaTargetGroup    
+    Properties:
+      Cluster: !Ref PrNotificationsCluster
+      LaunchType: FARGATE
+      DesiredCount: 1
+      TaskDefinition: !Ref ChromaServerTaskDefinition
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref PrNotificationsTaskSecurityGroup
+          Subnets:
+            - !Ref PrNotificationsPublicSubnet1
+            - !Ref PrNotificationsPublicSubnet2
+      LoadBalancers:
+        - ContainerName: chroma-server
+          ContainerPort: 8000
+          TargetGroupArn: !Ref ChromaTargetGroup
+
+
 
   ## Route 53 Record ##
   PrNotificationsDNSRecord:
