@@ -112,17 +112,6 @@ Resources:
           Properties:
             Topic: !Ref PrRequestTopic
 
-  ## PR Notifications Lambda
-  PrNotificationsFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: pr-notifications-function
-      CodeUri: pr_notifications/
-      Handler: app.lambda_handler
-      Runtime: python3.11
-      Policies:
-        - AWSLambdaBasicExecutionRole
-      # No Events yet
 
   ## Topics
   PrRequestTopic:

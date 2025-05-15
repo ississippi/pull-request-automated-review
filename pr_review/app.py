@@ -7,14 +7,30 @@ import sonnet_client
 import bedrock_retrieve
 import prompt_engine
 from dotenv import load_dotenv
+from pathlib import Path
 
-dynamodb = boto3.resource('dynamodb')
-PR_REVIEWS_TABLE = os.environ.get('PR_REVIEWS_TABLE', 'PRReviews')  # Default if env not set
-PR_REVIEW_TOPIC_ARN = os.environ.get('PR_REVIEW_TOPIC_ARN')
-KB_ID = os.environ.get("BEDROCK_KB_ID")
-#PR_REVIEWS_TABLE = get_parameter("/prreview/PR_REVIEWS_TABLE")
-table = dynamodb.Table(PR_REVIEWS_TABLE)
+# Create an SSM client
+ssm = boto3.client('ssm')
+def get_parameter(name):
+    """Fetch parameter value from Parameter Store"""
+    response = ssm.get_parameter(
+        Name=name,
+        WithDecryption=True
+    )
+    return response['Parameter']['Value']
+# Load secrets from AWS at cold start
+PR_REVIEWS_TABLE = get_parameter("/prreview/PR_REVIEWS_TABLE")
+if PR_REVIEWS_TABLE is None:
+    raise ValueError("PR_REVIEWS_TABLE was not found in the parameter store.")
+PR_REVIEW_TOPIC_ARN = get_parameter("/prreview/PR_REVIEW_TOPIC_ARN")
+if PR_REVIEW_TOPIC_ARN is None:
+    raise ValueError("PR_REVIEW_TOPIC_ARN was not found in the parameter store.")
+
+# Create an SNS client
 sns_client = boto3.client('sns')
+# Initialize DynamoDB
+dynamodb = boto3.resource('dynamodb')
+pr_reviews_table = dynamodb.Table(PR_REVIEWS_TABLE)
 
 def lambda_handler(event, context):
     for record in event.get("Records", []):
@@ -24,46 +40,30 @@ def lambda_handler(event, context):
             # print(f'event: {event}')
             try:
                 request_data = json.loads(sns_message)
-
-                # 1. Get the diff for this PR
                 repo = request_data.get("repo")
                 pr_number = request_data.get("pr_number")
-                diff = git_provider.get_pr_diff(repo, pr_number)
-                # print(f'diff for PR #{pr_number} in {repo}...')
-                if diff is None:
-                    raise Exception(f'No diff returned for for PR #{pr_number} in {repo}...') 
+                pr_state = request_data.get("pr_state", "unknown")
 
-                # 2. Get context from the vector DB - Bedrock Opensearch
-                # for augmented queries and Google styles, need to
-                #     1. Identify the language based on file extension.
-                #     2. Build the context prompt based on the language(s)
-                #     3. Since a PR can contain multiple commits with
-                #        different languages, we need to include 1 or more contexts, one for each language.
+                # 1. Get the diff for this PR
+                diffs = git_provider.get_supported_diffs(repo, pr_number)
+                if diffs is None:
+                    raise Exception(f'No supported diffs returned for for PR #{pr_number} in {repo}...') 
 
-
-                # context_prompt = prompt_engine.buildPythonContextPrompt()
-                # context = bedrock_retrieve.retrieve_from_knowledge_base(context_prompt)
-                # # print("Retrieved results from Bedrock KB:")
-                # # for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
-                # #     print(f"Result {i+1}: {result.get('content', {}).get('text')}")
-                # #     print(f"Score: {result.get('score')}")
-                # #     print("-" * 40)                
-                # if context is None:
-                #     raise Exception(f'No bedrock results returned for for PR #{pr_number} in {repo}...')
+                # 2. Get context from the vector DB
                 
-                # 2. Submit the diff to the code review system
+                # 3. Submit the diffs to the code review system to get a code review
                 start_time = time.time()
-                # review = sonnet_client.get_code_review(diff)
-                review = sonnet_client.get_code_review(diff)
+                review = sonnet_client.get_code_review(diffs)
                 end_time = time.time()
                 elapsed_time = end_time - start_time
                 print(f"==ELAPSED TIME==: Anthropic Code Review for PR #{pr_number} in {repo} took {elapsed_time:.4f} seconds")
                 print("==USAGE==:", review.usage)
+                if review is None:
+                    raise Exception(f'No review returned for for PR #{pr_number} in {repo}...')
+                review_text = review.content[0].text
 
-                # 3. Build review message
+                # 4. Build review SNS message 
                 review_title = f'Review for PR #{pr_number} in {repo}: {request_data.get("pr_title", "No Title Provided")}'
-                #print(f'{review_title}')
-                #review_title = f'{request_data.get("pr_title", "No Title Provided")} in repo {repo}'
                 review_message = {
                     "reviewTitle": review_title,
                     "metadata": request_data,  # << KEEP as dictionary, NOT json.dumps!
@@ -71,25 +71,23 @@ def lambda_handler(event, context):
                 }
                 print(f"--Review-- from LLM for PR #{pr_number} in {repo}: {review_message}")
 
-                # 4. Now publish to SNS topic
+                # 5. Now publish to SNS "review" topic
                 sns_client.publish(
                     TopicArn=PR_REVIEW_TOPIC_ARN,
                     Message=json.dumps(review_message)  # << Here is where the full serialization happens
                 )
                 print(f"Published Review for PR #{pr_number} in {repo}: {review_title}")
 
-                # 5. Store the review in DynamoDB
+                # 6. Store the review in the DynamoDB PRReviews table
                 pr_id = f"{repo}#{pr_number}"
                 item = {
                     "prId": pr_id,
-                    "prState": request_data.get("pr_state", "unknown"),
+                    "prState": pr_state,
                     "reviewTitle": review_title,
                     "metadata": request_data,
-                    "review": review.content[0].text
+                    "review": review_text
                 }
-                table.put_item(Item=item)
-                # print(f"Stored PR Review in DynamoDB with prId: {pr_id}")
-
+                pr_reviews_table.put_item(Item=item)
                 
             except json.JSONDecodeError:
                 print(f"Invalid JSON in SNS Message: {sns_message}")
@@ -121,9 +119,7 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-    owner = "ississippi"
-    repo = "pull-request-test-repo"
+    repo = "ississippi/pull-request-test-repo"
     pr_number = 16    
     # For local testing, you can simulate an event
     test_event = {
@@ -134,7 +130,11 @@ if __name__ == "__main__":
                     "Message": json.dumps({
                         "repo": "ississippi/pull-request-test-repo",
                         "pr_number": 16,
-                        "pr_title": "Fix issue with code review"
+                        "pr_title": "Fix issue with code review",
+                        "pr_state": "open",
+                        "user_login": "ississippi",
+                        "created_at": "2025-05-07T15:26:25Z",
+                        "pr_body": ""
                     })
                 }
             }

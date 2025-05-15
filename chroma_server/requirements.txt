@@ -1,0 +1,2 @@
+chromadb[server]==0.4.24
+

@@ -92,10 +92,7 @@ def retrieve_and_generate(query_text, knowledge_base_id, model_arn, region="us-e
 
 # Example usage
 if __name__ == "__main__":
-    # Replace with your actual knowledge base ID
-    load_dotenv() 
-    KB_ID = os.environ.get("BEDROCK_KB_ID")
-    
+ 
     # Example for Claude model ARN
     MODEL_ARN = "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0"
     
@@ -168,7 +165,7 @@ namespace NotificationsService.Services
 }
      '''
     # Example 1: Just retrieve information from the knowledge base
-    retrieve_results = retrieve_from_knowledge_base(queryRetrieveOnly, KB_ID)
+    retrieve_results = retrieve_from_knowledge_base(queryRetrieveOnly, BEDROCK_KB_ID)
     print("Retrieved results:")
     for i, result in enumerate(retrieve_results.get('retrievalResults', [])):
         print(f"Result {i+1}: {result.get('content', {}).get('text')}")

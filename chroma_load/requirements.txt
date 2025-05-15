@@ -1,0 +1,6 @@
+chromadb==0.4.24
+langchain==0.1.14
+sentence-transformers
+langchain_community
+numpy==1.24.4
+beautifulsoup4
