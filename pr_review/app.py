@@ -4,7 +4,7 @@ import time
 import boto3
 import git_provider
 import sonnet_client
-import bedrock_retrieve
+import pr_rag.bedrock_retrieve as bedrock_retrieve
 import prompt_engine
 from dotenv import load_dotenv
 from pathlib import Path

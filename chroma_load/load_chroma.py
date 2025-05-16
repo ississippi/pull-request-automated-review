@@ -44,8 +44,7 @@ vectordb = Chroma(
     embedding_function=embedding,
     persist_directory=persist_directory
 )
-
-# vectordb.add_documents(docs)
-# vectordb.persist()
+vectordb.add_documents(docs)
+print("Document count:", vectordb._collection.count())
 print(f"Vector store files: {os.listdir(persist_directory)}")
 print(f"✅ Vector store created and persisted to: {persist_directory}")

@@ -142,7 +142,7 @@ Resources:
       TargetType: ip
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /health
-      HealthCheckIntervalSeconds: 30
+      HealthCheckIntervalSeconds: 15
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
 
@@ -157,7 +157,7 @@ Resources:
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /api/v1/heartbeat
       HealthCheckProtocol: HTTP
-      HealthCheckIntervalSeconds: 30
+      HealthCheckIntervalSeconds: 15
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
 
@@ -208,7 +208,7 @@ Resources:
       Conditions:
         - Field: path-pattern
           Values:
-            - /chroma/*
+            - /api/v1/*
       Actions:
         - Type: forward
           TargetGroupArn: !Ref ChromaTargetGroup
