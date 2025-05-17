@@ -142,7 +142,7 @@ Resources:
       TargetType: ip
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /health
-      HealthCheckIntervalSeconds: 15
+      HealthCheckIntervalSeconds: 30
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
 
@@ -157,7 +157,7 @@ Resources:
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /api/v1/heartbeat
       HealthCheckProtocol: HTTP
-      HealthCheckIntervalSeconds: 15
+      HealthCheckIntervalSeconds: 30
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
 
