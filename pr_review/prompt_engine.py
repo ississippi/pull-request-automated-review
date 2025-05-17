@@ -40,7 +40,7 @@ def buildDiffReviewPrompt(code):
     #print ("==PROMPT==\n", prompt)
     return prompt
 
-def buildDiffReviewPromptAugmented(code, context):
+def buildDiffReviewPromptAugmented(code, rag_context):
     prompt = f"""
         You're a senior software engineer. Review the following diff(s) for:
         

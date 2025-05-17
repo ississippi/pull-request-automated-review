@@ -15,9 +15,8 @@ env.json
 .venv/
 venv/
 ENV/
-chroma_venv/
-
-chroma_style_guide_store/
+rag_venv/
+test_results/
 
 # IDEs and editors
 .vscode/
@@ -52,8 +51,6 @@ dist/
 *.db
 *.sqlite3
 
-# Node.js dependencies
-node_modules/
 
 # Jupyter Notebooks checkpoints
 notebooks/.ipynb_checkpoints

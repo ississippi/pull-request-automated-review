@@ -19,48 +19,56 @@ ANTHROPIC_API_KEY = get_parameter("/prreview/ANTHROPIC_API_KEY")
 if ANTHROPIC_API_KEY is None:
     raise ValueError("ANTHROPIC_API_KEY not found in parameter store.")
 
-def get_code_review(code):
-    model = 'claude-3-7-sonnet-20250219'
-    print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
-    
-    # Create a prompt for the code review
-    prompt = prompt_engine.buildDiffReviewPrompt(code)
-    
-    # Create an OpenAI client
-    load_dotenv()  # Load from .env in current directory
-    # print(f"Using Anthropic API Key: {api_key}")
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    
-    message = client.messages.create(
-        model=model,
-        max_tokens=1500,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
+def get_code_review(diffs):
+    try:
+        model = 'claude-3-7-sonnet-20250219'
+        print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
+        
+        # Create a prompt for the code review
+        prompt = prompt_engine.buildDiffReviewPrompt(diffs)
+        
+        # Create an OpenAI client
+        load_dotenv()  # Load from .env in current directory
+        # print(f"Using Anthropic API Key: {api_key}")
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+        
+        message = client.messages.create(
+            model=model,
+            max_tokens=1500,
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+    except Exception as e:
+        print(f"Error in get_code_review(): {e}")
+        message = None
     
     return message
 
-def get_code_review_augmented(code,context):
-    model = 'claude-3-7-sonnet-20250219'
-    print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
-    
-    # Create a prompt for the code review
-    prompt = prompt_engine.buildDiffReviewPromptAugmented(code,context)
-    
-    # Create an OpenAI client
-    load_dotenv()  # Load from .env in current directory
-    # print(f"Using Anthropic API Key: {api_key}")
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    
-    message = client.messages.create(
-        model=model,
-        max_tokens=1500,
-        messages=[
-            {"role": "user", "content": prompt}
-        ]
-    )
-    
+def get_code_review_augmented(diffs, rag_context):
+    try:
+        model = 'claude-3-7-sonnet-20250219'
+        print(f"============= CODE REVIEW USING ANTHROPIC MODEL: {model} ================")
+        
+        # Create a prompt for the code review
+        prompt = prompt_engine.buildDiffReviewPromptAugmented(diffs, rag_context)
+        
+        # Create an OpenAI client
+        load_dotenv()  # Load from .env in current directory
+        # print(f"Using Anthropic API Key: {api_key}")
+        client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+        
+        message = client.messages.create(
+            model=model,
+            max_tokens=1500,
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+    except Exception as e:
+        print(f"Error in get_code_review(): {e}")
+        message = None
+
     return message
 
 

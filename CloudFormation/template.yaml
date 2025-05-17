@@ -208,7 +208,7 @@ Resources:
       Conditions:
         - Field: path-pattern
           Values:
-            - /chroma/*
+            - /api/v1/*
       Actions:
         - Type: forward
           TargetGroupArn: !Ref ChromaTargetGroup

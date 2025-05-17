@@ -6,3 +6,5 @@
 .env.*
 env.json
 env.json
+
+__pycache__/
