@@ -3,7 +3,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copy vector store and requirements
-COPY chroma_langchain_store /app/chroma_langchain_store
+COPY chroma_style_guide_store /app/chroma_style_guide_store
 COPY requirements.txt .
 
 # Install required Python packages

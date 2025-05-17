@@ -17,7 +17,7 @@ venv/
 ENV/
 chroma_venv/
 
-chroma_langchain_store/
+chroma_style_guide_store/
 
 # IDEs and editors
 .vscode/

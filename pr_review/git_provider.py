@@ -83,8 +83,7 @@ def get_supported_diffs(repo, pr_number):
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     all_files = response.json()
-    # for file in all_files:
-    #     print(f"File: {file['filename']}, Status: {file['status']}")
+    #print(f"File: {all_files[0]}")
 
         
     # Check if the response contains a list of files

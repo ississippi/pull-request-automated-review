@@ -16,6 +16,7 @@ env.json
 venv/
 ENV/
 rag_venv/
+test_results/
 
 # IDEs and editors
 .vscode/
