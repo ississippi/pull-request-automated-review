@@ -130,6 +130,10 @@ Resources:
           ToPort: 8000
           SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
         - IpProtocol: tcp
+          FromPort: 8040
+          ToPort: 8040
+          SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
+        - IpProtocol: tcp
           FromPort: 8080
           ToPort: 8080
           SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
@@ -237,6 +241,7 @@ Resources:
           Values:
             - /chat/*
             - /ws/*
+            - /ws/prs
             - /static/*
             - /favicon.ico
             - /
