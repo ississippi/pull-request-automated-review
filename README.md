@@ -20,4 +20,5 @@ pull-request-test-repo: Early repo used to create PRs for testing.
 ![Logical Design](docs/Logical%20diagram%20automated%20code%20review.png)
 ## System Design Guide
 ![System Design Guide](docs/Automated%20Code%20Review%20System%20Design.docx)
-
+## Final Scrum
+![Final Scrum](docs/final_scrum.jpg)
