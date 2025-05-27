@@ -1,3 +1,5 @@
+from langchain.prompts import ChatPromptTemplate
+
 def buildCodeReviewPrompt(code):
     prompt = f"""
         You're a senior software engineer. Review the following code for:
@@ -64,6 +66,27 @@ def buildDiffReviewPromptAugmented(code, rag_context):
 
 def buildPythonContextPrompt():
     return "What are the Python naming conventions?"
+
+
+    # 2. Incorporate the retriever into a question-answering chain.
+system_prompt = (
+    "You are a financial assistant for question-answering tasks. "
+    "Use the following pieces of retrieved context to answer "
+    "the question. If you don't know the answer, say that you "
+    "don't know. Use three sentences maximum and keep the "
+    "answer concise."
+    "If the question is not clear ask follow up questions"
+    "\n\n"
+    "{context}"
+
+)
+
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", system_prompt),
+        ("human", "{input}"),
+    ]
+)
 
 
 if __name__ == "__main__":

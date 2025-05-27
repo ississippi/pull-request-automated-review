@@ -50,6 +50,40 @@ Resources:
               - dynamodb:Query
             Resource: !GetAtt PRReviewsTable.Arn
 
+  ChatHistoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ChatMemory
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      Tags:
+        - Key: Name
+          Value: PRReviewsTable
+          
+  ChatHistoryDynamoPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: ChatHistoryDynamoAccess
+      Roles:
+        - !Ref LambdaExecutionRoleName
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action:
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Scan
+              - dynamodb:Query
+            Resource: !GetAtt ChatHistoryTable.Arn
+
 Outputs:
   TableName:
     Description: Name of the DynamoDB table
@@ -58,3 +92,11 @@ Outputs:
   TableArn:
     Description: ARN of the DynamoDB table
     Value: !GetAtt PRReviewsTable.Arn
+
+  TableName:
+    Description: Name of the DynamoDB table
+    Value: !Ref ChatHistoryTable
+
+  TableArn:
+    Description: ARN of the DynamoDB table
+    Value: !GetAtt ChatHistoryTable.Arn

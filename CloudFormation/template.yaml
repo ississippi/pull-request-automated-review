@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: ECS Fargate service with ALB, HTTPS/HTTP, and Route 53 for notifications.codeominous.com
 
 Parameters:
+
   EcrImageUri:
     Type: String
     Default: 238338230919.dkr.ecr.us-east-1.amazonaws.com/notifications-service
@@ -10,6 +11,10 @@ Parameters:
     Type: String
     Default: 238338230919.dkr.ecr.us-east-1.amazonaws.com/chroma-server
 
+  ChatApiEcrImageUri:
+    Type: String
+    Default: 238338230919.dkr.ecr.us-east-1.amazonaws.com/chat-ws-app
+
   HostedZoneName:
     Type: String
     Default: codeominous.com.
@@ -17,6 +22,13 @@ Parameters:
   DomainName:
     Type: String
     Default: notifications.codeominous.com
+
+  ChatApiTargetGroupArn:
+    Type: String
+    Description: ARN of the pre-existing target group for chat-api
+
+# (or use a Mappings/Imports strategy if shared across stacks)
+
 
 Resources:
 
@@ -117,7 +129,14 @@ Resources:
           FromPort: 8000
           ToPort: 8000
           SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
-
+        - IpProtocol: tcp
+          FromPort: 8040
+          ToPort: 8040
+          SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          SourceSecurityGroupId: !Ref PrNotificationsALBSecurityGroup
 
   ## Load Balancer ##
   PrNotificationsALB:
@@ -142,7 +161,7 @@ Resources:
       TargetType: ip
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /health
-      HealthCheckIntervalSeconds: 30
+      HealthCheckIntervalSeconds: 15
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
 
@@ -157,10 +176,9 @@ Resources:
       VpcId: !Ref PrNotificationsVPC
       HealthCheckPath: /api/v1/heartbeat
       HealthCheckProtocol: HTTP
-      HealthCheckIntervalSeconds: 30
+      HealthCheckIntervalSeconds: 15
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 2
-
 
   ## ACM Certificate ##
   PrNotificationsCertificate:
@@ -213,6 +231,24 @@ Resources:
         - Type: forward
           TargetGroupArn: !Ref ChromaTargetGroup
 
+  ChatApiListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !Ref PrNotificationsHTTPSListener
+      Priority: 30
+      Conditions:
+        - Field: path-pattern
+          Values:
+            - /chat/*
+            - /ws/*
+            - /ws/prs
+            - /static/*
+            - /favicon.ico
+            - /
+      Actions:
+        - Type: forward
+          TargetGroupArn: !Ref ChatApiTargetGroupArn
+
 
   ## ECS Cluster ##
   PrNotificationsCluster:
@@ -259,6 +295,49 @@ Resources:
                   - dynamodb:UpdateItem
                   - dynamodb:DeleteItem
                 Resource: arn:aws:dynamodb:us-east-1:238338230919:table/PRReviews
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                  - dynamodb:PutItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:DeleteItem
+                Resource: arn:aws:dynamodb:us-east-1:238338230919:table/ChatMemory
+
+  ChatApiEcsTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: pr-chat-api-task-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: ChatApiAccessPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:GetItem
+                  - dynamodb:PutItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:Scan
+                  - dynamodb:Query
+                Resource:
+                  - arn:aws:dynamodb:us-east-1:238338230919:table/ChatMemory
+              - Effect: Allow
+                Action:
+                  - ssm:GetParameter
+                Resource:
+                  - arn:aws:ssm:us-east-1:238338230919:parameter/*
+
+
 
   ## Notifications Service Task Definition ##
   PrNotificationsTaskDefinition:
@@ -308,6 +387,28 @@ Resources:
               awslogs-region: us-east-1
               awslogs-stream-prefix: ecs
 
+  ChatApiTaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: chat-api-task
+      Cpu: 512
+      Memory: 1024
+      NetworkMode: awsvpc
+      RequiresCompatibilities: [FARGATE]
+      ExecutionRoleArn: !Ref PrNotificationsTaskExecutionRole
+      TaskRoleArn: !GetAtt ChatApiEcsTaskRole.Arn
+      ContainerDefinitions:
+        - Name: chat-ws-app
+          Image: !Ref ChatApiEcrImageUri
+          PortMappings:
+            - ContainerPort: 8080
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: /ecs/chat-ws-app
+              awslogs-region: us-east-1
+              awslogs-stream-prefix: ecs
+
 
   ## Notiifcations Service ECS Service ##
   PrNotificationsService:
@@ -330,6 +431,9 @@ Resources:
         - ContainerName: notifications-service
           ContainerPort: 5000
           TargetGroupArn: !Ref PrNotificationsTargetGroup
+      Tags:
+        - Key: Name
+          Value: pr-notifications-service
 
   ## Chroma Server ECS Service ##
   ChromaServerService:
@@ -354,6 +458,31 @@ Resources:
           ContainerPort: 8000
           TargetGroupArn: !Ref ChromaTargetGroup
 
+  ChatApiService:
+    Type: AWS::ECS::Service
+    DependsOn: 
+      - PrNotificationsHTTPSListener
+      - ChatApiListenerRule
+    Properties:
+      Cluster: !Ref PrNotificationsCluster
+      LaunchType: FARGATE
+      DesiredCount: 1
+      TaskDefinition: !Ref ChatApiTaskDefinition
+      DeploymentController:
+        Type: ECS
+      EnableECSManagedTags: true
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref PrNotificationsTaskSecurityGroup
+          Subnets:
+            - !Ref PrNotificationsPublicSubnet1
+            - !Ref PrNotificationsPublicSubnet2
+      LoadBalancers:
+        - ContainerName: chat-ws-app
+          ContainerPort: 8080
+          TargetGroupArn: !Ref ChatApiTargetGroupArn
 
 
   ## Route 53 Record ##
