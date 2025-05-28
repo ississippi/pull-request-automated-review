@@ -1,6 +1,12 @@
 # pull-request-automated-review
 The Automated Pull Request Reviewer Bot leverages Large Language Models (LLMs) to  automate the review of pull requests (PRs) . The purpose is to  enhance the efficiency and accuracy of code reviews by providing detailed feedback,  identifying potential issues, and suggesting improvements to streamline the code review process.
 
+pr_request and pr_review are deployed as lambdas and are the core operative code.
+pr_chat is not used, it has been moved to pull-request-automated-chat.
+chroma_load is used to load style documents into chroma
+chroma_server creates a docket image of the chroma vector store which can be deployed to ECS.S
+
+
 ** See /CloudFormation for all CF templates for this project. **  
 ** See /docs/Deployments.docx for notes on build and deployments of all related components including CF for the infrastructure.**  
 
